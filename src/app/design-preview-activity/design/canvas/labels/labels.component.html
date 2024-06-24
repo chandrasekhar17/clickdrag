@@ -1,0 +1,56 @@
+<div class="label-area">
+  <div class="labels-heading d-flex">
+    <h2 class="label-text">Labels</h2>
+    <button *ngIf="mode === 'design'" mhe-button [purpose]="_buttonPurpose.Icon" class="button"
+      [mheToggletip]="customPopoverInfo" appTooltip="Instructions" placement="bottom">
+      <i class="dpg-icon ngx-icon_30x30 dpg-icon-moreinfo"><span class="sr-only">Instructions</span></i>
+    </button>
+    <ng-template #customPopoverInfo>
+      <p>When "Shuffle for student" is ON, the order of labels would be different for each student and attempt.</p>
+      <p>
+        When "Shuffle for student" is OFF, the Author should be able to rearrange the labels as required by clicking on
+        the "Reorder Labels" button. All students should be able to see the same order of labels as given by the Author
+        for all their attempts.
+      </p>
+    </ng-template>
+  </div>
+  <div class="labels" *ngIf="!reorderLabel">
+    <app-toggle (change)="updateChanged()" [checked]="this.state.labelData.shuffleForStudent" [labelPosition]="'left'">
+      Shuffle for students
+    </app-toggle>
+    <div *ngIf="!this.state.labelData.shuffleForStudent">
+      <button mhe-button [purpose]="_buttonPurpose.Secondary" (click)="reorderLabels()">Reorder Labels</button>
+    </div>
+  </div>
+  <div cdkDropList class="label-wrap -list"
+    [ngClass]="this.state.labelData.shuffleForStudent ? 'label-reorder-wrap' : 'label-wrap'"
+    (cdkDropListDropped)="drop($event)" cdkDropListLockAxis="y">
+    <div class="label-text-area" *ngFor="let item of labelList; let i = index" cdkDrag
+      (cdkDragStarted)="dropStarted($event)" [cdkDragDisabled]="!reorderLabel">
+      <div class="single-label">
+        <div class="drag-label-placeholder" [style.height.px]="dragPlaceHolderHeight" *cdkDragPlaceholder></div>
+        <app-single-label class="label-move-cursor" [label]="item" [isInsideDropzone]="false"
+          [isHighlight]="isHighlightLabels[i]" (click)="onLabelClick(item, i)"></app-single-label>
+        <ng-container *ngIf="!reorderLabel; else dragIconButton">
+          <div class="kebab">
+            <app-dropdown [options]="item.distractor ? distractorOptions : labelOptions"
+              [icon]="'ahe-icon-system-kebab'" menuWidth="150" (selectionChange)="onDropDownSelection($event, i)"
+              appTooltip="Options" toggleButtonAriaLabel="more option" (click)="kebabClick(i)">
+            </app-dropdown>
+          </div>
+        </ng-container>
+        <ng-template #dragIconButton>
+          <div class="drag-handler-move">
+            <button mhe-button [purpose]="_buttonPurpose.Icon" appTooltip="Drag to Reorder" cdkDragHandle>
+              <i class="dpg-icon dpg-icon-movingtile"><span class="sr-only">XYZ</span></i>
+            </button>
+          </div>
+        </ng-template>
+      </div>
+      <div *ngIf="(item.note || item.feedback) !== ''" class="note-feedback-display">
+        <span class="note-feedback">Note and Feedback</span>
+        <div class="border-line"></div>
+      </div>
+    </div>
+  </div>
+</div>

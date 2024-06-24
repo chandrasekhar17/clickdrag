@@ -1,0 +1,238 @@
+@import './variables';
+
+// MHE-tiny-mce4 customize styles: Starts
+.mce-tinymce {
+  &.mce-panel {
+    border: 1px solid $sky-blue-120 !important;
+    border-radius: 5px;
+
+    .mce-menubar {
+      display: none;
+    }
+
+    .mce-toolbar-grp {
+      border: 0 none;
+      border-radius: 5px 5px 0 0;
+
+      .mce-btn-group {
+        border: 0;
+        border-radius: 4px;
+
+        .mce-btn {
+          border-radius: 5px;
+          position: relative;
+          margin-left: 3px;
+          button {
+            border: 1px solid $sky-blue-120;
+            border-radius: 5px;
+            .mce-ico:before {
+              color: $gray-15;
+            }
+          }
+          &.mce-splitbtn {
+            button {
+              &:first-child {
+                border-radius: 5px 0 0 5px;
+                border-right: 0;
+              }
+              &:last-child {
+                border-radius: 0 5px 5px 0;
+                border-left: 0;
+              }
+            }
+            &:focus {
+              &:before {
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: 0;
+                box-shadow: 0 0 0 1px $sky-blue-140;
+              }
+            }
+            &.mce-active {
+              &:focus {
+                &:before {
+                  bottom: -2px;
+                  left: -2px;
+                  right: -2px;
+                  top: -2px;
+                  box-shadow: 0 0 0 2px $sky-blue-140;
+                }
+              }
+            }
+          }
+          &:hover,
+          &:active {
+            border: 1px solid transparent;
+            background-color: $gray-02;
+          }
+          &:focus {
+            background-color: transparent;
+            &:before {
+              outline: 0;
+              border-radius: 5px;
+              bottom: -2px;
+              box-shadow: 0 0 0 2px $sky-blue-140;
+              content: '';
+              left: -2px;
+              pointer-events: none;
+              position: absolute;
+              right: -2px;
+              top: -2px;
+            }
+          }
+          &.mce-active {
+            border: 1px solid transparent;
+            background-color: $sky-blue-120;
+            &:hover {
+              background: $sky-blue-120 !important;
+            }
+            button {
+              .mce-ico:before {
+                color: $color-white;
+              }
+            }
+          }
+        }
+      }
+      .mce-flow-layout {
+        padding: 3px;
+      }
+    }
+
+    .mce-statusbar {
+      display: none;
+      border-color: $sky-blue-120;
+      border-radius: 0 0 5px 5px;
+    }
+
+    .mce-edit-area {
+      border-top: 1px solid $sky-blue-120;
+      border-radius: 0 0 5px 5px;
+      iframe {
+        border-radius: 0 0 5px 5px;
+        height: 60px !important;
+      }
+    }
+  }
+  .mce-edit-area {
+    body.mce-content-body {
+      min-height: 60px !important;
+    }
+  }
+}
+
+.mce-panel {
+  &.mce-menu {
+    .mce-menu-item {
+      position: relative;
+      .mce-text {
+        color: $gray-15;
+      }
+      &.mce-active {
+        background-color: $sky-blue-120;
+        &:hover,
+        &:focus {
+          background-color: $sky-blue-120;
+        }
+      }
+      &:hover {
+        background-color: $gray-02;
+      }
+      &:focus {
+        background-color: transparent;
+        &:before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: -2px;
+          right: 2px;
+          top: 0;
+          box-shadow: 0 0 0 2px $sky-blue-140;
+        }
+      }
+    }
+  }
+
+  &.mce-window {
+    border-radius: 5px;
+    .mce-window-head {
+      background-color: $gray-15;
+      border: 0;
+      border-radius: 5px 5px 0 0;
+      .mce-title {
+        color: $color-white;
+        font-size: 1.6rem;
+        font-weight: normal;
+      }
+      .mce-close {
+        i {
+          color: $color-white;
+        }
+      }
+    }
+    .mce-foot {
+      background-color: $dark-blue-40;
+      border-top: 3px solid $gray-03 !important;
+      border-radius: 0 0 5px 5px;
+      .mce-btn {
+        background-color: transparent;
+        border: 1px solid $sky-blue-120;
+        border-radius: 5px;
+        button {
+          color: $sky-blue-140;
+          font-size: 1.6rem;
+          padding: 8px 16px;
+        }
+        &.mce-primary {
+          background-color: $sky-blue-120;
+          button {
+            color: $color-white;
+          }
+        }
+        &:focus {
+          &:before {
+            outline: 0;
+            border-radius: 5px;
+            bottom: -2px;
+            box-shadow: 0 0 0 2px $sky-blue-140;
+            content: '';
+            left: -2px;
+            pointer-events: none;
+            position: absolute;
+            right: -2px;
+            top: -2px;
+          }
+        }
+      }
+    }
+    div,
+    button,
+    p,
+    span,
+    label,
+    input {
+      font-family: proxima_novaregular, sans-serif !important;
+      border-color: $sky-blue-120 !important;
+    }
+    .mce-reset {
+      border-radius: 5px;
+    }
+  }
+}
+.ahe-ui {
+  &.has-error {
+    .mce-tinymce {
+      &.mce-panel {
+        border-color: $heritage-red-100 !important;
+        .mce-edit-area {
+          border-top: 1px solid $heritage-red-100 !important;
+        }
+      }
+    }
+    .help-block {
+      color: $heritage-red-100 !important;
+    }
+  }
+}
+// MHE-tiny-mce4 customize styles: Ends

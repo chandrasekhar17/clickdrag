@@ -1,0 +1,37 @@
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/av-control-play-outline';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/av-control-pause-outline';
+
+.preview {
+  max-height: 430px;
+  overflow-y: auto;
+}
+.media_preview {
+  padding: 25px 28px;
+}
+.image {
+  width: 100%;
+}
+.description {
+  color: #265867;
+  padding: 20px;
+}
+.shortDesc{
+  padding: 20px 20px 0px 20px;
+}
+.description_property {
+  font-size: 14px;
+  text-align: justify;
+}
+.audio_preview {
+  display: flex;
+  align-items: center;
+}
+.media_title {
+  padding-left: 8px;
+  max-width: 300px;
+  overflow-wrap: break-word;
+}
+.audio_btn {
+  display: flex;
+  align-items: center;
+}

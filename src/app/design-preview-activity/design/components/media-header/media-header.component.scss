@@ -1,0 +1,43 @@
+
+@import "node_modules/@mhe/openlearning-themekit-icons/icons/system-left-arrow";
+@import "node_modules/@mhe/openlearning-themekit-icons/icons/system-filter";
+
+.media-header{
+    display: flex;
+    margin-top: 14px;
+    border-bottom: 1px solid #e0e7e9;
+    // margin-right: 140px;
+    // min-width: max-content;
+}
+
+.back-button {
+  width: 36px;
+  height: 36px;
+  margin: 9px 10px 12px 29px;
+  padding: 8px;
+  border-radius: 5px;
+}
+.media-back{
+    display: flex;
+}
+.select-filter{
+    margin-top: 10px;
+    flex: 1;
+    text-align: right;
+    .btn-icon {
+      padding: 8px 8px !important;
+    }
+}
+.filter-container{
+  width: 110px;
+  height: 77px;
+  margin: 51px 29px 46px 522px;
+  position: absolute;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+  border: solid 1px #265867;
+  background-color: #fff;
+}
+.filter-list{
+    border-bottom: 1px solid #d1dbde;;
+}

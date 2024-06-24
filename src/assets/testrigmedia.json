@@ -1,0 +1,124 @@
+{
+  "media": {
+    "11111": {
+      "consumed": "true",
+      "media_type": "image/jpg",
+      "assets": {
+        "en-us": {
+          "filename": "Earth.jpg",
+          "primary": "./assets/Earth.jpg",
+          "alt_text": "Earth",
+          "long_description": "1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "thumbnail": "",
+          "caption": "",
+          "transcript": ""
+        }
+      }
+    },
+    "22222": {
+      "consumed": "true",
+      "media_type": "image/jpg",
+      "assets": {
+        "en-us": {
+          "filename": "Human body.jpg",
+          "primary": "./assets/Human body.jpg",
+          "alt_text": "Human body",
+          "long_description": "2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "thumbnail": "",
+          "caption": "",
+          "transcript": ""
+        }
+      }
+    },
+    "33333": {
+      "consumed": "true",
+      "media_type": "image/jpg",
+      "assets": {
+        "en-us": {
+          "filename": "Black hole.jpg",
+          "primary": "./assets/Black hole.jpg",
+          "alt_text": "Black hole",
+          "long_description": "3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "thumbnail": "",
+          "caption": "",
+          "transcript": ""
+        }
+      }
+    },
+    "44444": {
+      "consumed": "true",
+      "media_type": "image/jpg",
+      "assets": {
+        "en-us": {
+          "filename": "Sunflower.jpg",
+          "primary": "./assets/Sunflower.jpg",
+          "alt_text": "Sunflower",
+          "long_description": "12 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "thumbnail": "",
+          "caption": "",
+          "transcript": ""
+        }
+      }
+    },
+    "55555": {
+      "consumed": "true",
+      "media_type": "image/jpg",
+      "assets": {
+        "en-us": {
+          "filename": "Rose.jpg",
+          "primary": "./assets/Rose.jpg",
+          "alt_text": "Rose",
+          "long_description": "13 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "thumbnail": "",
+          "caption": "",
+          "transcript": ""
+        }
+      }
+    },
+    "66666": {
+      "consumed": "true",
+      "media_type": "image/jpg",
+      "assets": {
+        "en-us": {
+          "filename": "Hibiscus.jpg",
+          "primary": "./assets/Hibiscus.jpg",
+          "alt_text": "Hibiscus",
+          "long_description": "14 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "thumbnail": "",
+          "caption": "",
+          "transcript": ""
+        }
+      }
+    },
+    "77777": {
+      "consumed": "true",
+      "media_type": "audio/wav",
+      "assets": {
+        "en-us": {
+          "filename": "gettysburg.wav",
+          "primary": "./assets/gettysburg.wav",
+          "alt_text": "Audio 1",
+          "long_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore\n magna\n aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n consequat. Duis\n aute",
+          "thumbnail": "",
+          "caption": "./assets/gettysburg_trans.txt",
+          "transcript": ""
+        }
+      }
+    },
+    "88888": {
+      "consumed": "true",
+      "media_type": "audio/mp3",
+      "assets": {
+        "en-us": {
+          "filename": "flamVid.mp3",
+          "primary": "./assets/flamVid.mp3",
+          "alt_text": "Audio 2",
+          "long_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore\n magna\n aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n consequat. Duis\n aute",
+          "thumbnail": "",
+          "caption": "./assets/flamVid_trans.txt",
+          "transcript": ""
+        }
+      }
+    }
+  }
+}

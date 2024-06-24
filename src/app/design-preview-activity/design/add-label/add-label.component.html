@@ -1,0 +1,19 @@
+<div class="add-label-hint-dialog">
+    <div class="label-content">
+        <app-label [(labelText)]="labelText" [feedback]="feedback" [note]="note"
+            [dropzoneDescription]="dropzoneDescription" [labelErrors]="labelErrors" [mediaId]="mediaId"
+            (deleteMedia)="mediaDelete($event)" [labelData]="labelData" (getLabelHeight)="setLabelHeight($event)"
+            (getLabelText)="setLabelText($event)" (getShortDescription)="setShortDescription($event)"
+            (getLongDescription)="setLongDescription($event)"></app-label>
+    </div>
+    <div class="border-bottom"></div>
+    <div class="note-feedback-container mt-5">
+        <ng-container *ngIf="displayDropZone">
+            <app-dropzone-description [(dropzoneDescription)]="dropzoneDescription"
+                (getDropzoneDesc)="setDropzoneDesc($event)" [dropzoneDescErrors]="dropzoneDescErrors">
+            </app-dropzone-description>
+        </ng-container>
+        <app-note [(note)]="note" (getNote)="setNote($event)"></app-note>
+        <app-feedback [(feedback)]="feedback" (getFeedback)="setFeedback($event)"></app-feedback>
+    </div>
+</div>

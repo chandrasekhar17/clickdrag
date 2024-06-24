@@ -1,0 +1,9 @@
+<div class="dropzone-desc-container">
+  <label class="mb-1">Drop Zone Description <span class="required">*</span></label>
+  <div class="pb-2">
+    <mhe-editor #editor [toggleRichTextMenuBar]="false" [content]="dropzoneDescription"
+      (contentChange)="onEditorContentChange($event)" [elementPath]="false" maxCharacter="200"
+      [errors]="dropzoneDescErrors" [tinymceMenubar]="'false'">
+    </mhe-editor>
+  </div>
+</div>

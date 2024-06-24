@@ -1,0 +1,19 @@
+@import 'node_modules/@mhe/openlearning-themekit-icons/icon-base';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/undo';
+@import '../../../styles/variables';
+
+
+.header {
+  display: flex;
+  height: 49px;
+  width: 100%;
+  border-bottom: 1px solid $gray-03;
+  align-items: center;
+  padding: 6px 10px;
+
+}
+
+.undo-button {
+    margin: 8px;
+    padding: 8px 8px;
+}

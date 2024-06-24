@@ -1,0 +1,12 @@
+@import '../../../../styles/variables';
+
+.drop-zone {
+  min-height: 220px;
+  border: 1px solid $sky-blue-120;
+  background-color: $color-white;
+  border-radius: 5px;
+}
+
+.single-drop-zone {
+  min-height: 220px;
+}

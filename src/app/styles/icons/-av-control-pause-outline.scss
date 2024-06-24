@@ -1,0 +1,29 @@
+.dpg-icon-av-control-pause-outline::before,
+.ahe-icon-av-control-pause-outline::before {
+    content: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23265867' d='M16 7c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1h-2a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2zm-6 0c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2zm6 1h-2v8h2V8zm-6 0H8v8h2V8z'/%3E%3C/svg%3E");
+}
+
+.btn-secondary-light {
+
+    .dpg-icon-av-control-pause-outline::before,
+    .ahe-icon-av-control-pause-outline::before {
+        content: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M16 7c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1h-2a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2zm-6 0c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2zm6 1h-2v8h2V8zm-6 0H8v8h2V8z'/%3E%3C/svg%3E");
+    }
+}
+
+.btn-icon {
+    &:not(.ngx-shared) {
+
+        &:hover,
+        &:active,
+        &.active {
+            &:not(:disabled, .disabled) {
+
+                .dpg-icon-av-control-pause-outline::before,
+                .ahe-icon-av-control-pause-outline::before {
+                    content: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M16 7c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1h-2a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2zm-6 0c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2zm6 1h-2v8h2V8zm-6 0H8v8h2V8z'/%3E%3C/svg%3E");
+                }
+            }
+        }
+    }
+}

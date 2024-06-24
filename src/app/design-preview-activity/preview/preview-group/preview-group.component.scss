@@ -1,0 +1,19 @@
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 12px;
+}
+
+.groupBucket {
+  width: 178px;
+  min-height: 220px;
+  border: solid 1px #007c91;
+  border-radius: 5px;
+}
+
+.group {
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  margin: 12px;
+}

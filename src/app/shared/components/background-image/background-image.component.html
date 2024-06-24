@@ -1,0 +1,60 @@
+<ng-container [ngSwitch]="imageType">
+  <ng-template [ngSwitchCase]="'canvas'">
+    <ng-container *ngIf="(media | json) != '{}'">
+      <div class="canvas-media" [style.top.px]="backgroundImage.position.y" [style.left.px]="backgroundImage.position.x"
+        [style.width.px]="backgroundImage.width" [style.height.px]="backgroundImage.height">
+        <img src="{{media.path}}" (load)="onImageLoad($event,backgroundImage)" [style.width.px]="imageCord.width"
+          [style.height.px]="imageCord.height" alt="{{media.altText}}">
+      </div>
+      <a href="javascript:void(0)" class="ahe-ui-link" (click)="openLongDescriptionPopup()"
+        [style.top.px]="backgroundImage.position.y + backgroundImage.height + 5"
+        [style.left.px]="backgroundImage.position.x" [attr.aria-label]="getImageDescriptionAriaLabel(media.altText)"
+        *ngIf="media.description !== ''">Image
+        Description</a>
+    </ng-container>
+
+  </ng-template>
+  <ng-template [ngSwitchCase]="'label'">
+    <ng-container *ngIf="(media | json) != '{}'">
+      <div class="label-media">
+        <img alt="{{ media.altText }}" src="{{media.path}}" (load)="onLabelImageLoad($event)" [style]="imageStyle" />
+      </div>
+      <!-- <ng-container *ngIf="media.description !== '' || editedDescription !== ''">
+                <a href="javascript:void(0)" class="ahe-ui-link"
+                    [ngClass]="{'image-description-preview': isPreviewLabel || isDisabled}"
+                    (click)="openLongDescriptionPopup()" [attr.aria-label]="setAriaLabelForLabelImage()"
+                    [attr.tabIndex]="setTabIndexForImageLabel()">Image
+                    Description</a>
+            </ng-container> -->
+    </ng-container>
+  </ng-template>
+  <ng-template [ngSwitchCase]="'group'">
+    <ng-container *ngIf="(media | json) != '{}'">
+      <div class="group-media" [style.width.px]="backgroundImage.width" [style.height.px]="groupImageMaxHeight">
+        <img [ngClass]="imageCord.width === 0 && imageCord.height === 0 ?  '' : 'image'"
+          alt="group {{ groupIndex + 1 }} {{ media.altText }}" src="{{media.path}}"
+          (load)="onImageLoad($event, backgroundImage)"
+          [style.width.px]="imageCord.width === 0 ? 'auto' : imageCord.width"
+          [style.height.px]="imageCord.height === 0 ? 'auto' : imageCord.height" />
+        <!-- <img class="image" alt="group {{ groupIndex + 1 }} {{ media.altText }}" src="{{media.path}}"
+                    (load)="onImageLoad($event, backgroundImage)" [style.width.px]="imageCord.width"
+                    [style.height.px]="imageCord.height" /> -->
+      </div>
+      <ng-container *ngIf="media.description !== '';else emptyDescription">
+        <a href="javascript:void(0)" class="ahe-ui-link custom-link" (click)="openLongDescriptionPopup()"
+          (focusin)="onFocusInGroupAriaLabel()" (focusout)="onFocusOutGroupAriaLabel()"><span aria-hidden="true">Image
+            Description</span><span class="sr-only">{{isGroupImageFocus ? ariaDescribeForGroupImage :
+            ariaLabelForGroupImage}}</span></a>
+      </ng-container>
+      <ng-template #emptyDescription>
+        <div class="empty-desc-container">
+        </div>
+      </ng-template>
+    </ng-container>
+    <!-- <ng-container *ngIf="(media | json) === '{}'">
+            <div [style.height.px]="groupImageMaxHeight +23 ">
+
+            </div>
+        </ng-container> -->
+  </ng-template>
+</ng-container>

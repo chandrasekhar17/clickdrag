@@ -1,0 +1,71 @@
+<ng-container *ngIf="mode === 'test' || mode === 'sample' || mode === 'review'; else otherModeTemplate">
+  <div #dropZone [attr.dropzoneId]="dockObj.id"
+    [ngClass]="{ 'incorrect-answer': mode === 'review' && dockObj.linkedLabel.length < 1 }"
+    (mouseover)="mouseEnter($event)" (mouseout)="mouseLeave($event)" (focusin)="mouseEnter($event)"
+    (focusout)="mouseLeave($event)" class="drop-zone dropable" [style.width.px]="responseDockObj.width"
+    [style.height.px]="responseDockObj.height" [style.left.px]="responseDockObj.position.x"
+    [style.top.px]="responseDockObj.position.y" id="{{ 'dropzone_' + dockObj.id }}"
+    attr.role="{{ (mode === 'review' && dockObj.linkedLabel.length < 1 || !droppedLabels.length && mode === 'test') ? 'region' : null }}"
+    attr.aria-labelledby="{{ (mode === 'review' && dockObj.linkedLabel.length < 1 || !droppedLabels.length && mode === 'test') ? 'text_' + dockObj.id : null }}">
+    <ng-container *ngIf="mode === 'review' && dockObj.linkedLabel.length < 1">
+      <span class="feedback-text" aria-hidden="true">Incorrect</span>
+      <span class="sr-only" id="{{ 'text_' + dockObj.id }}">{{setAriaLabelForEmptyDropZones('Incorrect.')}}</span>
+    </ng-container>
+    <ng-container *ngIf="!droppedLabels.length && mode === 'test'">
+      <span class="sr-only" id="{{ 'text_' + dockObj.id }}">{{getEmptyDropZonesText()}}</span>
+    </ng-container>
+    <!-- <ng-container *ngIf="mode === 'sample' && dockObj.linkedLabel.length < 1">
+      <span class="sr-only">{{setAriaLabelForEmptyDropZones()}}</span>
+    </ng-container> -->
+    <ng-container>
+      <div *ngFor="let item of droppedLabels; let i = index" [ngClass]="{ invisible: i === draggedLabelIndex }">
+        <app-shared-single-label [label]="item" [isInsideDropzone]="true" [dropzone]="dockObj" [dropZoneEle]="dropZone"
+          [labelHeight]="responseDockObj.height" [index]="currentIndex"></app-shared-single-label>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+<ng-template #otherModeTemplate>
+  <ng-container *ngIf="labelData.mediaType === 'image' || labelData.mediaType === 'audio'; else normalDropzone">
+    <div #dropZone [ngClass]="{ 'incorrect-answer': mode === 'review' && dockObj.linkedLabel.length < 1 }"
+      (mouseover)="mouseEnter($event)" (mouseout)="mouseLeave($event)" (focusin)="mouseEnter($event)"
+      (focusout)="mouseLeave($event)" class="drop-zone" [style.width.px]="dockObj.width"
+      [style.height.px]="dockObj.height" [style.left.px]="dockObj.position.x" [style.top.px]="dockObj.position.y">
+
+      <p class="drop-zone-reader"></p>
+      <!-- DON'T REMOVE -added empty p tag for screen reader, In firefox with nvda its not reading the each dropzone label in browse mode -->
+      <span class="sr-only">{{ cdStateService.stripHtmlTags(labelData.text) }} {{
+        cdStateService.stripHtmlTags(labelData.dropzoneDescription) }} Drop zone {{ currentIndex
+        + 1 }} of
+        {{ state.dockData.docks.length }}</span>
+      <p [style.height.px]="dockObj.height - 120" [attr.aria-hidden]='mode !== "test" ? true : null'
+        class="m-0 drop-zone__text text--border" [ngClass]="{ 'audio-text': labelData.mediaType === 'audio' }"
+        [innerHtml]="labelTextValue | safeHtml" *ngIf="labelData.text !== ''"></p>
+      <ng-container *ngIf="labelData.mediaType === 'image'; else audioTemplate">
+        <app-background-image [backgroundImage]="labelData.image" [imageType]="'label'" [labelIndex]="currentIndex"
+          [label]="labelData"> </app-background-image>
+      </ng-container>
+      <ng-template #audioTemplate>
+        <div class="media-audio p-1" [ngClass]="{ 'audio-without-text': labelTextValue === '' }">
+          <app-audio-player [audioFile]="mediaPath" [audioData]="media" [dropZoneEle]="dropZone"
+            [isCaptionAvailable]="media.caption === '' ? false : true" boundary=".canvas-stage">
+          </app-audio-player>
+        </div>
+      </ng-template>
+    </div>
+  </ng-container>
+  <ng-template #normalDropzone>
+    <div #dropZone (mouseover)="mouseEnter($event)" (mouseout)="mouseLeave($event)" (focusin)="mouseEnter($event)"
+      (focusout)="mouseLeave($event)" class="drop-zone" [style.width.px]="dockObj.width"
+      [style.height.px]="dockObj.height" [style.left.px]="dockObj.position.x" [style.top.px]="dockObj.position.y">
+      <p class="drop-zone-reader"></p>
+      <!-- DON'T REMOVE -  added empty p tag for screen reader, In firefox with nvda its not reading the each dropzone label in browse mode -->
+      <span class="sr-only">{{ cdStateService.stripHtmlTags(labelData.text) }} {{
+        cdStateService.stripHtmlTags(labelData.dropzoneDescription) }} Drop zone {{ currentIndex
+        + 1 }} of
+        {{ state.dockData.docks.length }}</span>
+      <p class="m-0 drop-zone__text" [attr.aria-hidden]='mode !== "test" ? true : null'
+        [innerHtml]="labelTextValue | safeHtml"></p>
+    </div>
+  </ng-template>
+</ng-template>

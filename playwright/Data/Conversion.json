@@ -1,0 +1,30 @@
+
+{
+    "DropzoneTextTypetool": ["Epiglottis", "Corniculate cartilage", "Thyroid cartilage", "Arytenoid cartilage", "Cricoid cartilage", "Muscular process", "Superior horn", "Inferior horn", "Trachea", "Tracheal cartilage", "Vocal process", "Vocal ligament"],
+    "ImgEachLabelInstance": ["Label1", "Label1", "Label2", "Label1", "Label2"],
+    "ImgDisplayLabelOnce": ["Label1", "Label1", "Label2", "Label2", "Label2"],
+    "GroupingTypeTool1": ["Skull", "Lumbar vertebra", "Ribs", "Sacrum", "Sternum"],
+    "GroupingTypeTool2": ["Clavicle", "Humerus", "Radius", "Femur", "Tarsals"],
+    "ImageLink1":"//connectqalv-cf.mheducation.com/MHE/editor/QA/sysgen/instructor/QAS/13570164069314548/_sysgen_qas_13570164069214805_1642489931466_axial.jpg",
+    "ImageLink2": "//connectqalv-cf.mheducation.com/MHE/editor/QA/sysgen/instructor/QAS/13570164069314548/_sysgen_qas_13570164069214804_1642489916623_appendicular.jpg",
+    "GroupLessImage1":["Pumps blood to the right ventricle", "Preloads the right ventricle"],
+    "GroupLessImage2": ["Pumps blood to the left ventricle", "Preloads the left ventricle", "Passively fills with blood returning from the lungs"],
+    "GroupLessImage3": ["Pumps blood to the pulmonary trunk"],
+    "GroupLessImage4": ["Pumps blood to the aorta", "The strongest chamber", "Dysfunction of this chamber leads to pulmonary edema", "Greatest contributor to systemic blood pressure"],
+    "GrpEachLabelInstance1": ["Whiteβ", "Red", "Blue"],
+    "GrpEachLabelInstance2": ["Whiteβ", "Red", "Blue"],
+    "GrpEachLabelInstance3": ["Whiteβ", "Green", "Red"],
+    "GrpEachLabelInstance4":["Whiteβ", "Red"],
+    "GrpDisplayLabelOnce1": ["Label1", "Label2", "Label10", "Label11"],
+    "GrpDisplayLabelOnce2": ["Label1", "Label2", "Label10", "Label11"],
+    "GrpAudWithText1": ["Label1", "Label2", "Label3", "Label4", "Label5"],
+    "GrpAudWithText2":["Label6", "Label7", "Label8", "Label9"],
+    "ConnectURL": "https://mhedu.force.com/CXG/s/ContactUs?external_browser=2",
+    "MsgLabelEmpty": "One or more labels are empty. Please provide label text/image before proceeding.",
+    "MsgLabelDropDescEmpty": "One or more labels are empty. Please provide label text/image.One or more labels do not have drop zone descriptions. Please provide drop zone description.",
+    "MsgDropDescEmpty": "Each label must have a drop zone description.",
+    "PreviewDropzoneTextTypetool": ["Epiglottis", "Superior horn","Corniculate cartilage","Thyroid cartilage", "Arytenoid cartilage", "Cricoid cartilage", "Thyroid cartilage", "Vocal process","Muscular process", "Superior horn","Inferior horn", "Trachea", "Vocal ligament","Tracheal cartilage", "Vocal process", "Vocal ligament", "Cricoid cartilage", "Trachea"]
+
+
+}
+

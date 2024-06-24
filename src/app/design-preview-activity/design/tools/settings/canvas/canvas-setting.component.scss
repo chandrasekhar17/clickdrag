@@ -1,0 +1,17 @@
+.canvas__units {
+  .form-group {
+    width: 120px;
+    display: block;
+    float: left;
+    margin-right: 20px;
+  }
+}
+
+.guide-checkbox-block {
+  display: flex;
+  flex-wrap: wrap;
+  .guide-checkbox {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+}

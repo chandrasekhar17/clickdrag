@@ -1,0 +1,15 @@
+<app-activity-view (updateIsActivity)="updateActivity($event)" *ngIf="isActivityView">
+</app-activity-view>
+
+<ng-template [ngIf]="showCanvas">
+  <main class="app-wrap app-border">
+    <header class="app-header"></header>
+    <section class="app-inner-wrap d-flex">
+      <app-canvas class="canvas-wrap"></app-canvas>
+      <app-tools></app-tools>
+    </section>
+  </main>
+</ng-template>
+<app-backward-compatibility-warnings *ngIf="backwardCompatibilityErrors || duplicates">
+</app-backward-compatibility-warnings>
+<app-special-character></app-special-character>

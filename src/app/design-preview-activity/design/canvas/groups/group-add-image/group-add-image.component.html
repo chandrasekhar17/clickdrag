@@ -1,0 +1,22 @@
+<ng-container *ngIf="!group.isImageAdded; else imageContainer">
+  <div class="add-image-section">
+    <button mhe-button [purpose]="buttonPurpose.Secondary" class="white-bg" (click)="addImage()"
+      [disabled]="group.hasError">
+      Add Image
+    </button>
+  </div>
+</ng-container>
+
+<ng-template #imageContainer>
+  <div class="img-wrap" [ngClass]="{ selected: selected }" [style.width.px]="containerWidth"
+    [style.height.px]="groupImageMaxHeight">
+    <img #grpImage class="media-image" [width]="imgWidth" [height]="imgHeight" (load)="onImageLoad($event)"
+      src="{{ mediaPath }}" (click)="selectImage()" (clickOutside)="onClickedOutside($event)" />
+    <div #resizeEl [ngClass]="{ 'resize-corner': selected }"></div>
+  </div>
+  <ng-container *ngIf="mediaDescription !== ''">
+    <a role="application" href="javascript:void(0)" class="ahe-ui-link custom-link"
+      (click)="openLongDescriptionPopup(index)">Image
+      Description</a>
+  </ng-container>
+</ng-template>

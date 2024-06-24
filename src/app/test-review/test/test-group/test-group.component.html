@@ -1,0 +1,17 @@
+<div class="app-undo-reset"></div>
+<div #groupContainer class="group-container" id="js-groupActivityContainer"
+    [style.max-width.px]="dropZoneAreaWidth">
+    <div class="groups" *ngFor="let item of bucket; let i = index">
+        <app-group-title [group]="item"></app-group-title>
+        <ng-container>
+            <app-background-image [backgroundImage]="item.media" [imageType]="'group'" [group]="item" [groupIndex]="i">
+            </app-background-image>
+        </ng-container>
+
+        <div class="single-group">
+            <app-test-group-dropzone [group]="item" [index]="i">
+            </app-test-group-dropzone>
+        </div>
+    </div>
+</div>
+<app-skip-link type="canvas"></app-skip-link>

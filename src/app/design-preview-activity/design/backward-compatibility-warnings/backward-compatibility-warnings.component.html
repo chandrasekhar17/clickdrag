@@ -1,0 +1,7 @@
+<app-modal [titleText]="titleText" [isOpen]="modalIsVisible" [showFooter]="showFooter" [disableClose]="true"
+    [cancelButtonText]="cancelButtonText" confirmButtonText="OK" (confirm)="okayClicked($event)"
+    (cancel)="cancelClicked($event)">
+    <mhe-alert [type]="errorType" [closable]="false">
+        <div [innerHTML]="content"></div>
+    </mhe-alert>
+</app-modal>

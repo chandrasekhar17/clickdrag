@@ -1,0 +1,25 @@
+<app-media-header [mediaList]="mediaList" [media]="media" [labelText]="labelText" [note]="note" [feedback]="feedback"
+    [dropzoneDescription]="dropzoneDescription" [isHeaderFilter]="isHeaderFilter"
+    (filterMediaListChanges)="mediaListChanges($event)" (selectedMedia)="selectedMedia($event)"></app-media-header>
+<div class="media_body" *ngIf="isMediaAvailable">
+    <div class="media_list">
+        <div *ngIf="showSearch" class="search">
+            <mhe-input [id]="'icon-input'" [error]="false" [icon]="'system-search'" [placeholder]="'Search'"
+                (inputChange)="search($event)">
+            </mhe-input>
+        </div>
+        <div [ngClass]="showSearch ? 'media_list_with_search' : 'media_list_without_search'">
+            <div *ngFor="let media of listOfMedia">
+                <div class="media" (click)="checkPreview(media)">
+                    <span class="media-icon"><i class="dpg-icon {{media.icon}} icon"></i></span>
+                    <span
+                        [ngClass]="activeMedia === media.mediaId ? 'active_media_name' : 'media_name'">{{media.title}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-media-preview class="media_preview" [mediaDetails]="mediaContent" [isLabel]="isLabel"></app-media-preview>
+</div>
+<div *ngIf="!isMediaAvailable" class="media-msg-body">
+    <p>No images available. Please use Media tab to upload/select image for this exercise</p>
+</div>

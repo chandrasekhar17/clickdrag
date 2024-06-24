@@ -1,0 +1,63 @@
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/multidirectional-white';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/system-close-white';
+
+.char-font {
+  font: normal 16px sans-serif;
+  width: 50px;
+  margin: 5px;
+}
+
+.transcript-modal-content {
+  position: absolute;
+  width: 540px;
+  z-index: 9999;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
+  left: 0;
+  top: 0;
+  box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+}
+
+.transcript-modal-header {
+  background-color: #174d5c;
+  color: #fff;
+  height: 45px;
+  padding: 15px 10px 15px 15px;
+  .modal-title {
+    color: #fff;
+    line-height: 1;
+    text-shadow: none;
+    flex: 1;
+    font-size: 16px;
+  }
+  .modal-action {
+    button {
+      height: 24px;
+      outline: 0;
+      width: 24px;
+      background-color: transparent;
+      border: 0;
+      padding: 0;
+      margin: 8px;
+      .dpg-icon {
+        height: 24px;
+        width: 24px;
+      }
+      &:focus {
+        outline: 1px solid white;
+      }
+    }
+  }
+}
+
+.transcript-modal-body {
+  padding: 15px;
+}
+
+.transcript-modal-footer {
+  background-color: #f0f3f4;
+  border-top: 3px solid #d1dbde;
+  padding: 15px;
+  text-align: left;
+}

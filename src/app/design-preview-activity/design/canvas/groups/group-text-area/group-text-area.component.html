@@ -1,0 +1,9 @@
+<div class="groupTitle">
+    <h4 class="header-title">Group {{index+1}}/{{bucket.length}}</h4>
+    <div class="showOnlySpecialChar">
+        <mhe-editor #editor [toggleRichTextMenuBar]="false" [elementPath]="false" maxCharacter="40"
+            (editorFocusOut)="validateLabelReqError($event); onEditorBlur()" [tinymceMenubar]="'false'"
+            (contentChange)="onEditorContentChange($event); " [errors]="labelErrors" [content]="group.headerText">
+        </mhe-editor>
+    </div>
+</div>

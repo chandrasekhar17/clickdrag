@@ -1,0 +1,43 @@
+<div *ngIf="label.mediaType === 'image' || label.mediaType === 'audio';else normalLabel">
+    <div #labelElement class="text-media-box draggable" [ngClass]="{ 'distractor-border': label.distractor, 'highlight-error-label': isErrorHighlight , 'highlight-label': (isHighlight && isHighlight.val) || isHighlight, 
+        'media-text-note-feedback': (label.mediaType === 'image' ||
+        label.mediaType ===
+        'audio') && (label.text !== '' ) &&
+        (label.note || label.feedback) !== '', 'droppedLabel-boder': isInsideDropzone, 'disabled':disable, 'label-stack': activitySingleLabelMultiDock,
+    'grabCursor':stateData.activity.name === 'grouping' }" [attr.labelId]='label.id'>
+    <div *ngIf="(label.text !== '' )">
+            <div class="label-distrator-text">
+                <span class="label-media-text" *ngIf="!label.distractor"
+                    [innerHtml]="(label.text === '' ? 'Add Label Text' : label.text) | safeHtml"></span>
+                <span class="label-media-text" *ngIf="label.distractor"
+                    [innerHtml]="(label.text === '' ? 'Add Distractor Text' : label.text) | safeHtml"></span>
+            </div>
+            <div class="border-bottom-label"></div>
+        </div>
+        <ng-container *ngIf="label.mediaType === 'image'; else audioTemplate">
+            <app-background-image [backgroundImage]="label.image" [imageType]="'label'"> </app-background-image>
+        </ng-container>
+      <ng-template #audioTemplate>
+        <div class="media-audio"
+            [ngClass]="{'audio-without-text': label.text === '' }" title="{{media.title}}">
+            <app-audio-player [audioFile]="mediaPath" [audioData]="media" boundary=".app-inner-wrap"
+                [isDisabled]="disable" [isInsideDropzone]="isInsideDropzone"
+                [isCaptionAvailable]="media.caption === '' ? false : true">
+            </app-audio-player>
+        </div>
+      </ng-template>
+    </div>
+</div>
+<ng-template #normalLabel>
+    <div #labelElement class="label-text-box draggable" [ngClass]="{'distractor-border': label.distractor, 'highlight-error-label': isErrorHighlight, 'highlight-label': (isHighlight && isHighlight.val) || isHighlight, 'droppedLabel-boder': isInsideDropzone, 'disabled':disable,
+    'grabCursor':stateData.activity.name === 'grouping', 'label-stack': activitySingleLabelMultiDock } "
+        [attr.labelId]='label.id'>
+        <span *ngIf="!label.distractor" class="placeholder-copy"
+            [ngClass]="{'placeholder-copy-text': (label.text !== '')} "
+            [innerHtml]="(label.text === '' ? 'Add Label Text' : label.text) | safeHtml">
+        </span>
+        <span *ngIf="label.distractor" class="placeholder-copy" [ngClass]="{'placeholder-copy-text': label.text !== ''}"
+            [innerHtml]="(label.text === '' ? 'Add Distractor Text' : label.text) | safeHtml">
+        </span>
+    </div>
+</ng-template>

@@ -1,0 +1,12 @@
+<!-- <svg:line 
+    [attr.x1]="startPos.x >= endPos.x ? startPos.x + offset : startPos.x - offset"
+    [attr.y1]="startPos.y >= endPos.y ? startPos.y + offset : startPos.y - offset"
+    [attr.x2]="startPos.x >= endPos.x ? endPos.x + offset : endPos.x - offset"
+    [attr.y2]="startPos.y >= endPos.y ? endPos.y + offset : endPos.y - offset"
+    stroke="white" stroke-width="1"></svg:line>
+<svg:line [attr.x1]="startPos.x" [attr.y1]="startPos.y"
+    [attr.x2]="endPos.x" [attr.y2]="endPos.y"
+    stroke="black" stroke-width="1" ></svg:line> -->
+<svg:line class="leaderline" [attr.x1]="startPos.x + offset" [attr.y1]="startPos.y + offset"
+    [attr.x2]="endPos.x + offset" [attr.y2]="endPos.y + offset"
+    [attr.stroke]="color" [attr.stroke-width]="strokeWidth" ></svg:line>

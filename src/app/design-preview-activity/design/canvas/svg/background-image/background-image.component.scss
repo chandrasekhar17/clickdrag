@@ -1,0 +1,53 @@
+.dragable {
+  cursor: move;
+}
+
+.rect_pointer {
+  cursor: move;
+}
+
+.brCursor {
+  cursor: nw-resize !important;
+}
+
+.blCursor {
+  cursor: ne-resize !important;
+}
+
+.trCursor {
+  cursor: sw-resize;
+}
+
+.tlCursor {
+  cursor: se-resize;
+}
+
+.backgroundImage {
+  cursor: default;
+}
+
+.addImage,
+.edit-description {
+  cursor: pointer !important;
+}
+
+.svgText {
+  fill: #46707d;
+  stroke-width: 0px;
+}
+
+.not-selected {
+  display: none;
+}
+
+.img-selected {
+  outline: 1px #007c91 solid;
+}
+
+.ahe-ui-link {
+  fill: #007c91;
+
+  &:focus {
+    outline: 1px solid #007c91;
+  }
+}

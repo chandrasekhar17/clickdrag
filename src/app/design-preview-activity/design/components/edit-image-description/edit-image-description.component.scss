@@ -1,0 +1,13 @@
+.short-description,
+.long-description {
+    display: flex;
+
+    span {
+        margin-left: auto;
+        margin-top: 10px;
+    }
+}
+
+.count-warning {
+    color: #b0181e;
+}

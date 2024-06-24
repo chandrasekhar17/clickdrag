@@ -1,0 +1,18 @@
+{
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true
+  },
+  "tslint.autoFixOnSave": true,
+  "tslint.alwaysShowStatus": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "tslint.ignoreDefinitionFiles": false,
+  "tslint.exclude": "**/node_modules/**/*",
+  "cSpell.words": [
+    "definitelytyped"
+  ],
+  "git.ignoreLimitWarning": true
+}

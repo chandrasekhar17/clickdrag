@@ -1,0 +1,53 @@
+$tooltipColor: var(--bs-tooltip-bg);
+$arrowSize: 0.66em;
+$arrowOffset: 60%;
+
+:host {
+    position: relative;
+
+    .arrow {
+        position: absolute;
+        border: solid transparent $arrowSize;
+
+        // &::after {
+        //   content: '';
+        //   position: absolute;
+        // }
+    }
+}
+
+:host-context(.top) {
+    .arrow {
+        border-top-color: $tooltipColor;
+        bottom: 0;
+        left: 50%;
+        transform: translate3d(-50%, $arrowOffset, 0);
+    }
+}
+
+:host-context(.bottom) {
+    .arrow {
+        border-bottom-color: $tooltipColor;
+        top: 0;
+        left: 50%;
+        transform: translate3d(-50%, -$arrowOffset, 0);
+    }
+}
+
+:host-context(.left) {
+    .arrow {
+        border-left-color: $tooltipColor;
+        right: 0;
+        top: 50%;
+        transform: translate3d($arrowOffset, -50%, 0);
+    }
+}
+
+:host-context(.right) {
+    .arrow {
+        border-right-color: $tooltipColor;
+        left: 0;
+        top: 50%;
+        transform: translate3d(-$arrowOffset, -50%, 0);
+    }
+}

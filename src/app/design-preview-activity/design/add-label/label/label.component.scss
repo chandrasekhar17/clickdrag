@@ -1,0 +1,117 @@
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/image';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/av-control-play-outline';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/av-control-pause-outline';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/module';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/audioon';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/moreinfo';
+@import '../../../../styles/variables';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/accordion-close';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/accordion-open';
+
+.media-preview {
+  padding: 10px 0;
+
+  .media-title {
+    margin-left: 10px;
+    max-width: 450px;
+    overflow-wrap: break-word;
+  }
+
+  .kebab {
+    margin-left: 15px;
+  }
+}
+
+.media-content-preview {
+  display: flex;
+}
+
+.edit-image-description {
+  margin-left: 20px;
+  padding-bottom: 0;
+}
+
+.info-button {
+  width: 36px;
+  height: 36px;
+  margin: 20px 0px 0 0px;
+  padding: 3px 0px 0px 0px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.info-icon {
+  width: 29px;
+  height: 18px;
+  opacity: 0.8;
+}
+
+.preview-media {
+  width: 150px;
+  min-height: 60px;
+  height: auto;
+  margin: 0px 15px 0 0;
+  // padding: 17px 12px 0px 8px;
+  border-radius: 3px;
+  border: solid 1px $gray-03;
+  background-color: #fff;
+  text-align: center;
+}
+
+.label-preview {
+  width: 150px;
+  height: auto;
+  min-height: 60px;
+  margin: 25px 15px 0 0;
+  // padding: 17px 12px 8px 8px;
+  border-radius: 3px;
+  border: solid 1px $gray-03;
+  background-color: #fff;
+  text-align: center;
+  opacity: 0.5;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 5px;
+  // word-break: break-all;
+}
+
+// .label-preview-content {
+//   display: table-cell;
+//   vertical-align: middle;
+// }
+.label-Preview-text {
+  opacity: 1 !important;
+  text-align: center !important;
+}
+
+// .media-text-preview{
+//     height: 38px;
+// }
+.border-bottom-label {
+  border-bottom: 1px solid #d2dbde;
+  // margin: -3px 0px 0px -8px;
+  width: 149px;
+}
+
+// .media-text {
+//   height: 36px;
+//   margin-top: -23px;
+// }
+.media-audio {
+  margin-top: 9px;
+}
+
+.image-wrapper {
+  height: 120px;
+  width: 120px;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 119px;
+  overflow: hidden;
+}
+
+.label-text-media {
+  padding: 5px;
+}

@@ -1,0 +1,5 @@
+.mce-content-body:before {
+  content: attr(placeholder);
+  position: absolute;
+  color: rgba(34, 47, 62, 0.7);
+}

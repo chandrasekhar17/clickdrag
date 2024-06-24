@@ -1,0 +1,31 @@
+<div role="dialog" aria-modal="true" class="transcript-modal-content" *ngIf="specialCharService.showSpecialChars"
+    cdkDrag cdkDragBoundary="body" [cdkDragFreeDragPosition]="positionValue" (clickOutside)="onClickedOutside($event)">
+    <div class="transcript-modal-header d-flex align-items-center">
+        <h2 class="modal-title text-left"> Special Characters </h2>
+        <div class="modal-action">
+            <button cdkDragHandle tabIndex="-1">
+                <i class="dpg-icon dpg-icon-multidirectional-white"></i>
+            </button>
+            <button (click)="onClose()">
+                <i class="dpg-icon dpg-icon-system-close-white">
+                </i>
+            </button>
+        </div>
+    </div>
+    <div class="transcript-modal-body text-left">
+        <mhe-tabs [tabIndex]="tabIndex" (tabClick)="tabClick($event)" ariaLabel="Tabs Label" class="char-tab">
+            <ng-container *ngFor="let item of defaultCharMap;">
+                <mhe-tab [name]="item.name">
+                    <ng-template>
+                        <ng-container *ngFor="let char of item.characters;">
+                            <button mhe-button [purpose]="_buttonPurpose.Secondary" class="char-font"
+                                [mheTooltip]="char[1]" (click)="insertCharInTinyMceEditor(char[0])"
+                                [innerHTML]="char[0]">
+                            </button>
+                        </ng-container>
+                    </ng-template>
+                </mhe-tab>
+            </ng-container>
+        </mhe-tabs>
+    </div>
+</div>

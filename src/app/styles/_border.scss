@@ -1,0 +1,13 @@
+@import './variables';
+
+$border-color1: $gray-02;
+
+.border {  
+  &-bottom {
+    border-bottom: 1px solid $border-color1;
+    padding: 0px 0px 32px 0px;
+    &-0 {
+      border-bottom: 0;
+    }
+  } 
+}

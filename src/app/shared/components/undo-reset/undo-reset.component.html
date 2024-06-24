@@ -1,0 +1,11 @@
+<div class="header">
+  <h2 class="m-0">Drop Zones</h2>
+  <ng-container *ngIf="mode === 'test'">
+    <button mhe-button class="undo-button" [purpose]="_buttonPurpose.Icon" placement="bottom" appTooltip="Undo"
+      aria-expanded="false" (click)="OnUndo()" [disabled]="!undoRedo.undoArray.length">
+      <i class="dpg-icon ngx-icon_30x30 dpg-icon-undo"><span class="sr-only" aria-hidden="true">Undo</span></i>
+    </button>
+    <button mhe-button class="button" [disabled]="!undoRedo.undoArray.length  && disable" (click)="onReset()"
+      [purpose]="_buttonPurpose.Secondary">Reset All</button>
+  </ng-container>
+</div>

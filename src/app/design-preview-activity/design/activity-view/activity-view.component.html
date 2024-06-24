@@ -1,0 +1,101 @@
+<app-modal titleText="Activity" confirmButtonText="Start" [cancelButtonText]="false" [isOpen]="modalIsVisible"
+  (show)="modalIsVisible = true" (confirm)="onStart($event);modalIsVisible = false"
+  (overlayClick)="modalIsVisible = true" [disableConfirm]="typeOfActivity === ''" panelClass="activity-modal">
+  <form>
+    <div class="radio-group activity-section" mheRadioGroup (radioGroupChange)="groupChangeActivity($event)">
+      <fieldset class="d-flex flex-column">
+        <legend class="d-flex align-items-center">
+          <h4 class="d-inline-flex">Select Activity</h4>
+          <button mhe-button purpose="btn-icon" panelClass="custom-activity-tooltip" [mheToggletip]=activity
+            placement='right' aria-expanded="false" aria-label="Instructions">
+            <span><i class="dpg-icon ngx-icon_30x30 dpg-icon-moreinfo"><span class="sr-only"></span></i></span>
+          </button>
+        </legend>
+        <mhe-radio-button value="labeling" default [checked]="typeOfActivity === 'labeling'">Image Labeling
+        </mhe-radio-button>
+        <mhe-radio-button value="grouping" [checked]="typeOfActivity === 'grouping'">Grouping
+        </mhe-radio-button>
+      </fieldset>
+    </div>
+    <div class="radio-group" [disabled]="typeOfActivity === ''" (radioGroupChange)="groupChangeInteraction($event)"
+      mheRadioGroup>
+      <fieldset class="d-flex flex-column">
+        <legend class="d-flex align-items-center">
+          <h4 class="d-inline-flex">Label Interaction</h4>
+          <button mhe-button purpose="btn-icon" panelClass="custom-activity-tooltip"
+            [mheToggletip]="typeOfActivity === 'labeling'?imageActivity:groupActivity" placement='right'
+            aria-expanded="false" aria-label="Instructions">
+            <span><i class="dpg-icon ngx-icon_30x30 dpg-icon-moreinfo"><span class="sr-only"></span></i></span>
+          </button>
+        </legend>
+        <mhe-radio-button value="one-label-one-dock" [checked]="typeOfInteraction === 'one-label-one-dock'">One label
+          to one dock
+        </mhe-radio-button>
+        <mhe-radio-button value="one-label-multiple-dock" [checked]="typeOfInteraction === 'one-label-multiple-dock'">
+          Same label to multiple
+          docks</mhe-radio-button>
+      </fieldset>
+    </div>
+
+    <div class="radio-group" mheRadioGroup>
+      <div class="d-flex flex-column display-instance" [disabled]="typeOfInteraction !== 'one-label-multiple-dock'"
+        (radioGroupChange)="groupChangeOccurrence($event)" mheRadioGroup>
+        <mhe-radio-button value="display-once" [checked]="typeOfOccurrence === 'display-once'">Display label once
+        </mhe-radio-button>
+        <mhe-radio-button value="display-each-instance" [checked]="typeOfOccurrence === 'display-each-instance'">
+          Display each label instance
+        </mhe-radio-button>
+      </div>
+    </div>
+  </form>
+</app-modal>
+
+
+<ng-template #activity>
+  <h4>Image Labeling</h4>
+  <p>Students drag labels to individual docks, which may include leader lines that point to specific
+    areas
+    to be identified.</p>
+  <h4>Grouping</h4>
+  <p>Students group labels according to classification or category by dragging all related labels into a
+    single corresponding dock.</p>
+</ng-template>
+
+<ng-template #imageActivity>
+  <h4>One Label to One Dock</h4>
+  <p>Each label in the activity appears once. It can only be dragged to one dock.</p>
+  <h4>Same Label to Multiple Docks</h4>
+  <ul>
+    <li>
+      <h4>Display Label Once</h4>
+      <p>Each label in the activity appears once, but multiple docks can be created for the same label. (Student
+        should be able to choose the same label as the answer for multiple docks)</p>
+    </li>
+    <li>
+      <h4>Display Each Label Instance</h4>
+      <p>Each label in the activity appears once in authoring, but multiple docks can be created for the same label.
+        (Student should be able to see the same number of docks as instances of the label )</p>
+    </li>
+  </ul>
+</ng-template>
+<ng-template #groupActivity>
+  <h4>One Label to One Dock</h4>
+  <p>Each label in the activity appears once. It can only be dragged to one dock.</p>
+  <h4>Same Label to Multiple Docks</h4>
+  <ul>
+    <li>
+      <h4>Display Label Once</h4>
+      <p>Each label in the activity appears once, but it may be used in one or several docks. Each dock, however,
+        can still only
+        accept one unique label.</p>
+    </li>
+    <li>
+      <h4>Display Each Label Instance</h4>
+      <p>Each label in the activity appears once, but it may be used in one or several docks. Each dock, however,
+        can still only
+        accept one unique label. (Student should be able to see each instance of a label whether or not the label is
+        unique or
+        duplicate)</p>
+    </li>
+  </ul>
+</ng-template>

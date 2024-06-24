@@ -1,0 +1,10 @@
+{
+    "ImgDeleteLabel": "Are you sure you want to delete the selected Label? Deleting the label will remove the corresponding dock as well.",
+    "ImgDeleteDock":"Are you sure you want to delete the selected Dock? Deleting the Dock will remove the corresponding Label as well.",
+    "ImgDeleteBackgrdImage":"Are you sure you want to delete the Background image? All leader lines created will also be deleted.",
+    "GroupDelete":"Are you sure you want to delete Group 1?" ,
+    "NoImageMsg": "No images available. Please use Media tab to upload/select images for this exercise",
+    "NoImgMsg":"No images available. Please use Media tab to upload/select image for this exercise",
+    "GrpDeleteLabel":"Are you sure you want to delete selected label?",
+    "DeleteDistractor":"Are you sure you want to delete the selected Distractor?"
+}

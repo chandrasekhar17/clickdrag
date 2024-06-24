@@ -1,0 +1,47 @@
+<ng-template cdkPortal #modalTemplatePortal="cdkPortal">
+    <div cdkTrapFocus [cdkTrapFocusAutoCapture]="true" class="modal-dialog">
+        <div class="modal-content" role="dialog" aria-modal="true"
+            [attr.aria-label]="!showTitlebar && titleText ? titleText : null"
+            [attr.aria-labelledby]="showTitlebar ? templateUUIDs.get('dialog-heading') : null"
+            [attr.aria-describedby]="templateUUIDs.get('dialog-content')">
+            <div *ngIf="showTitlebar" class="modal-header">
+                <button *ngIf="!disableClose" (click)="onClose()" type="button" class="close" data-dismiss="modal">
+                    <span class="ahe-icon ahe-icon-close-white" aria-hidden="true"></span>
+                </button>
+
+                <h2 [id]="templateUUIDs.get('dialog-heading')" class="modal-title">
+                    {{ titleText }}
+                </h2>
+            </div>
+
+            <div *ngIf="description" [id]="templateUUIDs.get('dialog-description')" class="cdk-visually-hidden">
+                <ng-template [ngTemplateOutlet]="descriptionTemplateRef || default"> </ng-template>
+                <ng-template #default>
+                    <p>{{ descriptionText }}</p>
+                </ng-template>
+            </div>
+
+            <div [id]="templateUUIDs.get('dialog-content')" class="modal-body scrollable-body">
+                <ng-container *ngIf="contentText; else modalBodyContent">
+                    <p class="modal-content-text">{{ contentText }}</p>
+                </ng-container>
+                <ng-template #modalBodyContent><ng-content></ng-content></ng-template>
+            </div>
+
+            <div *ngIf="showFooter" class="modal-footer">
+                <button #cancelButton *ngIf="cancelButtonText" type="button" class="action-button btn btn-secondary"
+                    [disabled]="disableCancel" (click)="onCancel()" data-dismiss="modal"
+                    [attr.cdkFocusInitial]="focusOnConfirm || showTitlebar ? null : ''">
+                    {{ cancelButtonText }}
+                </button>
+
+                <button #confirmButton *ngIf="confirmButtonText" type="button" class="action-button btn btn-primary"
+                    [disabled]="disableConfirm" (click)="onConfirm()"
+                    [attr.cdkFocusInitial]="focusOnConfirm && !showTitlebar ? '' : null">
+                    {{ confirmButtonText }}
+                </button>
+                <span *ngIf="isValidFooterMessage(footerMessage)" class="footer-msg">{{ footerMessage }}</span>
+            </div>
+        </div>
+    </div>
+</ng-template>

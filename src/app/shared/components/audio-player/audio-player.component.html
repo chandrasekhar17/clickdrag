@@ -1,0 +1,15 @@
+<ng-container>
+    <button [attr.role]="setRoleApplication()" [attr.aria-roledescription]="setRoleDescription()"
+        class="btn ngx-shared btn-icon" (click)="onAudioPlayer($event)" [disabled]="isDisabled">
+        <i class="dpg-icon" [ngClass]="isPlayable ? 'dpg-icon-av-control-pause-outline' :
+                            'dpg-icon-av-control-play-outline'">
+            <span class="sr-only">{{isPlayable ? 'pause' : 'play'}}</span>
+        </i>
+    </button>
+    <ng-container *ngIf="isCaptionAvailable">
+        <button [attr.role]="setRoleApplication()" class="btn ngx-shared btn-icon"
+            aria-roledescription="Transcript button" [disabled]="isDisabled" (click)="onTranscript($event)">
+            <i class="dpg-icon dpg-icon-module"><span class="sr-only">Transcript</span></i>
+        </button>
+    </ng-container>
+</ng-container>

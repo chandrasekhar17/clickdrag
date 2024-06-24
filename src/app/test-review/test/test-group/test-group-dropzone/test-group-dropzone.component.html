@@ -1,0 +1,13 @@
+<div #dropzone class="drop-zone dropable" [attr.dropzoneId]="group.id" id="{{'dropzone_' + group.id}}">
+  <div class="single-drop-zone">
+    <div #singleDropZone *ngFor="let item of droppedLabels; let i = index" class="labelContainer"
+      [ngClass]="{'invisible': (i === draggedLabelIndex) }">
+      <app-shared-single-label [label]="item" [isInsideDropzone]='true' [dropZoneEle]="singleDropZone" [index]="index"
+        [dropzone]="group">
+      </app-shared-single-label>
+    </div>
+    <ng-container *ngIf="!droppedLabels.length && mode === 'test'">
+      <span class="sr-only">{{getEmptyDropZonesText()}}</span>
+    </ng-container>
+  </div>
+</div>

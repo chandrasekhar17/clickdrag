@@ -1,0 +1,7 @@
+<ng-container *ngIf="type === 'label'; else canvasTemplate">
+    <a [routerLink]="" (click)="skipLinkLabel()" class="ahe-ui-link skip-link skip-link--label">Skip to Drop Zones</a>
+</ng-container>
+
+<ng-template #canvasTemplate>
+    <a [routerLink]="" (click)="skipLinkCanvas()" class="ahe-ui-link skip-link skip-link--canvas">Skip to labels</a>
+</ng-template>

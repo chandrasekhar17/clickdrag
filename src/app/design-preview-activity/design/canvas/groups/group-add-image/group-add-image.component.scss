@@ -1,0 +1,54 @@
+@import '../../../../../styles/variables';
+
+:host{
+    display: block;
+    flex: 1;
+}
+
+.add-image-section {
+  margin: 20px 0;
+}
+
+.media-image {
+  display: block;
+  margin: auto;
+  line-height: 220px;
+  text-align: left;
+}
+.ahe-ui-link {
+  margin: 0;
+  padding: 0;
+  &:focus {
+    outline: none;
+  }
+}
+
+.img-wrap {
+  display: flex;
+  position: relative;
+  margin-bottom: 10px;
+  &.selected {
+    border: 1px $sky-blue-120 solid;
+  }
+}
+
+.resize-corner {
+  width: 8px;
+  height: 8px;
+  border: 1px solid $sky-blue-120;
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  cursor: nw-resize;
+  background-color: $color-white;
+  z-index: 1;
+}
+
+.white-bg {
+  background-color: $color-white;
+}
+
+.custom-link{
+  margin-bottom: 10px;
+  display: inline-block;
+}

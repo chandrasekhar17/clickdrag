@@ -1,0 +1,8 @@
+<ng-template [ngIf]="appInit && !stateError">
+  <router-outlet></router-outlet>
+</ng-template>
+<ng-template [ngIf]="appInit && stateError">
+  <mhe-modal #errorModal titleText="Error" [isOpen]="true" [showFooter]="false" [disableClose]="true">
+    <mhe-alert [type]="alertType.Error" [closable]="false">Error parsing state!</mhe-alert>
+  </mhe-modal>
+</ng-template>

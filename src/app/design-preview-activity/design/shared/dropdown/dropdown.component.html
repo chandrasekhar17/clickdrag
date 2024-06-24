@@ -1,0 +1,111 @@
+<div class="dropdown ahe-ui-dropdown" [class.btn-group]="splitActionText" (click)="_onTouch()" (keyup)="_onTouch()">
+    <ng-container *ngIf="!splitActionText; else splitButton">
+        <button *ngIf="!icon && !image; else iconButton" [id]="templateUuids.get('buttonId')" type="button"
+            [attr.disabled]="disabledProp(disabled)" [attr.aria-expanded]="isExpanded"
+            class="btn btn-secondary dropdown-btn"
+            [ngClass]="{ placeholder: hasPlaceholderText(selected), open: isExpanded }" (click)="toggleMenu($event)"
+            [ngStyle]="{ 'width.px': buttonWidth }" #controlButton>
+            <span class="sr-only">{{ toggleButtonAriaLabel }}</span>
+            <span>{{ currentSelection }}</span>
+            <i class="dpg-icon dpg-icon-dropdown-arrow-down"></i>
+        </button>
+        <ng-template #iconButton>
+            <button [id]="templateUuids.get('buttonId')" type="button" class="btn btn-icon ngx-shared"
+                [ngClass]="{ 'btn-padding': image }" (click)="toggleMenu($event)"
+                [attr.disabled]="disabledProp(disabled)" aria-haspopup="listbox" [attr.aria-expanded]="isExpanded"
+                [ngStyle]="{ 'width.px': 36 }" #toggleButtonWithIcon>
+                <span class="sr-only">{{ toggleButtonAriaLabel }}</span>
+                <img *ngIf="image" class="ahe-icon avatar-image" [src]="image" />
+                <i *ngIf="icon && !image" class="ahe-icon {{ icon }}"></i>
+            </button>
+        </ng-template>
+    </ng-container>
+</div>
+
+<ng-template cdkPortal #dropdownMenuPortal="cdkPortal">
+    <div class="ahe-ui-dropdown" [@hideDropdown]="!multiple && triggerHideDropdown ? 'dropdownHidden' : ''"
+        (@hideDropdown.done)="hideDropdownAnimationDone($event)">
+        <ul role="listbox" (scroll)="onScroll($event)" (keydown)="onKey($event)" [attr.aria-expanded]="isExpanded"
+            [attr.aria-label]="listboxLabel" class="dropdown-menu list-items-container"
+            [class.dropdown-menu-right]="optionPosition === 'left'">
+            <li *ngIf="filterable || searchable" class="search-field">
+                <div class="ahe-ui form-group dropdown-menu-search">
+                    <input type="text" autocomplete="off" class="form-control search" (blur)="searchIsFocused = false"
+                        (focus)="searchIsFocused = true" (keyup)="searchOptions($event)" />
+                </div>
+            </li>
+            <li *ngIf="multiple && selectAll" (click)="selectAllOptions()" role="option">
+                <label class="ahe-ui-checkbox dropdown-item">
+                    <input type="checkbox" role="menuitemcheckbox" [checked]="allSelected" />
+                    <!-- <span aria-hidden="true">{{ 'ngx-shared-select-all' | mheTranslate | async }}</span> -->
+                </label>
+            </li>
+            <li *ngFor="let option of options; trackBy: trackById; let i = index" #listItem role="presentation"
+                [attr.aria-disabled]="option.disabled" [class.checkmark]="!multiple && containsOption(option, selected)"
+                [class.disabled]="option.disabled"
+                [class.dpg-icon-confirmation]="!multiple && containsOption(option, selected)"
+                [class.option-group-options]="_isChild[i]" [class.option-group-title]="!!option.children"
+                (click)="selectOption(option)">
+                <ng-container *ngTemplateOutlet="optionTemplate; context: getContext(i, option)"></ng-container>
+            </li>
+        </ul>
+    </div>
+</ng-template>
+
+<ng-template #optionContent let-viewValue="viewValue" let-viewIcons="viewIcons" let-viewDescription="viewDescription">
+    <span aria-hidden="true" [ngClass]="{ 'view-title': viewDescription }">
+        <span>{{ viewValue }}</span>
+        <span class="view-icons">
+            <i *ngFor="let viewIcon of viewIcons" class="dpg-icon {{ viewIcon.class }}"
+                title="{{ viewIcon.label }}"></i>
+        </span>
+    </span>
+    <p class="view-description" *ngIf="viewDescription" aria-hidden="true">{{ viewDescription }}</p>
+</ng-template>
+
+<ng-template #optionTemplate let-option="option" let-isChild="isChild" let-isHeader="option.children">
+    <label *ngIf="multiple" [attr.aria-label]="getOptionLabel(option)" class="ahe-ui-checkbox dropdown-item">
+        <input type="checkbox" role="menuitemcheckbox" [value]="option.value"
+            [checked]="containsOption(option, selected)" />
+        <ng-container *ngTemplateOutlet="optionContent; context: option"></ng-container>
+    </label>
+    <ng-container *ngIf="!multiple">
+        <a *ngIf="(!option.routerLink && !option.href) || option.disabled" href role="option"
+            [attr.aria-label]="getOptionLabel(option)" [@optionSelection]="
+        this.triggerOptionSelectionAnimation && containsOption(option, selected) ? 'selected' : ''
+      " (@optionSelection.done)="optionSelectionAnimationDone($event)" class="dropdown-item"
+            [class.is-header]="isHeader || null" [attr.tabindex]="!option.disabled && !option.children ? 0 : null"
+            (click)="linkClickHandler($event, option)" (focus)="linkFocusHandler($event, option)">
+            <ng-container *ngTemplateOutlet="optionContent; context: option"></ng-container>
+        </a>
+        <a *ngIf="option.href" [@optionSelection]="
+        this.triggerOptionSelectionAnimation && containsOption(option, selected) ? 'selected' : ''
+      " (@optionSelection.done)="optionSelectionAnimationDone($event)" class="dropdown-item ahe-ui-link"
+            [class.is-header]="isHeader || null" (click)="linkClickHandler($event, option)"
+            (focus)="linkFocusHandler($event, option)" href="{{ option.href }}" target="{{ option.target }}">
+            <ng-container *ngTemplateOutlet="optionContent; context: option"></ng-container>
+        </a>
+        <a *ngIf="option.routerLink" [@optionSelection]="
+        this.triggerOptionSelectionAnimation && containsOption(option, selected) ? 'selected' : ''
+      " (@optionSelection.done)="optionSelectionAnimationDone($event)" class="dropdown-item ahe-ui-link"
+            [class.is-header]="isHeader || null" (click)="linkClickHandler($event, option)"
+            (focus)="linkFocusHandler($event, option)" routerLinkActive="active">
+            <ng-container *ngTemplateOutlet="optionContent; context: option"></ng-container>
+        </a>
+    </ng-container>
+</ng-template>
+
+<ng-template #splitButton>
+    <button [id]="templateUuids.get('buttonId')" class="btn btn-secondary" (click)="splitActionClick.emit($event)"
+        #splitActionButton>
+        {{ splitActionText }}
+    </button>
+    <button type="button" [attr.disabled]="disabledProp(disabled)" [attr.aria-expanded]="isExpanded"
+        class="btn btn-icon dpg-input-group-btn"
+        [ngClass]="{ placeholder: hasPlaceholderText(selected), open: isExpanded }" (click)="toggleMenu($event)"
+        #controlButton>
+        <i class="dpg-icon dpg-icon-dropdown-arrow-down">
+            <span class="sr-only">{{ toggleButtonAriaLabel }}</span>
+        </i>
+    </button>
+</ng-template>

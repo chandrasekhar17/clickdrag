@@ -1,0 +1,55 @@
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/system-search';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/image';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/audioon';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/av-control-play-outline';
+
+.media_body {
+  display: flex;
+  flex-wrap: wrap;
+}
+.media_list {
+  flex: 35%;
+  border-right: 1px solid #d2dbde;
+}
+.media_list_with_search {
+  max-height: 377px;
+  overflow-y: auto;
+  width: 228px;
+}
+.media_list_without_search {
+  max-height: 430px;
+  overflow-y: auto;
+  width: 228px;
+}
+.media {
+  border-bottom: 1px solid #d2dbde;
+  min-height: 53px;
+  cursor: pointer;
+  padding: 8px 10px 8px 30px;
+  display: flex;
+  align-items: center;
+}
+.media_name {
+  padding-left: 15px;
+  word-break: break-word;
+}
+.active_media_name {
+  padding-left: 15px;
+  font-weight: bold;
+  color: #265867 !important;
+  word-break: break-word;
+}
+.media_preview {
+  flex: 65%;
+}
+.search {
+  padding: 8px 10px 8px 30px;
+  border-bottom: 1px solid #d2dbde;
+  height: 53px;
+}
+.media-icon {
+  padding-top: 7px;
+}
+.media-msg-body{
+  padding: 25px 40px;
+}

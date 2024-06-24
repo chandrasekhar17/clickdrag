@@ -1,0 +1,114 @@
+<div class="label-wrap" id="labelContainer">
+  <div class="label-header d-flex align-items-center">
+    <h2 class="m-0">Labels</h2>
+    <ng-container *ngIf="mode === 'test'">
+      <button mhe-button [purpose]="_buttonPurpose.Icon" class="ml-1" [mhePopover]="instructionPopoverInfo"
+        placement="bottom" appTooltip="Navigation Instructions" #instructionPopover=mhePopover
+        (click)="instructionPopover.toggle()" panelClass="instruction-popover"
+        (shown)="onShow($event, instructionPopover)">
+        <i class="dpg-icon ngx-icon_30x30 dpg-icon-moreinfo"></i>
+      </button>
+      <ng-template #instructionPopoverInfo>
+        <button aria-label="close modal dialog" class="close" type="button" (click)="instructionPopover.close()">
+          <span aria-hidden="true" class="ahe-icon ahe-icon-close"></span>
+        </button>
+        <div class="popover-body" [id]="popoverContentId">
+          <h3 class="m-0 mb-2" [id]="popoverHeadingId">Keyboard navigation</h3>
+          <ul>
+            <li><strong>TAB</strong> to move the focus to a Label in the Labels or Drop Zone sections.</li>
+            <li><strong>SPACEBAR</strong> to lift or drop a label.</li>
+            <li><strong>ARROW</strong> keys to move a selected label.</li>
+            <li><strong>ESCAPE</strong> to cancel your action.</li>
+          </ul>
+
+          <h3 class="m-0 mb-2">JAWS</h3>
+          <ul>
+            <li>Turn off the virtual cursor by selecting the JAWS modifier key <strong>(INSERT, CAPS LOCK, or SCROLL
+                LOCK)
+                + Z </strong> keys.</li>
+            <li>Then use the keyboard navigation instructions above.</li>
+          </ul>
+
+          <h3 class="m-0 mb-2">NVDA</h3>
+          <ul>
+            <li>Turn off Browse mode by selecting the NVDA modifier key <strong>(INSERT or CAPS LOCK) +
+                SPACEBAR</strong>
+              keys.</li>
+            <li>Then use the keyboard navigation instructions above.</li>
+          </ul>
+        </div>
+      </ng-template>
+    </ng-container>
+
+    <ng-container *ngIf="mode === 'sample' || mode === 'review'">
+      <button mhe-button [purpose]="_buttonPurpose.Icon" class="ml-1" [mhePopover]="instructionPopoverInfo"
+        placement="bottom" appTooltip="Instructions" #instructionPopover=mhePopover
+        (click)="instructionPopover.toggle()" panelClass="instruction-popover"
+        (shown)="onShow($event, instructionPopover)">
+        <i class="dpg-icon ngx-icon_30x30 dpg-icon-moreinfo"></i>
+      </button>
+      <ng-template #instructionPopoverInfo>
+        <button aria-label="close modal dialog" class="close" type="button" (click)="instructionPopover.close()">
+          <span aria-hidden="true" class="ahe-icon ahe-icon-close"></span>
+        </button>
+        <div class="popover-body" [id]="popoverContentId">
+          <h3 class="m-0 mb-2" [id]="popoverHeadingId">Keyboard navigation</h3>
+          <p>Kindly turn off Virtual cursor/Browse mode to review the work.</p>
+        </div>
+      </ng-template>
+    </ng-container>
+
+  </div>
+  <app-skip-link type="label"></app-skip-link>
+  <div class="label-list" id="label-list">
+    <ul>
+      <li [ngClass]="{'label-item-firefox' : isFirefox}" class="label-item"
+        *ngFor="let item of labelList; let i = index">
+        <div class="d-flex">
+          <app-shared-single-label [label]="item" [isInsideDropzone]="false" [index]="i" (note)="getNote($event, i)"
+            (feedback)="getFeedback($event, i)">
+          </app-shared-single-label>
+          <ng-container *ngIf="labelNote[i] !== '' && mode !== 'review' && !showFeedbackInPreview">
+            <button mhe-button class="note-button" [purpose]="_buttonPurpose.Icon" placement="right"
+              [mhePopover]="customPopoverNote" #notePopover=mhePopover (click)="notePopover.toggle()"
+              panelClass="label-popover" (shown)="onShowLabelToolTip($event, item, notePopover, 'notes')"
+              appTooltip="Notes">
+              <i class="dpg-icon ngx-icon_20x20 dpg-icon-notepad"><span class="sr-only">{{ getAriaLabel(item, 'notes')
+                  }}</span></i>
+            </button>
+            <ng-template #customPopoverNote>
+              <button aria-label="close modal dialog" class="close" type="button" (click)="notePopover.close()">
+                <span aria-hidden="true" class="ahe-icon ahe-icon-close"></span>
+              </button>
+              <span class="sr-only" [id]="popoverHeadingId">{{getAriaLabel(item, 'notes')}}</span>
+              <div class="popover-body" [id]="popoverContentId">
+                <p [innerHtml]="labelNote[i] | safeHtml"></p>
+              </div>
+            </ng-template>
+          </ng-container>
+
+          <ng-container
+            *ngIf="labelFeedback[i] !== '' && (mode === 'review' || showFeedbackInPreview) && feedbackPolicy === true">
+            <button mhe-button class="feedback-button" [purpose]="_buttonPurpose.Icon" placement="right"
+              [mhePopover]="customPopoverFeedback" #feedbackPopover=mhePopover (click)="feedbackPopover.toggle()"
+              panelClass="label-popover" appTooltip="Feedback"
+              (shown)="onShowLabelToolTip($event, item, feedbackPopover, 'feedback')">
+              <i class="dpg-icon ngx-icon_20x20 dpg-icon-comment"><span class="sr-only">{{ getAriaLabel(item,
+                  'feedback')
+                  }}</span></i>
+            </button>
+            <ng-template #customPopoverFeedback>
+              <button aria-label="close modal dialog" class="close" type="button" (click)="feedbackPopover.close()">
+                <span aria-hidden="true" class="ahe-icon ahe-icon-close"></span>
+              </button>
+              <span class="sr-only" [id]="popoverHeadingId">{{getAriaLabel(item, 'feedback')}}</span>
+              <div class="popover-body" [id]="popoverContentId">
+                <p [innerHtml]="labelFeedback[i] | safeHtml"></p>
+              </div>
+            </ng-template>
+          </ng-container>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

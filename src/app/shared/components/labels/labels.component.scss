@@ -1,0 +1,54 @@
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/moreinfo';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/notepad';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icons/comment';
+@import '../../../styles/variables';
+
+.label-wrap {
+  min-width: 171px;
+  height: 100%;
+  border-right: 1px solid $gray-03;
+}
+
+.label-header {
+  border-bottom: 1px solid $gray-03;
+  padding: 6px 10px;
+  height: 49px;
+}
+
+.label-list {
+  overflow-y: auto;
+  height: calc(100% - 49px);
+  overflow-x: hidden;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.label-item {
+  padding: 10px;
+
+}
+
+.label-item-firefox{
+  margin-right: 10px;
+}
+
+.note-button {
+  width: 36px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  padding: 8px;
+}
+.feedback-button {
+  width: 36px;
+  height: 36px;
+  margin-top: 5px;
+  margin-left: 5px;
+  padding: 8px;
+}
+.single-label-multiDock {
+  margin-bottom: 16px;
+}

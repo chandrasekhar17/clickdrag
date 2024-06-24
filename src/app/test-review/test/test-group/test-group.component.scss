@@ -1,0 +1,18 @@
+@import 'node_modules/@mhe/openlearning-themekit-icons/icon-base';
+
+.group-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 12px;
+}
+
+.groups {
+  margin: 12px;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.single-group {
+  width: 180px;
+}

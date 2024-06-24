@@ -1,0 +1,22 @@
+@import '../../../styles/variables';
+
+.magnify-wrap {
+  position: absolute;
+  min-width: 200px;
+  min-height: 200px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
+  border: 1px solid $gray-04;
+  background-color: $color-white;
+  z-index: 1;
+  .inner {
+    position: relative;
+  }
+}
+
+.magnify-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

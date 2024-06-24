@@ -1,0 +1,10 @@
+<svg:circle #nodeEle [ngClass]="{'selected': selected}" [attr.tabindex]="selected ? 0 : -1" [attr.cx]="xPos"
+    [attr.cy]="yPos" r="6" tabindex="0" fill="#007c91" stroke="white" stroke-width="1"></svg:circle>
+<svg:g #plusIcon *ngIf="selected" class="plusIcon">
+    <svg:circle [attr.cx]="iconXPos" [attr.cy]="iconYPos" r="6" fill="white" stroke="#007c91" stroke-width="2">
+    </svg:circle>
+    <line [attr.x1]="iconXPos - 4" [attr.y1]="iconYPos" [attr.x2]="iconXPos + 4" [attr.y2]="iconYPos" stroke="#007c91"
+        stroke-width="2"></line>
+    <line [attr.x1]="iconXPos" [attr.y1]="iconYPos - 4" [attr.x2]="iconXPos" [attr.y2]="iconYPos + 4" stroke="#007c91"
+        stroke-width="2"></line>
+</svg:g>

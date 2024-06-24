@@ -1,0 +1,16 @@
+<div class="magnify-wrap" *ngIf='showMagnify' [style.top.px]="magnifyCoordinates.y"
+    [style.left.px]="magnifyCoordinates.x" [style.width.px]="magnifyData.width" [style.height.px]="magnifyData.height">
+    <svg class="magnify-line" [attr.width]="svgDimension.width" [attr.height]="svgDimension.height"
+        [style.top.px]="svgDimension.y" [style.left.px]="svgDimension.x"
+        [style.transform]="'scale('+magnifyData.scale+')'" [attr.transform-origin]="getOrigin()">
+        <g>
+            <image [attr.x]="frames.position.x" [attr.y]="frames.position.y" [attr.width]="frames.width"
+                [attr.height]="frames.height" [attr.xlink:href]="imagePath" />
+        </g>
+        <g *ngFor="let node of leaderLineNodes" [nodeObj]="node" [color]="'white'" [offset]="1/magnifyData.scale"
+            [strokeWidth]="2/magnifyData.scale" app-leaderline></g>
+        <g *ngFor="let node of leaderLineNodes" [nodeObj]="node" [color]="'black'" [offset]="0"
+            [strokeWidth]="1/magnifyData.scale" app-leaderline></g>
+
+    </svg>
+</div>

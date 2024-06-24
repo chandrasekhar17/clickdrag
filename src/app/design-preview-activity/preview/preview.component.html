@@ -1,0 +1,18 @@
+<div class="app-wrap app-border">
+  <div class="canvas-stage d-flex">
+    <section class="app-shared-labels" aria-label="labels"></section>
+
+    <ng-container [ngSwitch]="state.activity.name">
+      <ng-template [ngSwitchCase]="'labeling'">
+        <section aria-label="Dropzone" class="dropzone-wrap">
+          <div class="app-preview-svg svg-wrap" id="droZoneContainer"></div>
+        </section>
+      </ng-template>
+      <ng-template [ngSwitchCase]="'grouping'">
+        <section aria-label="Dropzone" class="dropzone-wrap">
+          <div class="app-preview-group svg-wrap" id="droZoneContainer"></div>
+        </section>
+      </ng-template>
+    </ng-container>
+  </div>
+</div>

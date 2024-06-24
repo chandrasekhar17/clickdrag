@@ -1,0 +1,31 @@
+<div class="tools-area">
+    <div class="tools-header">
+        <h2 class="m-0">Tools</h2>
+    </div>
+    <div class="panel-wrap">
+        <ng-container *ngFor="let item of DefaultDirectives; let i = index">
+            <div class="panel-container" *ngIf="item.visible">
+                <div class="panel-header d-flex align-items-center">
+                    <button mhe-button [purpose]="buttonPurpose.Icon" (click)="expandPanel(i)"
+                        [attr.aria-controls]="item.title" [ariaExpanded]="item.expandPanel"
+                        class="d-flex align-items-center">
+
+                        <ng-container *ngIf="item.expandPanel;else accordionOpen"><i
+                                class="dpg-icon dpg-icon-accordion-close"><span
+                                    class="sr-only">accordion-close</span></i></ng-container>
+                        <ng-template #accordionOpen><i class="dpg-icon dpg-icon-accordion-open"><span
+                                    class="sr-only">accordion-open</span></i>
+                        </ng-template>
+
+                    </button>
+                    <h4 class="m-0">{{item.title}}</h4>
+                </div>
+                <div class="panel-content" [mheCollapseTray]="item.expandPanel" role="region" [id]="item.title">
+                    <div class="panel-body">
+                        <ng-template [appDynamicHost]="item.Directive"></ng-template>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

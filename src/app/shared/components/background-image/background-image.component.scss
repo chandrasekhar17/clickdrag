@@ -1,0 +1,55 @@
+.canvas-media {
+  position: absolute;
+  text-align: center;
+  z-index: -2;
+  + .ahe-ui-link {
+    position: relative;
+    z-index: 3;
+    
+  }
+}
+
+.label-media {
+  height: 120px;
+  width: 120px;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 119px;
+  overflow: hidden;
+}
+
+.group-media {
+  display: flex;
+  position: relative;
+  .image {
+    display: block;
+    margin: auto;
+    line-height: 220px;
+    text-align: left;
+  }
+}
+
+.ahe-ui-link {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+  &:focus {
+    outline: none;
+  }
+}
+.image-description-preview{
+  pointer-events: none;
+}
+
+.d-none {
+  display: none;
+}
+
+.custom-link{
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.empty-desc-container{
+  height: 34px;
+}

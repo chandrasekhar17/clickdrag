@@ -1,0 +1,81 @@
+<label class="mb-1">Label <span class="required">*</span></label>
+<div class="pb-2">
+    <mhe-editor #editor [toggleRichTextMenuBar]="false" [content]="labelText"
+        (contentChange)="onEditorContentChange($event)" [elementPath]="false" maxCharacter="200"
+        (editorFocusOut)="heightOfLabel()" [errors]="labelErrors" [tinymceMenubar]="'false'">
+    </mhe-editor>
+</div>
+<!-- <div> -->
+<div class="mt-2" *ngIf="!isMediaContent">
+    <button mhe-button class="add-media" [purpose]="_buttonPurpose.Secondary" (click)="addMedia()">Add
+        Image</button><br />
+</div>
+<ng-container *ngIf="isMediaContent">
+    <div class="media-preview d-flex">
+        <div class="d-flex align-items-center">
+            <i *ngIf="mediaType === 'image'" class="dpg-icon dpg-icon-image icon"></i>
+            <i *ngIf="mediaType === 'audio'" class="dpg-icon dpg-icon-av-control-play-outline icon"></i>
+            <span class="media-title">{{media.title}}</span>
+        </div>
+        <div class="kebab">
+            <app-dropdown [options]="labelOptions" [icon]="'ahe-icon-system-kebab'" menuWidth="150"
+                (selectionChange)="onDropDownSelection($event)" appTooltip="Options"
+                toggleButtonAriaLabel="more option">
+            </app-dropdown>
+        </div>
+    </div>
+</ng-container>
+<div class="mt-3">
+    <div *ngIf="isMediaContent" class="media-content-preview d-flex">
+        <div class="preview-media" id="labelMediaPreview" [ngClass]="{'audio-preview': mediaType === 'audio', 
+            'media-text-preview': isLabelText}">
+            <div *ngIf="isLabelText" class="label-text-media" [innerHtml]="labelPreviewData"></div>
+            <div *ngIf="isLabelText" class="border-bottom-label"
+                [ngClass]="{'border-label-margin': mediaType === 'audio'}"></div>
+            <ng-container *ngIf="mediaType === 'image'; else audioTemplate">
+                <app-background-image [backgroundImage]="media" [imageType]="'label'"
+                    [editedDescription]="editedDescription" [isPreviewLabel]="true"> </app-background-image>
+            </ng-container>
+            <ng-template #audioTemplate>
+                <div [ngClass]="{'media-audio': !isLabelText}">
+                    <app-audio-player [audioFile]="media.path" [audioData]="media" boundary=".scrollable-body"
+                        [isCaptionAvailable]="media.caption === '' ? false : true">
+                    </app-audio-player>
+                </div>
+            </ng-template>
+        </div>
+        <button mhe-button class="info-button" [purpose]="_buttonPurpose.Icon" [mheToggletip]=customPopoverActivity
+            placement='right' aria-label="Info" aria-expanded="false">
+            <i class="dpg-icon dpg-icon-moreinfo info-icon"><span class="sr-only">Info</span></i>
+        </button>
+    </div>
+    <div *ngIf="!isMediaContent" class="label-preview" id="labelPreview" [ngClass]="{'label-Preview-text' :
+        isLabelText}">
+        <span class="label-preview-content" [innerHtml]="labelPreviewData | safeHtml"></span>
+    </div>
+
+    <ng-template #customPopoverActivity>
+        <p>Label Width is fixed to 150px. Height of the label will be auto adjusted based on the content.</p>
+        <p>When Image is added to the label, Image will be displayed with 120px height and 150px width. Aspect ratio of
+            the image will be maintained.</p>
+    </ng-template>
+</div>
+<div class="mt-4" *ngIf="mediaType === 'image'">
+    <div class="panel-header d-flex align-items-center">
+        <button mhe-button [purpose]="_buttonPurpose.Icon" (click)="expandPanel()" [ariaExpanded]="expand"
+            class="d-flex align-items-center">
+            <ng-container *ngIf="expand;else accordionOpen"><i class="dpg-icon dpg-icon-accordion-close"><span
+                        class="sr-only">accordion-close</span></i></ng-container>
+            <ng-template #accordionOpen><i class="dpg-icon dpg-icon-accordion-open"><span
+                        class="sr-only">accordion-open</span></i></ng-template>
+        </button>
+        <h4 class="m-0">Image Description</h4>
+    </div>
+    <div class="panel-content" [mheCollapseTray]="expand" role="region">
+        <div class="panel-body edit-image-description">
+            <app-edit-image-description [mediaDetail]="media" [type]="'editImageDescForLabels'"
+                (getDescription)="setDescription($event)" (getAltText)="setAltText($event)">
+            </app-edit-image-description>
+        </div>
+    </div>
+</div>

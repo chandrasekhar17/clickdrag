@@ -1,0 +1,26 @@
+<div class="media-header" *ngIf="isHeaderFilter">
+    <div class="media-back">
+        <button mhe-button class="back-button" [purpose]="_buttonPurpose.Icon" (click)="backToAddLabel()"
+            appTooltip="Back" aria-expanded="false">
+            <i class="dpg-icon dpg-icon-system-left-arrow"><span class="sr-only">Back</span></i>
+        </button>
+        <h3>Add Image</h3>
+    </div>
+    <div class="mr-5 select-filter">
+        <button mhe-button class="select-button" [disabled]="isDisable" [purpose]="_buttonPurpose.Primary"
+            (click)="selectMedia()">Select</button>
+        <!-- <button mhe-button class="filter-button" [purpose]="_buttonPurpose.Icon" [disabled]="isDisable"
+            (click)="openFilter()" mheTooltip="Filter" aria-expanded="false">
+            <i class="dpg-icon dpg-icon-system-filter"><span class="sr-only">Filter</span></i>
+        </button> -->
+    </div>
+    <div *ngIf="isFilterOpen" class="filter-container">
+        <ul class="list-style-none p-0">
+            <li *ngFor="let item of options" class="filter-list">
+                <mhe-checkbox (change)="onChangeCheckBoxItems(item, $event)" [checked]="item.checked">
+                    {{item.viewValue}}
+                </mhe-checkbox>
+            </li>
+        </ul>
+    </div>
+</div>

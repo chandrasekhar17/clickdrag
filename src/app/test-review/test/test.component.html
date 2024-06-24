@@ -1,0 +1,31 @@
+<ng-container *ngIf="isLabelWithAudio; else labelWithoutAudio">
+  <mhe-alert [type]="alertType.Error" [closable]="false">
+    <p class="errorMessage">This question could not be loaded. Please contact the <a
+        href="https://mhedu.force.com/CXG/s/ContactUs?external_browser=2" target="_blank"> Customer Experience
+        Group</a>
+      for assistance
+    <p>
+    <p class="errorMessage">Error Code: </p>
+  </mhe-alert>
+</ng-container>
+<ng-template #labelWithoutAudio>
+  <div class="app-wrap app-border">
+    <div class="canvas-stage d-flex">
+      <section class="app-shared-labels" aria-label="labels"></section>
+
+      <ng-container [ngSwitch]="state.activity.name">
+        <ng-template [ngSwitchCase]="'labeling'">
+          <section aria-label="Dropzone" class="dropzone-wrap">
+            <div class="app-test-labeling svg-wrap" id="droZoneContainer"></div>
+          </section>
+
+        </ng-template>
+        <ng-template [ngSwitchCase]="'grouping'">
+          <section aria-label="Dropzone" class="dropzone-wrap">
+            <div class="app-test-group svg-wrap" id="droZoneContainer"></div>
+          </section>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>

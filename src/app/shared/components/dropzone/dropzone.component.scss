@@ -1,0 +1,67 @@
+@import '../../../styles/variables';
+
+.drop-zone {
+  position: absolute;
+  text-align: center;
+  display: flex;
+  // // margin: 30px 0 10px;
+
+  // padding: 19px 37px 18px 38px;
+  border-radius: 5px;
+  border: solid 1px $sky-blue-120;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__text {
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    &.text--border {
+      border-bottom: 1px solid $gray-03;
+    }
+  }
+}
+
+.drop-zone-reader {
+  height: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.audio-text {
+  flex: 1;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.image-wrapper {
+  height: 120px;
+  width: 120px;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 119px;
+  overflow: hidden;
+}
+
+.incorrect-answer {
+  border: solid 1px #b0181e;
+
+  .feedback-text {
+    background-color: #b0181e;
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: -8px;
+    left: 5px;
+    border-radius: 25px;
+    padding: 0 10px;
+  }
+}

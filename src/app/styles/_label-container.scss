@@ -1,0 +1,39 @@
+@import '../styles/variables';
+
+.labelContainer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.label-stack {
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 95%;
+    height: 10px;
+    border: solid 1px $gray-03;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    margin-top: -5px;
+    z-index: -1;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+  }
+}
+
+.label-lifted {
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 110%;
+    height: calc(100% + 15px);
+    border-radius: 5px;
+    border: solid 1px #006a7c;
+    transform: translateX(-50%);
+    z-index: -1;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+  }
+}

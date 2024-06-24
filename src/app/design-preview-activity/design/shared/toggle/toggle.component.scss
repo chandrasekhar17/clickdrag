@@ -1,0 +1,181 @@
+// @import 'components/toggles';
+
+.circle-container {
+    height: 20px;
+    width: 20px;
+    overflow: visible;
+    padding-top: 1px;
+    transition: padding-left 0.2s ease;
+    padding-left: 1px;
+    position: relative;
+    z-index: 1;
+}
+
+.label-text {
+    position: absolute;
+    left: 56px;
+}
+
+.toggle-container {
+    height: 22px;
+    margin-bottom: 5px;
+    // color: $dark-blue-120;
+}
+
+.toggle-container:focus {
+    outline: none;
+
+    .pill-wrapper {
+        border: 1px solid white;
+        box-shadow: 0 0 0 2px rgba(0, 124, 145, 0.8);
+    }
+}
+
+.toggle-container.checked .circle-container {
+    transition: padding-left 0.2s ease;
+    padding-left: 18px;
+    left: 4px;
+}
+
+.toggle-container.checked .dpg-icon-system-close {
+    display: none;
+}
+
+.dpg-icon-system-close {
+    display: inline-block;
+    position: relative;
+}
+
+.toggle-container.checked .dpg-icon-system-close {
+    display: inline-block;
+}
+
+.dpg-icon-confirmation-white {
+    display: none;
+    position: relative;
+    right: 21px;
+}
+
+.position-left {
+    flex-direction: row-reverse;
+
+    .label-text {
+        left: 0;
+    }
+}
+
+.inverted {
+    // color: $color-white;
+}
+
+label {
+    display: flex;
+    height: 22px;
+    position: relative;
+}
+
+.checked .inverted-toggle {
+    background-color: #ffffff;
+}
+
+.inverted-toggle {
+    border: 1px solid white;
+
+    .dpg-icon-system-close::before {
+        content: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M16.243 6.343L12 10.586 7.757 6.343 6.343 7.757 10.586 12l-4.243 4.243 1.414 1.414L12 13.414l4.243 4.243 1.414-1.414L13.414 12l4.243-4.243z'/%3E%3C/svg%3E");
+    }
+
+    .dpg-icon-confirmation-white::before {
+        content: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23265867' d='M6 12.5L7.5 11l3 3L17 7.5 18.5 9l-8 8z'/%3E%3C/svg%3E");
+    }
+}
+
+.pill-wrapper {
+    display: inline-block;
+    border-radius: 11px;
+    border: 1px solid #265867;
+    color: #265867;
+    height: 22px;
+    position: relative
+}
+
+.focus .pill-wrapper {
+    border: 1px solid #fff;
+    box-shadow: 0 0 0 2px rgba(0, 124, 145, .8)
+}
+
+.checked .pill-wrapper {
+    background-color: #007c91
+}
+
+.disabled label {
+    opacity: .5
+}
+
+.dpg-ui-toggle {
+    display: none
+}
+
+.dpg-ui-toggle.error+label {
+    background-image: linear-gradient(90deg, #cd4d3f 0, #9f3c31);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FFCD4D3F", endColorstr="#FF9F3C31", GradientType=1)
+}
+
+.dpg-ui-toggle+label .dpg-ui-toggle-graphic {
+    border-radius: 11px;
+    border: 1px solid #265867;
+    color: #265867;
+    height: 22px;
+    width: 41px;
+    background: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23265867' d='M12.707 12l4.95 4.95-.707.707-4.95-4.95-4.95 4.95-.707-.707 4.95-4.95-4.95-4.95.707-.707 4.95 4.95 4.95-4.95.707.707z'/%3E%3C/svg%3E");
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0
+}
+
+.dpg-ui-toggle+label .dpg-ui-toggle-graphic span {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    position: absolute;
+    left: 60px
+}
+
+.dpg-ui-toggle+label .dpg-ui-toggle-graphic:after {
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin: 1px 0 0 1px;
+    overflow: hidden;
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%3E%3Ccircle%20r%3D%228%22%20cy%3D%229%22%20cx%3D%229%22%20stroke-width%3D%221%22%20stroke%3D%22%23265867%22%20fill%3D%22%23FFFFFF%22%20%2F%3E%3C%2Fsvg%3E%0A");
+    transition: all .2s ease;
+    width: 20px
+}
+
+.dpg-ui-toggle+label:focus {
+    outline: 0
+}
+
+.dpg-ui-toggle+label:focus .dpg-ui-toggle-graphic {
+    outline: none
+}
+
+.dpg-ui-toggle+label:focus .dpg-ui-toggle-graphic:before {
+    border-radius: 11px;
+    box-shadow: 0 0 0 2px rgba(0, 124, 145, .8);
+    content: "";
+    left: -2px;
+    pointer-events: none;
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    bottom: -2px
+}
+
+.dpg-ui-toggle.checked.error+label {
+    background-image: linear-gradient(90deg, #cd4d3f 0, #9f3c31);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FFCD4D3F", endColorstr="#FF9F3C31", GradientType=1)
+}

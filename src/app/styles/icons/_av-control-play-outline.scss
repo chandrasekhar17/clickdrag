@@ -1,0 +1,29 @@
+.dpg-icon-av-control-play-outline::before,
+.ahe-icon-av-control-play-outline::before {
+    content: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23265867' d='M17.5 12.866l-7.5 4.33a1 1 0 0 1-1.5-.866V7.67a1 1 0 0 1 1.5-.866l7.5 4.33a1 1 0 0 1 0 1.732zm-8-5.196v8.66L17 12 9.5 7.67z'/%3E%3C/svg%3E");
+}
+
+.btn-secondary-light {
+
+    .dpg-icon-av-control-play-outline::before,
+    .ahe-icon-av-control-play-outline::before {
+        content: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M17.5 12.866l-7.5 4.33a1 1 0 0 1-1.5-.866V7.67a1 1 0 0 1 1.5-.866l7.5 4.33a1 1 0 0 1 0 1.732zm-8-5.196v8.66L17 12 9.5 7.67z'/%3E%3C/svg%3E");
+    }
+}
+
+.btn-icon {
+    &:not(.ngx-shared) {
+
+        &:hover,
+        &:active,
+        &.active {
+            &:not(:disabled, .disabled) {
+
+                .dpg-icon-av-control-play-outline::before,
+                .ahe-icon-av-control-play-outline::before {
+                    content: url("data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M17.5 12.866l-7.5 4.33a1 1 0 0 1-1.5-.866V7.67a1 1 0 0 1 1.5-.866l7.5 4.33a1 1 0 0 1 0 1.732zm-8-5.196v8.66L17 12 9.5 7.67z'/%3E%3C/svg%3E");
+                }
+            }
+        }
+    }
+}

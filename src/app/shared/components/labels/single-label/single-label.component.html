@@ -1,0 +1,42 @@
+<ng-container *ngIf="responseLabel.mediaType === 'image' || responseLabel.mediaType === 'audio'; else normalLabel">
+  <div #labelElement appPickDrop class="label-box media" [ngClass]="updateStyleForLabel()"
+    [attr.tabindex]="setA11yTabIndex()" [style.minHeight.px]="labelHeight ? labelHeight : responseLabel.height"
+    [attr.labelId]='label.id' [attr.aria-label]="setAriaLabelForMediaLabels()" [attr.role]="setRoleButton()"
+    [attr.aria-disabled]="isDisabled || disable" [attr.id]="setIdForLabel(label.id)" [attr.aria-pressed]="ariaPressed">
+    <span class="sr-only" *ngIf="mode !== 'test'">{{getLabelSRText()}}</span>
+    <ng-container *ngIf="isInsideDropzone && (mode === 'sample' || mode === 'review') && showFeedback">
+      <span class="feedback-text" *ngIf="feedbackText" aria-hidden="true">Correct</span>
+      <span class="feedback-text" *ngIf="!feedbackText" aria-hidden="true">Incorrect</span>
+    </ng-container>
+    <p [style.height.px]="isInsideDropzone ? labelHeight - 120 : responseLabel.height - 120" class="m-0 text-content"
+      [innerHtml]="responseLabel.text | safeHtml" [attr.aria-hidden]='mode !== "test" ? true : null'
+      *ngIf="responseLabel.text !== ''"></p>
+    <ng-container *ngIf="responseLabel.mediaType === 'image'; else audioTemplate">
+      <app-background-image [backgroundImage]="responseLabel.image" [imageType]="'label'" [labelIndex]="index"
+        [label]="responseLabel" [isDisabled]="isDisabled || disable"></app-background-image>
+    </ng-container>
+    <ng-template #audioTemplate>
+      <div class="media-audio  p-1" [ngClass]="{ 'audio-without-text': responseLabel.text === '' }">
+        <app-audio-player [audioFile]="mediaPath" [audioData]="media" [dropZoneEle]="labelElement"
+          [isCaptionAvailable]="media.caption === '' ? false : true" [isDisabled]="isDisabled || disable"
+          boundary=".canvas-stage">
+        </app-audio-player>
+      </div>
+    </ng-template>
+
+  </div>
+</ng-container>
+<ng-template #normalLabel>
+  <div #labelElement appPickDrop class="label-box text" [ngClass]="updateStyleForLabel()" [attr.labelId]='label.id'
+    [attr.tabindex]="setA11yTabIndex()" [style.minHeight.px]="labelHeight ? labelHeight : responseLabel.height"
+    [attr.aria-label]="setAriaLabelForNormalLabels()" [attr.aria-pressed]="ariaPressed" [attr.role]="setRoleButton()"
+    [attr.aria-disabled]="isDisabled || disable" [attr.id]="setIdForLabel(label.id)">
+    <span class="sr-only" *ngIf="mode !== 'test'">{{getLabelSRText()}}</span>
+    <ng-container *ngIf="isInsideDropzone && (mode === 'sample' || mode === 'review') && showFeedback">
+      <span class="feedback-text" *ngIf="feedbackText" aria-hidden="true">Correct</span>
+      <span class="feedback-text" *ngIf="!feedbackText" aria-hidden="true">Incorrect</span>
+    </ng-container>
+    <p class="m-0 p-1 label-text" [innerHtml]="responseLabel.text | safeHtml"
+      [attr.aria-hidden]='mode !== "test" ? true : null'></p>
+  </div>
+</ng-template>

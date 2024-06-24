@@ -1,0 +1,60 @@
+    <svg:g>
+            <svg:rect *ngIf="displayDrag" [attr.x]="dxPos" [attr.y]="dyPos" [attr.width]="dockWidth" [attr.height]="cdStateService.labelHeight" rx="5" fill="transparent" stroke="red" stroke-width="1"
+                stroke-dasharray="2 4"></svg:rect>
+            <svg:rect *ngIf="displayDrag" [attr.x]="dxPos" [attr.y]="dyPos" [attr.width]="dockWidth" [attr.height]="cdStateService.labelHeight" rx="5" fill="transparent" stroke="white" stroke-width="1"
+                stroke-dasharray="2 4" stroke-dashoffset="3"></svg:rect>
+            <svg:rect #dropzoneRect [ngClass]="{'dzSelected': selected}" [attr.x]="xPos" [attr.y]="yPos" [attr.width]="dockWidth" [attr.height]="cdStateService.labelHeight" rx="5" fill="white" stroke="#c1cfd4" stroke-width="1"
+                class="dragable"></svg:rect>
+             <svg [attr.x]="xPos" [attr.y]="yPos" [attr.width]="dockWidth" [attr.height]="labelData.mediaType === 'image' ? dockObj.height - 120 : dockObj.height">
+                <g>
+                    
+                    <foreignObject [attr.width]="dockWidth" [attr.height]="labelData.mediaType === 'image' ? dockObj.height - 120 : dockObj.height">
+                    <ng-container [ngTemplateOutlet]="textTemplate"></ng-container>
+                    </foreignObject>
+                </g>
+            </svg>
+                
+            <svg:line *ngIf="(labelData.mediaType !== '' && labelData.text !== '')"
+                [attr.x1]="xPos + dockWidth"
+                [attr.y1]="yPos + dockObj.height - heightOfMedia - 2"
+                [attr.x2]="xPos" [attr.y2]="yPos + dockObj.height - heightOfMedia - 2"
+                stroke-width="1" stroke="#d1dbde"></svg:line>
+                <svg:image #labelImg *ngIf="labelData.mediaType === 'image'"
+                    class="dragable" [attr.x]="xPos + 15"
+                    [attr.y]="yPos + (labelData.text !== '' ? dockObj.height - heightOfMedia - 1 : (dockObj.height - heightOfMedia)/2 )" [attr.width]="imageWidth" [attr.height]="imageHeight"
+                    [attr.xlink:href]="mediaPath" (load)="onImageLoad($event)" 
+                    [ngClass]="{'image-text': labelData.text !== ''}"></image>
+                <svg:g *ngIf="isRemoveDiv && isSafari">
+                    <svg:foreignobject>
+                        <xhtml:img *ngIf="labelData.mediaType === 'image'"
+                            [attr.src]="mediaPath"
+                            (load)="onImageLoad($event)" />
+                    </svg:foreignobject>
+                </svg:g>
+                <!-- <svg:a *ngIf="labelData.mediaType === 'image' && mediaDescription !== '' " href="javascript:void(0)" class="ahe-ui-link" (click)="openLongDescriptionPopup()">
+                    <text [attr.x]="xPos + 10" [attr.y]="yPos + heightOfMedia + 15">Image Description</text>
+                </svg:a> -->
+                <svg xmlns="http://www.w3.org/2000/svg" *ngIf="labelData.mediaType === 'audio'" [attr.x]="xPos + 45"
+                    [attr.y]="labelData.text !== '' ? yPos + 10 : yPos + 20" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+                    <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+                </svg>
+                <svg *ngIf="labelData.mediaType === 'audio'" [attr.x]="xPos + 85" [attr.y]="labelData.text !== '' ? yPos + 10 : yPos + 20" width="28" height="20" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+                    <path fill='#46707d' d='M16 19v3c0 .55-.45 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5V2a1 1 0 0 1 1-1h12c.55 0 1 .45 1 1v16c0 .55-.45 1-1 1h-5zm0-1h5V2H9v3h6c.55 0 1 .45 1 1h4v1h-4v2h4v1h-4v2h4v1h-4v5zM3 6v16h12V6H3z' />
+                    <path fill='#3366ff' d='M4 16h10v1H4v-1zm0-3h10v1H4v-1zm0-3h10v1H4v-1z' />
+                </svg>     
+
+            <svg:rect #ele [attr.x]="xPos" [attr.y]="yPos" [attr.width]="dockWidth" [attr.height]="dockObj.height" rx="5" fill="transparent" stroke-width="0"
+                class="dragable"></svg:rect>
+            <g *ngIf="showLeaderLineStartNodes && selected">
+                <svg:circle #leaderLineStartNodeTop [ngClass]="{'hideNode': hideNodes}" [attr.cx]="xPos + (dockWidth/2)" [attr.cy]="yPos - 5" r="6" fill="#007c91" stroke="white" stroke-width="1"></svg:circle>
+                <svg:circle #leaderLineStartNodeBottom [ngClass]="{'hideNode': hideNodes}" [attr.cx]="xPos + (dockWidth/2)" [attr.cy]="yPos + cdStateService.labelHeight + 5" r="6" fill="#007c91" stroke="white" stroke-width="1"></svg:circle>
+                <svg:circle #leaderLineStartNodeLeft [ngClass]="{'hideNode': hideNodes}" [attr.cx]="xPos - 5" [attr.cy]="yPos + (cdStateService.labelHeight/2)" r="6" fill="#007c91" stroke="white" stroke-width="1"></svg:circle>
+                <svg:circle #leaderLineStartNodeRight [ngClass]="{'hideNode': hideNodes}" [attr.cx]="xPos + dockWidth + 5" [attr.cy]="yPos + (cdStateService.labelHeight/2)" r="6" fill="#007c91" stroke="white" stroke-width="1"></svg:circle>
+            </g>
+            </g>
+        
+<ng-template #textTemplate>
+    <xhtml:div class="dropzone-label-text" [style.width.px]="dockWidth" [style.height.px]="labelData.mediaType !== '' ? (labelData.mediaType === 'image' ? dockHeight - 120 : dockHeight - 36) : dockHeight">
+        <xhtml:div [innerHTML]="textToDisplay|safeHtml" class="dropzone-text"></xhtml:div>
+    </xhtml:div>
+</ng-template>

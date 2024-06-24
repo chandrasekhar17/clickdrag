@@ -1,0 +1,34 @@
+@import '../../../styles/variables';
+
+.tools-area {
+  width: 360px;
+  height: 100%;
+  float: right;
+  border-left: 1px solid $gray-03;
+  background-color: $color-white;
+  position: relative;
+}
+
+.tools-header {
+  border-bottom: 1px solid $gray-03;
+  padding: 15px 10px;
+}
+
+.panel-container {
+  border-bottom: 1px solid $gray-03;
+}
+
+.panel-content {
+  .panel-body {
+    padding: 0 10px 20px;
+  }
+}
+
+.panel-header {
+  padding: 8px 10px;
+}
+
+.panel-wrap {
+  height: calc(100% - 54px);
+  overflow: auto;
+}

@@ -1,0 +1,158 @@
+/* You can add global styles to this file, and also import other style files */
+@import './app/styles/styles';
+@import 'node_modules/@mhe/openlearning-themekit-icons/icon-base.scss';
+
+.boundary {
+  width: 20px;
+  height: 0px;
+  margin: 15px 0px 0px 15px;
+  // padding: 1px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.tools-component-title {
+  display: block;
+  // margin-top: 10px;
+  margin-left: 51px;
+  float: left;
+  // width: 47px;
+  // height: 22px;
+  // font-family: ProximaNova;
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.1;
+  letter-spacing: normal;
+  color: #007c91;
+}
+
+.dpg-icon.ngx-icon_30x30 {
+  height: 30px;
+  width: 30px;
+}
+
+.dpg-icon {
+  padding: 0px !important;
+}
+
+.char-tab {
+  .tablist-label {
+    [role='tabpanel'] {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      max-height: 200px;
+      overflow: auto;
+    }
+  }
+}
+
+.custom-modal {
+  .modal-dialog {
+    width: 660px;
+
+    .modal-content {
+      .modal-body {
+        padding: 0 !important;
+      }
+    }
+  }
+}
+.edit-label-custom-modal {
+  .modal-dialog {
+    .modal-content {
+      .modal-body {
+        height: 550px;
+        overflow-y: auto;
+      }
+    }
+  }
+}
+
+.custom-activity-tooltip {
+  max-height: initial !important;
+  .dpg-ui-toggletip {
+    .toggletip-content {
+      overflow-y: auto;
+      max-height: 325px;
+    }
+  }
+}
+
+.activity-modal {
+  .modal-dialog {
+    margin-top: 100px;
+
+    .close {
+      display: none;
+    }
+  }
+}
+
+.edit-image-modal {
+  .modal-dialog {
+    width: 500px;
+
+    .modal-content {
+      .modal-body {
+        padding: 23px !important;
+      }
+    }
+  }
+}
+
+.lh-0 {
+  line-height: 0;
+}
+
+.ahe-ui-radio {
+  font-size: 14px !important;
+}
+
+.showOnlySpecialChar .mce-btn-group [aria-label='Bold'],
+.showOnlySpecialChar .mce-btn-group [aria-label='Italic'],
+.showOnlySpecialChar .mce-btn-group [aria-label='Underline'],
+.showOnlySpecialChar .mce-btn-group [aria-label='Subscript'],
+.showOnlySpecialChar .mce-btn-group [aria-label='Superscript'] {
+  display: none;
+}
+
+.ahe-ui-dropdown .dropdown-menu li[aria-disabled='true'] a.dropdown-item {
+  cursor: not-allowed;
+}
+
+.mce-tinymce {
+  &.mce-container {
+    box-sizing: border-box;
+  }
+}
+
+.ahe-ui-dropdown {
+  .dropdown-item {
+    padding: 10px 20px !important;
+  }
+}
+
+.dpg-ui.form-group .form-control,
+.ahe-ui.form-group .form-control {
+  resize: none;
+}
+
+.groupName p {
+  font-size: 20px !important;
+}
+
+.ahe-ui-dropdown .dropdown-menu.list-items-container,
+.dpg-ui-dropdown .dropdown-menu.list-items-container {
+  max-height: 270px !important;
+}
+
+.media,
+.media-body {
+  overflow: unset !important;
+}
+
+.cdk-global-scrollblock {
+  overflow-y: auto;
+}

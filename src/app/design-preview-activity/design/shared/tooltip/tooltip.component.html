@@ -1,0 +1,12 @@
+<div class="tooltip show">
+    <div class="arrow"></div>
+    <div class="tooltip-inner" role="tooltip">
+        <ng-template #default let-options="options">
+            <div cdkFocusInitial>{{ tooltipMessage }}</div>
+        </ng-template>
+
+        <ng-template [ngTemplateOutlet]="templateRef || default"
+            [ngTemplateOutletContext]="{ tooltipMessage: tooltipMessage }">
+        </ng-template>
+    </div>
+</div>

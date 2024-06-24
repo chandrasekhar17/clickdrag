@@ -1,0 +1,72 @@
+<div class="canvas">
+    <app-tooltip text="Canvas" [templateRef]="canvasTooltip"></app-tooltip>
+    <mhe-alert *ngIf="showCanvasWarning" [smallAlert]="true" [type]="alertType.Error" [closable]="false">Canvas Width x
+        Height must be {{config.MIN_CANVAS_WIDTH}} x {{config.MIN_CANVAS_HEIGHT}} or
+        more.</mhe-alert>
+    <form [formGroup]="canvasSettingForm" class="canvas__units">
+        <div class="dpg-ui form-group">
+            <label for="canvas-width">
+                Width
+            </label>
+            <input type="number" class="form-control" id="canvas-width" formControlName="width" #width step="100"
+                (change)="onCanvasChange(width.valueAsNumber, height.valueAsNumber)">
+        </div>
+        <div class="dpg-ui form-group">
+            <label for="canvas-height">
+                Height
+            </label>
+            <input type="number" class="form-control" id="canvas-height" formControlName="height" #height step="100"
+                (change)="onCanvasChange(width.valueAsNumber, height.valueAsNumber)">
+        </div>
+    </form>
+
+    <div class="canvas__grid">
+        <mhe-checkbox [checked]="state.canvas.showGrid" (change)="updateGuideAndGrid($event, 'showGrid',true)">Show
+            Grid
+        </mhe-checkbox>
+    </div>
+    <ng-container *ngIf="state.activity.name === 'labeling'">
+        <hr>
+        <app-tooltip text="Guides" [templateRef]="guideTooltip"></app-tooltip>
+        <div class="canvas__guide">
+            <div class="guide-checkbox-block">
+                <mhe-checkbox class="guide-checkbox" [checked]="state.canvas.hideGuide"
+                    (change)="updateGuideAndGrid($event, 'hideGuide',true)">Hide</mhe-checkbox>
+                <mhe-checkbox class="guide-checkbox" [checked]="state.canvas.lockGuide"
+                    (change)="updateGuideAndGrid($event, 'lockGuide',true)">Lock</mhe-checkbox>
+                <mhe-checkbox class="guide-checkbox" [checked]="state.canvas.snapGuide"
+                    (change)="updateGuideAndGrid($event, 'snapGuide',true)">Snap</mhe-checkbox>
+            </div>
+            <div class="guide-btn-block">
+                <button mhe-button [purpose]="buttonPurpose.Secondary" (click)="showDeleteGuidesPopup()"
+                    [disabled]="checkDeleteDisabled()">Delete All
+                    Guides</button>
+            </div>
+        </div>
+    </ng-container>
+</div>
+
+<ng-template #canvasTooltip>
+    <h4>Canvas</h4>
+    <p>Canvas size can be changed by updating the height and width fields below. Canvas height and width will be
+        increased or
+        decreased automatically based on the content.</p>
+</ng-template>
+
+
+<ng-template #guideTooltip>
+    <h4>Guides</h4>
+    <p>Guides are lines suspended over the canvas to help you position elements and objects neatly. They will not show
+        to
+        students.</p>
+    <p>To create guides, click the rulers at the top or left of the canvas and drag the guides to wherever you want them
+        on the
+        canvas. You can create as many horizontal or vertical guides as you want. To line objects neatly up against the
+        guides,
+        click the "snap to" option and drag the top or left side of the object close to the guide; it will "snap" into
+        place
+        against the guide when you get close enough.</p>
+    <p>You also can hide the guides or lock them in place. To delete ALL guides click the "Delete All Guides" button. To
+        delete
+        only one guide, select it and click the trashcan in the toolbar.</p>
+</ng-template>

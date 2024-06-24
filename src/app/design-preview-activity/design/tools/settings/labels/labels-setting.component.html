@@ -1,0 +1,45 @@
+<div class="labels">
+    <mhe-alert [smallAlert]="true" [type]="alertType.Info" [closable]="false">Applies to all labels. To make global
+        changes you must first
+        select a label or dock.</mhe-alert>
+    <app-tooltip text="Labels" [templateRef]="labelsTooltip"></app-tooltip>
+    <div class="labels__units">
+        <mhe-input [id]="'width-input'" class="input-block" [label]="'Width'" [type]="inputType.Number"
+            [inputAttributes]="{min:0, step:100}">
+        </mhe-input>
+        <mhe-input [id]="'height-input'" class="input-block" [label]="'Hight'" [type]="inputType.Number"
+            [inputAttributes]="{min:0, step:100}">
+        </mhe-input>
+    </div>
+    <div class="canvas__grid">
+        <mhe-checkbox>Show hidden text in authoring</mhe-checkbox>
+    </div>
+    <hr>
+    <app-tooltip text="Docks" [templateRef]="docksTooltip"></app-tooltip>
+    <div class="canvas__grid">
+        <mhe-checkbox>Same size as label</mhe-checkbox>
+    </div>
+    <div class="labels__units">
+        <mhe-input [id]="'width-input'" class="input-block" [label]="'Width'" [type]="inputType.Number"
+            [inputAttributes]="{min:0, step:100}">
+        </mhe-input>
+        <mhe-input [id]="'height-input'" class="input-block" [label]="'Hight'" [type]="inputType.Number"
+            [inputAttributes]="{min:0, step:100}">
+        </mhe-input>
+    </div>
+</div>
+
+<ng-template #labelsTooltip>
+    <h4>Labels</h4>
+    <p>Students drag labels to individual docks, which may include leader lines that point to specific
+        areas
+        to be identified.</p>
+</ng-template>
+
+
+<ng-template #docksTooltip>
+    <h4>Docks</h4>
+    <p>Students drag labels to individual docks, which may include leader lines that point to specific
+        areas
+        to be identified.</p>
+</ng-template>

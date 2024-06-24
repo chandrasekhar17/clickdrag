@@ -1,0 +1,18 @@
+<div class="app-undo-reset"></div>
+<div class="canvas-stage canvas-wrap d-flex" id="svg-canvas">
+  <div class="svg-container">
+    <svg class="svg-wrap-leaderlines" role="img" aria-hidden="true">
+      <g *ngFor="let node of leaderLineNodes" [nodeObj]="node" [color]="'white'" [offset]="1" [strokeWidth]="2"
+        app-leaderline></g>
+      <g *ngFor="let node of leaderLineNodes" [nodeObj]="node" [color]="'black'" [offset]="0" [strokeWidth]="1"
+        app-leaderline></g>
+    </svg>
+  </div>
+  <app-background-image [backgroundImage]="image" [imageType]="'canvas'"></app-background-image>
+  <app-shared-dropzone *ngFor="let item of dropZones; let i = index" [currentIndex]="i" [dockObj]="item">
+  </app-shared-dropzone>
+  <div *ngIf="state.magnifySettings.enabled">
+    <app-magnify-preview></app-magnify-preview>
+  </div>
+  <app-skip-link type="canvas"></app-skip-link>
+</div>

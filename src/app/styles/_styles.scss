@@ -1,0 +1,197 @@
+@import './variables';
+@import './spacing';
+@import './border';
+@import './skin-changes';
+@import './flex-helper';
+@import './ruler';
+@import './canvas';
+@import './label-container';
+@import './themekit.scss';
+@import './colors';
+@import './mhe';
+@import './icons/-av-control-pause-outline.scss';
+@import './icons/accordian-close';
+@import './icons/accordian-open';
+@import './icons/audioon';
+@import './icons/av-control-play-outline';
+@import './icons/module';
+@import './icons/moreinfo';
+@import './icons/multidirection-white';
+@import './icons/system-close-white';
+@import './icons/redo.scss';
+@import './icons/trash.scss';
+@import './icons/undo.scss';
+
+.required {
+  color: $heritage-red-100;
+}
+
+ul.list-style-none {
+  li {
+    list-style: none;
+  }
+}
+
+// richtext style
+.label-preview-content,
+.label-text-media,
+.label-media-text,
+.placeholder-copy,
+.dropzone-text,
+.label-text,
+.drop-zone__text,
+.text-content {
+  >p {
+    margin: 0;
+  }
+}
+
+body {
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Accordion header css */
+.panel-header {
+  .btn-icon {
+    margin-right: 5px;
+  }
+
+  h4 {
+    color: $gray-14;
+  }
+}
+
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  width: 1px;
+  height: 1px;
+  top: auto;
+
+  &:focus {
+    display: inline-block;
+    height: auto;
+    width: auto;
+    margin: auto;
+    margin: 5px;
+  }
+
+  &.skip-link--label {
+    &:focus {
+      position: static;
+      text-decoration: underline;
+    }
+  }
+
+  &.skip-link--canvas {
+    &:focus {
+      left: 10px;
+      bottom: 0;
+      text-decoration: underline;
+    }
+  }
+
+}
+
+
+.ahe-ui-link {
+  margin: 0;
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+
+
+// instruction-popover
+.instruction-popover {
+  .ahe-ui-popover {
+    max-width: 500px;
+    width: 500px;
+    margin-left: 11px;
+    margin-top: 7px;
+
+    .arrow {
+      left: 87px !important;
+    }
+  }
+}
+
+
+.label-popover {
+  .ahe-ui-popover {
+    min-width: 100px;
+
+    .popover-content {
+      .popover-body {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+.app-test-group,
+.app-test-labeling,
+.label-wrap,
+.canvas-wrap,
+.app-check-my-work-labelling,
+.app-preview-group,
+.app-preview-svg,
+.app-check-my-work-group {
+  &.focus-blink {
+    &:focus {
+      outline: #3B78BE dotted 2px;
+      outline-offset: -1px;
+    }
+  }
+}
+
+
+.label-wrap,
+.app-test-group,
+.app-test-labeling,
+.canvas-wrap,
+.app-check-my-work-labelling,
+.app-preview-group,
+.app-preview-svg,
+.app-check-my-work-group {
+  &:focus {
+    outline: 0;
+  }
+}
+
+.dropzone-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.modal-footer {
+  button {
+    float: left;
+  }
+}
+
+
+.popover {
+  &.ahe-ui-popover {
+    box-shadow: none;
+    border: 1px solid #74949d;
+
+    &.right {
+      .arrow {
+        border-right-color: #74949d;
+      }
+    }
+
+    &.bottom {
+      .arrow {
+        border-bottom-color: #74949d;
+      }
+    }
+  }
+
+}

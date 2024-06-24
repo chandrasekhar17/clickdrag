@@ -1,0 +1,59 @@
+<div #canvasContainer class="stage">
+  <svg
+    id="svg-canvas"
+    class="svg_area"
+    [attr.width]="state.canvas.width - config.LABEL_ELE_WIDTH"
+    [attr.height]="state.canvas.height"
+  >
+    <g fill="white" stroke="#006a7c" stroke-width="1" id="group" class="">
+      <g app-background-image></g>
+    </g>
+    <g
+      *ngFor="let node of leaderLineNodes"
+      [nodeObj]="node"
+      [color]="'white'"
+      [offset]="1"
+      [strokeWidth]="2"
+      app-leaderline
+    ></g>
+    <g
+      *ngFor="let node of leaderLineNodes"
+      [nodeObj]="node"
+      [color]="'black'"
+      [offset]="0"
+      [strokeWidth]="1"
+      app-leaderline
+    ></g>
+
+    <g *ngFor="let item of dropZones; let i = index" [currentIndex]="i" [dockObj]="item" app-dropzone></g>
+    <g *ngFor="let node of leaderLineNodes" [nodeObj]="node" app-leaderline-node></g>
+    <g *ngIf="cdStateService.currentStartNode !== undefined">
+      <line
+        [attr.x1]="cdStateService.currentStartNode.x1 + offset"
+        [attr.y1]="cdStateService.currentStartNode.y1 + offset"
+        [attr.x2]="cdStateService.currentStartNode.x2 + offset"
+        [attr.y2]="cdStateService.currentStartNode.y2 + offset"
+        stroke="white"
+        stroke-width="2"
+      ></line>
+      <line
+        [attr.x1]="cdStateService.currentStartNode.x1"
+        [attr.y1]="cdStateService.currentStartNode.y1"
+        [attr.x2]="cdStateService.currentStartNode.x2"
+        [attr.y2]="cdStateService.currentStartNode.y2"
+        stroke="black"
+        stroke-width="1"
+      ></line>
+
+      <circle
+        [attr.cx]="cdStateService.currentStartNode.x2"
+        [attr.cy]="cdStateService.currentStartNode.y2"
+        r="5"
+        fill="#007c91"
+        stroke="white"
+        stroke-width="1"
+      ></circle>
+    </g>
+  </svg>
+  <app-magnify-preview></app-magnify-preview>
+</div>
