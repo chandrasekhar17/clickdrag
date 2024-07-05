@@ -1,8 +1,7 @@
 <html lang="en">
-
-<head>
-  <title>McGraw-Hill's Click and Drag Tool - EZTO External Question API Test Rig (v1.0.4, 9/9/2010)</title>
-  <!--
+  <head>
+    <title>McGraw-Hill's Click and Drag Tool - EZTO External Question API Test Rig (v1.0.4, 9/9/2010)</title>
+    <!--
   Caveat Scriptor
 
   This MUST be run served from from a web server in order for cross frame
@@ -15,188 +14,202 @@
   API Author:  Malcolm Duncan wmd@clearlearning.com
 -->
 
-  <script type="text/javascript" src="./libs/jquery-1.9.1.min.js"></script>
-  <script type="text/javascript" src="/EZTestOnline/ezto_ext.js"></script>
+    <script type="text/javascript" src="./libs/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/EZTestOnline/ezto_ext.js"></script>
 
+    <script language="javascript" type="text/javascript">
+      var dName = document.domain;
+      if (dName.indexOf('.com') > -1 && dName.indexOf('.') > -1) {
+        var temp = dName.split('.');
+        dName = temp[temp.length - 2] + '.' + temp[temp.length - 1];
+      }
+      //alert('rig base domain: ' + dName);
+      document.domain = dName;
 
-  <script language="javascript" type="text/javascript">
-
-    var dName = document.domain;
-    if ((dName.indexOf(".com") > -1) && (dName.indexOf(".") > -1)) {
-      var temp = dName.split(".");
-      dName = temp[temp.length - 2] + "." + temp[temp.length - 1];
-    }
-    //alert('rig base domain: ' + dName);
-    document.domain = dName;
-
-    /*
+      /*
     var	MODE_PREVIEW 		= "preview";	// mode showing correct answers in place
     var	MODE_TEST			= "test";		// standard student mode
     var	MODE_PREGRADE		= "sample";		// mode to pregrade only items answered
     var	MODE_POST_TEST		= "review";		// mode to fully grade/score the object
     */
-    var itemMediaJSON = { media: {} };
-    function doit() {
-      var mode = $("#ext_012345678_1_mode").val()
-      /* if(mode === 'sample'){
+      var itemMediaJSON = { media: {} };
+      function doit() {
+        var mode = $('#ext_012345678_1_mode').val();
+        /* if(mode === 'sample'){
       alert("Not Yet Implemented!!!");
       $('#testFrame').empty();
       return;
     } */
-      if (mode === 'preview' && $("#ext_012345678_1_state").val() == 0) {
-        alert("State Should not be Zero for preview mode");
-        $('#testFrame').empty();
-        return;
+        if (mode === 'preview' && $('#ext_012345678_1_state').val() == 0) {
+          alert('State Should not be Zero for preview mode');
+          $('#testFrame').empty();
+          return;
+        }
+
+        var itemMediaVal = $('#ext_012345678_itemmedia').val();
+        if (itemMediaVal) {
+          itemMediaJSON = JSON.parse(itemMediaVal);
+        } else {
+          itemMediaJSON = { media: {} };
+        }
+
+        if ($('iframe').length === 0) {
+          var iFrameHTML = '<br>&nbsp;<br><iframe class="wk_ex_iframe" style="z-index: 1" ';
+          iFrameHTML += 'name="ext_012345678_1" id="ext_012345678_1" frameborder="0" ';
+          iFrameHTML += 'src="' + $('#identifier').val() + '?ext_012345678_1" ';
+          iFrameHTML += 'width="' + $('#frame_width').val() + '" ';
+          iFrameHTML += 'height="' + $('#frame_height').val() + '" ';
+          iFrameHTML += 'onload="iframeLoaded(this)">';
+          iFrameHTML += '</iframe>';
+          $('#testFrame').html(iFrameHTML);
+        } else {
+          $('iframe')
+            .attr({
+              src: $('#identifier').val() + '?ext_012345678_1',
+            })
+            .css({
+              height: $('#frame_height').val() + 'px',
+              width: $('#frame_width').val() + 'px',
+            });
+        }
       }
 
-      var itemMediaVal = $("#ext_012345678_itemmedia").val();
-      if (itemMediaVal) {
-        itemMediaJSON = JSON.parse(itemMediaVal);
-      } else {
-        itemMediaJSON = { media: {} };
-      }
-
-
-      if ($('iframe').length === 0) {
-        var iFrameHTML = '<br>&nbsp;<br><iframe class="wk_ex_iframe" style="z-index: 1" ';
-        iFrameHTML += 'name="ext_012345678_1" id="ext_012345678_1" frameborder="0" ';
-        iFrameHTML += 'src="' + $('#identifier').val() + '?ext_012345678_1" ';
-        iFrameHTML += 'width="' + $('#frame_width').val() + '" ';
-        iFrameHTML += 'height="' + $('#frame_height').val() + '" ';
-        iFrameHTML += 'onload="iframeLoaded(this)">';
-        iFrameHTML += '</iframe>';
-        $('#testFrame').html(iFrameHTML);
-      } else {
-        $('iframe').attr({
-          'src': $('#identifier').val() + '?ext_012345678_1'
-        }).css({
-          'height': $('#frame_height').val() + "px",
-          'width': $('#frame_width').val() + "px"
-        });
-      }
-    }
-
-    function iframeLoaded(toolFrame) {
-      // toolFrame.contentWindow.window.EZ.itemmedia = "./assets/testrigmedia.json";
-      // toolFrame.contentWindow.window.EZ.itemmediaJWT = "testrig";
-      toolFrame.contentWindow.window.EZ.itemmedia = function () {
-        var media = new Promise(function (resolve, reject) {
-          if(itemMediaJSON.delay !== undefined) {
-            setTimeout(function(){
+      function iframeLoaded(toolFrame) {
+        // toolFrame.contentWindow.window.EZ.itemmedia = "./assets/testrigmedia.json";
+        // toolFrame.contentWindow.window.EZ.itemmediaJWT = "testrig";
+        toolFrame.contentWindow.window.EZ.itemmedia = function () {
+          var media = new Promise(function (resolve, reject) {
+            if (itemMediaJSON.delay !== undefined) {
+              setTimeout(function () {
+                resolve(itemMediaJSON);
+              }, itemMediaJSON.delay * 1000);
+            } else {
               resolve(itemMediaJSON);
-            }, itemMediaJSON.delay * 1000);
-          } else {
-            resolve(itemMediaJSON);
-          } 
-        });
-        return media;
+            }
+          });
+          return media;
+        };
       }
-    }
 
-    function copyState() {
-      $('#ext_012345678_1_state').val($('#ext_012345678_1_ostate').val());
-    }
-	
-	function extTestGather() {
-		$('.wk_ex_iframe').each(function () {
-			var theFrame = $(this);
-			var theID = $(this).attr('id');
-			//alert(theID);
-			try {
-				var theState = window.frames[this.name].getState();
-				$('#' + theID + '_ostate').val(theState);
+      function copyState() {
+        $('#ext_012345678_1_state').val($('#ext_012345678_1_ostate').val());
+      }
 
-				var theScore = window.frames[this.name].getScore();
-				$('#' + theID + '_eval').val(theScore);
+      function extTestGather() {
+        $('.wk_ex_iframe').each(function () {
+          var theFrame = $(this);
+          var theID = $(this).attr('id');
+          //alert(theID);
+          try {
+            var theState = window.frames[this.name].getState();
+            $('#' + theID + '_ostate').val(theState);
 
-				var theCompletion = window.frames[this.name].getCompletion(theState);
-				$('#' + theID + '_completion').val(theCompletion);
-			}
-			catch (err) {
-				if (console && console.log)
-					console.log('failure to implement getState, getScore or the external API correctly');
-				else
-					window.alert('failure to implement getState, getScore or the external API correctly');
-			}
-		});
-	}
-  </script>
+            var theScore = window.frames[this.name].getScore();
+            $('#' + theID + '_eval').val(theScore);
 
-</head>
+            var theCompletion = window.frames[this.name].getCompletion(theState);
+            $('#' + theID + '_completion').val(theCompletion);
+          } catch (err) {
+            if (console && console.log)
+              console.log('failure to implement getState, getScore or the external API correctly');
+            else window.alert('failure to implement getState, getScore or the external API correctly');
+          }
+        });
+      }
+    </script>
+  </head>
 
-<body>
-  <span style="font-size: 14pt; font-weight: bold;">
-    EZTO External Object Authoring Test Rig (v1.0.4, 9/9/2010)
-  </span><br>
-  <i><u>must</u> be rendered by a web server</i>
-  <br>&nbsp;<br>
+  <body>
+    <span style="font-size: 14pt; font-weight: bold"> EZTO External Object Authoring Test Rig (v1.0.4, 9/9/2010) </span
+    ><br />
+    <i><u>must</u> be rendered by a web server</i>
+    <br />&nbsp;<br />
 
-  <form name="testrig" onsubmit="return false;">
+    <form name="testrig" onsubmit="return false;">
+      <table style="float: left">
+        <tr>
+          <td>
+            Object Path:&nbsp;
+            <input type="text" size="50" name="identifier" id="identifier" value="index.html" />
+          </td>
+          <td>
+            Size:
+            <input type="text" size="4" value="900" id="frame_width" />W x
+            <input type="text" size="4" value="900" id="frame_height" />H &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Mode:
+            <select
+              name="mode_select"
+              onchange="document.testrig.ext_012345678_1_mode.value= options[selectedIndex].value"
+            >
+              <option selected="selected" value="design">MODE_DESIGN</option>
+              <option value="test">MODE_TEST</option>
+              <option value="preview">MODE_PREVIEW</option>
+              <option value="sample">MODE_PREGRADE</option>
+              <option value="review">MODE_POST_TEST</option></select
+            >&nbsp; Language:
+            <input type="text" name="ext_012345678_1_language" id="ext_012345678_1_language" value="en-US" />
+            <input type="hidden" name="ext_012345678_1_mode" id="ext_012345678_1_mode" value="design" />
+          </td>
+        </tr>
 
-    <table style="float: left;">
-      <tr>
-        <td>
-          Object Path:&nbsp;
-          <input type="text" size="50" name="identifier" id="identifier" value="index.html">
-        </td>
-        <td>
-          Size:
-          <input type="text" size="4" value="900" id="frame_width">W x
-          <input type="text" size="4" value="900" id="frame_height">H
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Mode: <select name="mode_select"
-            onchange="document.testrig.ext_012345678_1_mode.value= options[selectedIndex].value">
-            <option selected="selected" value="design">MODE_DESIGN</option>
-            <option value="test">MODE_TEST</option>
-            <option value="preview">MODE_PREVIEW</option>
-            <option value="sample">MODE_PREGRADE</option>
-            <option value="review">MODE_POST_TEST</option>
-          </select>&nbsp;
-          <input type="hidden" name="ext_012345678_1_mode" id="ext_012345678_1_mode" value="design">
-        </td>
-      </tr>
+        <tr>
+          <td valign="top">
+            <br /><b>Input State:</b><br />
+            <a>
+              <textarea
+                name="ext_012345678_1_state"
+                id="ext_012345678_1_state"
+                rows="5"
+                cols="50"
+                spellcheck="false"
+              ></textarea>
+            </a>
+            <br /><button onclick="doit();">Load API Below</button>
+          </td>
+          <td>
+            <br /><button onclick="extTestGather();">Retrieve Output</button>&nbsp; <i>Output State:</i><br />
+            <a>
+              <textarea
+                name="ext_012345678_1_ostate"
+                id="ext_012345678_1_ostate"
+                rows="5"
+                cols="50"
+                spellcheck="false"
+              ></textarea>
+            </a>
+            <br />
+            <i>Score:</i>&nbsp;
+            <input type="text" name="ext_012345678_1_eval" id="ext_012345678_1_eval" size="4" />
+            &nbsp;&nbsp;
+            <i>Completion:</i>&nbsp;
+            <input type="text" name="ext_012345678_1_completion" id="ext_012345678_1_completion" size="4" />
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button onclick="copyState();">&lt;- copy ^ to input</button>
+          </td>
+        </tr>
 
-      <tr>
-        <td valign="top">
-          <br><b>Input State:</b><br>
-          <a><textarea name="ext_012345678_1_state" id="ext_012345678_1_state" rows="5" cols="50"
-              spellcheck="false"></textarea></a>
-          <br><button onclick="doit();">Load API Below</button>
-        </td>
-        <td>
-          <br><button onclick="extTestGather();">Retrieve Output</button>&nbsp;
-          <i>Output State:</i><br>
-          <a><textarea name="ext_012345678_1_ostate" id="ext_012345678_1_ostate" rows="5" cols="50"
-              spellcheck="false"></textarea></a>
-          <br>
-          <i>Score:</i>&nbsp;
-          <input type="text" name="ext_012345678_1_eval" id="ext_012345678_1_eval" size=4>
-          &nbsp;&nbsp;
-          <i>Completion:</i>&nbsp;
-          <input type="text" name="ext_012345678_1_completion" id="ext_012345678_1_completion" size=4>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <button onclick="copyState();">&lt;- copy ^ to input</button>
-        </td>
-      </tr>
-
-      <tr>
-        <td colspan="2" id="testFrame" align="center">
-          <br>&nbsp;<br>
-          <!-- iframe class="wk_ex_iframe" style="z-index: 1"
+        <tr>
+          <td colspan="2" id="testFrame" align="center">
+            <br />&nbsp;<br />
+            <!-- iframe class="wk_ex_iframe" style="z-index: 1"
           name="ext_012345678_1" id="ext_012345678_1" frameborder="0" src="/graphingtool/testrigs/eztoexternalapi/1.0.4/gtinit.html"> </iframe-->
-        </td>
-      </tr>
+          </td>
+        </tr>
 
-      <tr>
-        <td colspan="2">
-          <!-- <br>Sample Policy (p_acct_nodropdown)<input type="text" id="p_indicators" value="">(p_acct_autocalc)<input type="text" id="p_acct_autocalc" value="rad1"> -->
-          <br>Sample Params <input type="text" name="activityId" value="preview">
-          feedback policy : <input type="text" name="p_posttest" value="feedback" id="p_posttest">
-          <br>Sample Randoms <input type="text" size="80" id="ext_012345678_rnd"
-            value="xy(19)=0;xy(4)=10;xy(7)=10;xy(30)=5;xy(33)=0;xy(22)=15;xy(25)=7;xy(28)=5;xy=1;xy(11)=13;xy(14)=63;xy(17)=81;xy(2)=1;xy(5)=4;xy(8)=7;xy(31)=14;xy(34)=10;xy(20)=19;xy(23)=9;xy(26)=-1;xy(29)=16;xy(12)=32;xy(15)=72;xy(18)=80;xy(3)=2;xy(6)=5;xy(9)=8;xy(32)=13;xy(21)=17;xy(24)=6;xy(27)=13;xy(10)=0;xy(13)=49;xy(16)=78;xy(1)=0" />
-          <!-- input type="text" size="80" id="ext_012345678_1_rnd" value="a=5;b=10;c[0]=abacab" -->
-          <br>Media <textarea id="ext_012345678_media" rows="4" cols="80"></textarea>
-          <br>Item Media <textarea id="ext_012345678_itemmedia" rows="4" cols="80">
+        <tr>
+          <td colspan="2">
+            <!-- <br>Sample Policy (p_acct_nodropdown)<input type="text" id="p_indicators" value="">(p_acct_autocalc)<input type="text" id="p_acct_autocalc" value="rad1"> -->
+            <br />Sample Params <input type="text" name="activityId" value="preview" /> feedback policy :
+            <input type="text" name="p_posttest" value="feedback" id="p_posttest" /> <br />Sample Randoms
+            <input
+              type="text"
+              size="80"
+              id="ext_012345678_rnd"
+              value="xy(19)=0;xy(4)=10;xy(7)=10;xy(30)=5;xy(33)=0;xy(22)=15;xy(25)=7;xy(28)=5;xy=1;xy(11)=13;xy(14)=63;xy(17)=81;xy(2)=1;xy(5)=4;xy(8)=7;xy(31)=14;xy(34)=10;xy(20)=19;xy(23)=9;xy(26)=-1;xy(29)=16;xy(12)=32;xy(15)=72;xy(18)=80;xy(3)=2;xy(6)=5;xy(9)=8;xy(32)=13;xy(21)=17;xy(24)=6;xy(27)=13;xy(10)=0;xy(13)=49;xy(16)=78;xy(1)=0"
+            />
+            <!-- input type="text" size="80" id="ext_012345678_1_rnd" value="a=5;b=10;c[0]=abacab" -->
+            <br />Media <textarea id="ext_012345678_media" rows="4" cols="80"></textarea> <br />Item Media
+            <textarea id="ext_012345678_itemmedia" rows="4" cols="80">
           {
     "media": {
         "11111": {
@@ -321,63 +334,61 @@
         }
     }
 }
-        </textarea>
-        </td>
-      </tr>
-
-    </table>
-    <table style="float: right;">
-      <thead>
-        <tr>
-          <th>Sl. no.</th>
-          <th> Instructions</th>
+        </textarea
+            >
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1.</td>
-          <td> The default mode of the tool is MODE_DESIGN </td>
-        </tr>
-        <tr>
-          <td>2.</td>
-          <td> Click on "Load API below" button </td>
-        </tr>
-        <tr>
-          <td>3.</td>
-          <td> A canvas area is loaded where user can draw different elements </td>
-        </tr>
-        <tr>
-          <td>4.</td>
-          <td> Draw required elements on the canvas </td>
-        </tr>
-        <tr>
-          <td>5.</td>
-          <td> <u>For example:</u> Select origin from toolbar. Click on the canvas region, an origin will be drawn </td>
-        </tr>
-        <tr>
-          <td>6.</td>
-          <td> To retrieve the output, click on the "Retrieve Output" button </td>
-        </tr>
-        <tr>
-          <td>7.</td>
-          <td> The encrypted data is popoulated in the texarea </td>
-        </tr>
-        <tr>
-          <td>8.</td>
-          <td> Click on the "copy to input" button to copy the content of the output textarea to input textarea</td>
-        </tr>
-        <tr>
-          <td>9.</td>
-          <td> Change the mode to MODE_TEST, and click on "Load API below" button</td>
-        </tr>
-        <tr>
-          <td>10.</td>
-          <td> The API for the encrypted data is loaded into the &lt;iframe&gt; </td>
-        </tr>
-      </tbody>
-    </table>
-  </form>
-
-</body>
-
+      </table>
+      <table style="float: right">
+        <thead>
+          <tr>
+            <th>Sl. no.</th>
+            <th>Instructions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.</td>
+            <td>The default mode of the tool is MODE_DESIGN</td>
+          </tr>
+          <tr>
+            <td>2.</td>
+            <td>Click on "Load API below" button</td>
+          </tr>
+          <tr>
+            <td>3.</td>
+            <td>A canvas area is loaded where user can draw different elements</td>
+          </tr>
+          <tr>
+            <td>4.</td>
+            <td>Draw required elements on the canvas</td>
+          </tr>
+          <tr>
+            <td>5.</td>
+            <td><u>For example:</u> Select origin from toolbar. Click on the canvas region, an origin will be drawn</td>
+          </tr>
+          <tr>
+            <td>6.</td>
+            <td>To retrieve the output, click on the "Retrieve Output" button</td>
+          </tr>
+          <tr>
+            <td>7.</td>
+            <td>The encrypted data is popoulated in the texarea</td>
+          </tr>
+          <tr>
+            <td>8.</td>
+            <td>Click on the "copy to input" button to copy the content of the output textarea to input textarea</td>
+          </tr>
+          <tr>
+            <td>9.</td>
+            <td>Change the mode to MODE_TEST, and click on "Load API below" button</td>
+          </tr>
+          <tr>
+            <td>10.</td>
+            <td>The API for the encrypted data is loaded into the &lt;iframe&gt;</td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </body>
 </html>

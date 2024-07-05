@@ -8,9 +8,9 @@
     <div *ngIf="(label.text !== '' )">
             <div class="label-distrator-text">
                 <span class="label-media-text" *ngIf="!label.distractor"
-                    [innerHtml]="(label.text === '' ? 'Add Label Text' : label.text) | safeHtml"></span>
+                    [innerHtml]="(label.text === '' ? getTranslatedText('LABEL.ADD_TEXT') : label.text) | safeHtml"></span>
                 <span class="label-media-text" *ngIf="label.distractor"
-                    [innerHtml]="(label.text === '' ? 'Add Distractor Text' : label.text) | safeHtml"></span>
+                    [innerHtml]="(label.text === '' ? getTranslatedText('DISTRACTOR.ADD_DISTRACTOR') : label.text) | safeHtml"></span>
             </div>
             <div class="border-bottom-label"></div>
         </div>
@@ -34,10 +34,10 @@
         [attr.labelId]='label.id'>
         <span *ngIf="!label.distractor" class="placeholder-copy"
             [ngClass]="{'placeholder-copy-text': (label.text !== '')} "
-            [innerHtml]="(label.text === '' ? 'Add Label Text' : label.text) | safeHtml">
+            [innerHtml]="(label.text === '' ? getTranslatedText('LABEL.ADD_TEXT') : label.text) | safeHtml">
         </span>
         <span *ngIf="label.distractor" class="placeholder-copy" [ngClass]="{'placeholder-copy-text': label.text !== ''}"
-            [innerHtml]="(label.text === '' ? 'Add Distractor Text' : label.text) | safeHtml">
+            [innerHtml]="(label.text === '' ? getTranslatedText('DISTRACTOR.ADD_DISTRACTOR') : label.text) | safeHtml">
         </span>
     </div>
 </ng-template>

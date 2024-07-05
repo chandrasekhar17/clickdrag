@@ -3,11 +3,13 @@ import { ButtonPurpose, ButtonType, MheOption } from '@mhe/ngx-shared';
 import { CdStateService } from 'src/app/services/cd-state/cd-state.service';
 import { ModalService } from 'src/app/services/modal-popup/modal.service';
 import { UndoRedoService } from 'src/app/services/undo-redo/undo-redo.service';
-import { APP_CONFIG } from '../../../../shared/constants/appconfig';
+import { APP_CONFIG } from '../../../../../../src/app/shared/constants/appconfig';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ReorderLabelsService } from '../../services/reorder-labels.service';
 import { DragAndDropServiceService } from 'src/app/shared/services/drag-and-drop-service.service';
 import { fromEvent } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { AppConfigService } from 'src/app/services/config-translator/appConfig.service';
 
 @Component({
   selector: 'app-labels',
@@ -42,18 +44,28 @@ export class LabelsComponent implements OnInit {
     private modalPopupService: ModalService,
     private undoRedoService: UndoRedoService,
     private reorderService: ReorderLabelsService,
-    private dragDropService: DragAndDropServiceService
+    private dragDropService: DragAndDropServiceService,
+    private translate: TranslateService,
+    private appConfigService: AppConfigService
   ) {
     this.labelList = cdStateService.getState().labelData.labels;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.appConfigService.loadTranslations();
     this.mode = EZ.mode;
     this.checkForLabelAndDistractorOptions(0);
     this.state = this.cdStateService.getState();
     this.labelList = this.state.labelData.labels;
     this.reorderService.reorderLabels.subscribe((value) => {
       this.reorderLabel = value;
+    });
+    this.labelOptions = this.translateLabelOptions(APP_CONFIG.LABEL_OPTIONS);
+  }
+  translateLabelOptions(options: { [key: string]: string }): any[] {
+    return Object.keys(options).map(key => {
+      const translatedValue = this.translate.instant(options[key]);
+      return { value: key, viewValue: translatedValue };
     });
   }
   disableOption(optionToDisable, distractor?) {
@@ -121,7 +133,7 @@ export class LabelsComponent implements OnInit {
   }
 
   onDropDownSelection(event, index) {
-    console.log(event);
+    console.log('Dropdown Selection Event:', event);
     this.cdStateService.labelIndex = index;
     const state = this.cdStateService.getState();
     let labelSize = state.labelData.labels.length;
@@ -134,36 +146,33 @@ export class LabelsComponent implements OnInit {
       },
     };
     switch (event[0].viewValue) {
-      case 'Add Label Below':
+      case APP_CONFIG.LABEL_OPTIONS.ADD_LABEL_BELOW:
         if (labelSize < 20) this.cdStateService.addLabelData(false, index);
         break;
 
-      case 'Mark as Distractor':
+      case APP_CONFIG.LABEL_OPTIONS.MARK_AS_DISTRACTOR:
         if (labelSize > 2) this.cdStateService.markAsDistractor(index);
         break;
 
-      case 'Add Drop zone':
+      case APP_CONFIG.LABEL_OPTIONS.ADD_DROPZONE:
         this.cdStateService.addDropZone(index);
         break;
 
-      case 'Mark as Label':
+      case APP_CONFIG.LABEL_OPTIONS.MARK_AS_LABEL:
         this.cdStateService.markAsLabel(index);
         break;
 
-      case 'Delete':
+      case APP_CONFIG.LABEL_OPTIONS.DELETE:
         if (labelSize > 2) {
           this.modalPopupService.showDeleteLabelModal(index);
         }
         break;
 
-      case 'Edit':
+      case APP_CONFIG.LABEL_OPTIONS.EDIT:
         this.modalPopupService.showAddLabelModal();
         break;
-
-      // case 'Edit Image Description':
-      //   this.modalPopupService.editImageDescriptionModal(labelData, 'editImageDescForLabels');
       default:
-        console.log('default clicked.');
+        console.log('Default case in dropdown selection');
         break;
     }
     if (event[0].viewValue !== 'Edit' && event[0].viewValue !== 'Delete') {
@@ -195,7 +204,6 @@ export class LabelsComponent implements OnInit {
     if (labelSize <= 19) {
       this.enableOption('Add Label Below');
     }
-
     if (Array.isArray(dockedTo) && dockedTo.length === 5) {
       this.disableOption('Add Drop zone');
     } else {

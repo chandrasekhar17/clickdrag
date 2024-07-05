@@ -5,6 +5,7 @@ import { CdStateService } from 'src/app/services/cd-state/cd-state.service';
 import { CanvasSettingComponent } from './settings/canvas/canvas-setting.component';
 import { ImageSettingComponent } from './settings/image-setting/image-setting.component';
 import { MagnifyComponent } from './settings/magnify/magnify.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tools',
@@ -19,7 +20,9 @@ export class ToolsComponent implements OnInit {
     { title: 'Magnify', expandPanel: true, Directive: MagnifyComponent, visible: false },
   ];
   state: any;
-  constructor(private cdService: CdStateService) {
+  constructor(private cdService: CdStateService,
+    translate: TranslateService
+  ) {
     this.state = cdService.getState();
     cdService.stateUpdated.subscribe(() => {
       if (cdService.leaderLineNodes.length === 0) {

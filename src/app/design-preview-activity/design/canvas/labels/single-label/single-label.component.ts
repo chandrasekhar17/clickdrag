@@ -3,7 +3,7 @@ import { CdStateService } from 'src/app/services/cd-state/cd-state.service';
 import { MediaService } from 'src/app/services/media/media.service';
 import { DragAndDropServiceService } from 'src/app/shared/services/drag-and-drop-service.service';
 import { ModalService } from 'src/app/services/modal-popup/modal.service';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-single-label',
   templateUrl: './single-label.component.html',
@@ -30,8 +30,12 @@ export class SingleLabelComponent implements OnInit, AfterViewInit {
     private dragAndDropService: DragAndDropServiceService,
     private mediaService: MediaService,
     private modalService: ModalService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private translate: TranslateService
   ) { }
+  getTranslatedText(key: string): string {
+    return this.translate.instant(key);
+  }
   ngAfterViewInit(): void {
     if (
       !this.isInsideDropzone &&

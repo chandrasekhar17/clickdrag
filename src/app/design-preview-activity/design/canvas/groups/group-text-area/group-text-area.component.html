@@ -1,5 +1,5 @@
 <div class="groupTitle">
-    <h4 class="header-title">Group {{index+1}}/{{bucket.length}}</h4>
+    <h4 class="header-title">{{'GROUP' | translate}} {{index+1}}/{{bucket.length}}</h4>
     <div class="showOnlySpecialChar">
         <mhe-editor #editor [toggleRichTextMenuBar]="false" [elementPath]="false" maxCharacter="40"
             (editorFocusOut)="validateLabelReqError($event); onEditorBlur()" [tinymceMenubar]="'false'"

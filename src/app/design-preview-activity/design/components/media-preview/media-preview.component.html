@@ -1,39 +1,43 @@
 <div class="preview">
-    <div class="media_preview">
-        <img *ngIf="mediaDetails.type === 'image'" class="image" src="{{mediaDetails.path}}">
-        <div *ngIf="mediaDetails.type === 'audio'" class="audio_preview">
-            <button mhe-button [purpose]="_buttonPurpose.Icon" aria-expanded="false" (click)="handleAudio()"
-                class="audio_btn">
-                <i class="dpg-icon"
-                    [ngClass]="play ? 'dpg-icon-av-control-pause-outline' : 'dpg-icon-av-control-play-outline'">
-                    <span class="sr-only">{{play ? 'pause' : 'play'}}</span>
-                </i>
-            </button>
-            <span class="media_title">{{mediaDetails.title}}</span>
-            <audio *ngIf="mediaDetails.type === 'audio'" #audioElement hidden>
-                <source src="{{mediaDetails.path}}" type="audio/mpeg">
-            </audio>
-        </div>
+  <div class="media_preview">
+    <img *ngIf="mediaDetails.type === 'image'" class="image" src="{{ mediaDetails.path }}" />
+    <div *ngIf="mediaDetails.type === 'audio'" class="audio_preview">
+      <button
+        mhe-button
+        [purpose]="_buttonPurpose.Icon"
+        aria-expanded="false"
+        (click)="handleAudio()"
+        class="audio_btn"
+      >
+        <i class="dpg-icon" [ngClass]="play ? 'dpg-icon-av-control-pause-outline' : 'dpg-icon-av-control-play-outline'">
+          <span class="sr-only">{{ play ? 'pause' : 'play' }}</span>
+        </i>
+      </button>
+      <span class="media_title">{{ mediaDetails.title }}</span>
+      <audio *ngIf="mediaDetails.type === 'audio'" #audioElement hidden>
+        <source src="{{ mediaDetails.path }}" type="audio/mpeg" />
+      </audio>
     </div>
-    <div class="description">
-        <ng-container *ngIf="mediaDetails.type === 'image'; else transcriptView">
-            <h4>Short Description</h4>
-            <p class="description_property">{{mediaDetails.altText === '' ? 'No description available' :
-                mediaDetails.altText}}
-            </p>
-            <div *ngIf="!isLabel">
-                <h4>Long Description</h4>
-                <p class="description_property">{{mediaDetails.description === '' ? 'No
-                    description available' : mediaDetails.description}}</p>
-            </div>
-        </ng-container>
-        <ng-template #transcriptView>
-            <h4>Audio Transcript</h4>
-            <p class="description_property">{{transcript === '' ? 'No transcript available' : transcript}}</p>
-        </ng-template>
-
-    </div>
-
-
-
+  </div>
+  <div class="description">
+    <ng-container *ngIf="mediaDetails.type === 'image'; else transcriptView">
+      <h4>{{ 'SHORT_DESC' | translate }}</h4>
+      <p class="description_property">
+        {{ mediaDetails.altText === '' ? 'No description available' : mediaDetails.altText }}
+      </p>
+      <div *ngIf="!isLabel">
+        <h4>{{ 'LONG_DESC' | translate }}</h4>
+        <p class="description_property">
+          {{
+            mediaDetails.description === '' ? 'No
+                    description available' : mediaDetails.description
+          }}
+        </p>
+      </div>
+    </ng-container>
+    <ng-template #transcriptView>
+      <h4>Audio Transcript</h4>
+      <p class="description_property">{{ transcript === '' ? 'No transcript available' : transcript }}</p>
+    </ng-template>
+  </div>
 </div>

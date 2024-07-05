@@ -1,9 +1,15 @@
 <div class="note-container pb-5">
-    <label class="mb-1">Note</label>
-    <div class="mb-2">
-        <mhe-editor #editor [toggleRichTextMenuBar]="false" [content]="note"
-            (contentChange)="onEditorContentChange($event)" [elementPath]="false" maxCharacter="200"
-            [tinymceMenubar]="'false'">
-        </mhe-editor>
-    </div>
+  <label class="mb-1">{{ 'NOTE' | translate }}</label>
+  <div class="mb-2">
+    <mhe-editor
+      #editor
+      [toggleRichTextMenuBar]="false"
+      [content]="note"
+      (contentChange)="onEditorContentChange($event)"
+      [elementPath]="false"
+      maxCharacter="200"
+      [tinymceMenubar]="'false'"
+    >
+    </mhe-editor>
+  </div>
 </div>

@@ -1,24 +1,25 @@
-<div #groupContainer class="group-container" id="js-groupActivityContainer"
-    [style.max-width.px]="dropZoneAreaWidth">
-    <div class="groups" *ngFor="let item of bucket; let i = index">
-        <div class="group-selection" [ngClass]="{'selected': cdStateService.selectedGroup[i]}"
-            [style.width.px]="item.image.width">
-            <div class="single-group">
-                <app-group-text-area [group]="item" [index]="i"></app-group-text-area>
-                <app-group-add-image [group]="item" [index]="i" (getSelectedBoolean)="setSelected($event ,i)">
-                </app-group-add-image>
-                <app-group-dropzone [group]="item" [index]="i" (getSelectedBoolean)="setSelected($event ,i)">
-                </app-group-dropzone>
-            </div>
-        </div>
+<div #groupContainer class="group-container" id="js-groupActivityContainer" [style.max-width.px]="dropZoneAreaWidth">
+  <div class="groups" *ngFor="let item of bucket; let i = index">
+    <div
+      class="group-selection"
+      [ngClass]="{ selected: cdStateService.selectedGroup[i] }"
+      [style.width.px]="item.image.width"
+    >
+      <div class="single-group">
+        <app-group-text-area [group]="item" [index]="i"></app-group-text-area>
+        <app-group-add-image [group]="item" [index]="i" (getSelectedBoolean)="setSelected($event, i)">
+        </app-group-add-image>
+        <app-group-dropzone [group]="item" [index]="i" (getSelectedBoolean)="setSelected($event, i)">
+        </app-group-dropzone>
+      </div>
     </div>
-    <div *ngIf="bucket.length < 6" class="create-group-wrap">
-        <div class="create-group">
-            <button mhe-button [purpose]="buttonPurpose.Secondary" (click)="addOneGroup()"
-                [disabled]="disabledAddGroupBtn">Add
-                Group</button>
-            <h5>Maximum groups: 6</h5>
-        </div>
-
+  </div>
+  <div *ngIf="bucket.length < 6" class="create-group-wrap">
+    <div class="create-group">
+      <button mhe-button [purpose]="buttonPurpose.Secondary" (click)="addOneGroup()" [disabled]="disabledAddGroupBtn">
+        {{'ADD_GROUP' | translate}}
+      </button>
+      <h5>{{ 'MAX_GROUPS' | translate }}: 6</h5>
     </div>
+  </div>
 </div>

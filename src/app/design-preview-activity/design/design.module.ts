@@ -56,6 +56,15 @@ import { ModalComponent } from './shared/modal/modal.component';
 import { ToggleComponent } from './shared/toggle/toggle.component';
 import { DropdownComponent } from './shared/dropdown/dropdown.component';
 import { TooltipDirective } from './shared/tooltip/tooltip.directive';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 @NgModule({
   declarations: [
     DesignComponent,
@@ -109,7 +118,15 @@ import { TooltipDirective } from './shared/tooltip/tooltip.directive';
     OverlayModule,
     // ClickOutsideModule,
     PortalModule,
-    SharedModule
+    SharedModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'es',  // Set default language to Spanish
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
   ],
 })
 export class DesignModule { }

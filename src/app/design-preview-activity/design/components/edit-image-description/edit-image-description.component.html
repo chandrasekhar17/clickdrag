@@ -1,21 +1,35 @@
 <div class="short-description">
-    <h4> Short Description</h4>
-    <span [ngClass]="{'count-warning': altText.length > 140}">{{ altText.length }}/150
-    </span>
+  <h4>{{ 'SHORT_DESC' | translate }}</h4>
+  <span [ngClass]="{ 'count-warning': altText.length > 140 }">{{ altText.length }}/150 </span>
 </div>
-<mhe-textarea maxlength=150 [value]="altText" (inputChange)="inputChangeAltText($event)" [rows]=6
-    placeholder="Enter description" #shortDescription>
+<mhe-textarea
+  maxlength="150"
+  [value]="altText"
+  (inputChange)="inputChangeAltText($event)"
+  [rows]="6"
+  placeholder="Enter description"
+  #shortDescription
+>
 </mhe-textarea>
-<button mhe-button [purpose]="_buttonPurpose.Secondary" (click)="resetAltText()" class="mb-4">Reset Description</button>
+<button mhe-button [purpose]="_buttonPurpose.Secondary" (click)="resetAltText()" class="mb-4">
+  {{ 'RESET_DESC' | translate }}
+</button>
 
 <div *ngIf="type !== 'editImageDescForLabels'">
-    <div class="long-description">
-        <h4 class="mt-4">Long Description</h4>
-        <span [ngClass]="{'count-warning': description.length > 990}">{{ description.length }}/1000
-        </span>
-    </div>
-    <mhe-textarea maxlength=1000 [value]="description" (inputChange)="inputChange($event)" [rows]=6
-        placeholder="Enter description" #longDescription>
-    </mhe-textarea>
-    <button mhe-button [purpose]="_buttonPurpose.Secondary" (click)="resetDescription()">Reset Description</button>
+  <div class="long-description">
+    <h4 class="mt-4">{{ 'LONG_DESC' | translate }}</h4>
+    <span [ngClass]="{ 'count-warning': description.length > 990 }">{{ description.length }}/1000 </span>
+  </div>
+  <mhe-textarea
+    maxlength="1000"
+    [value]="description"
+    (inputChange)="inputChange($event)"
+    [rows]="6"
+    placeholder="Enter description"
+    #longDescription
+  >
+  </mhe-textarea>
+  <button mhe-button [purpose]="_buttonPurpose.Secondary" (click)="resetDescription()">
+    {{ 'RESET_DESC' | translate }}
+  </button>
 </div>

@@ -1,5 +1,6 @@
 <div class="header">
-  <h2 class="m-0">Drop Zones</h2>
+  <!-- <h2 class="m-0">{{'DROP_ZONES' | translate}}</h2> -->
+   <h2 class="m-0">Drop Zones</h2>
   <ng-container *ngIf="mode === 'test'">
     <button mhe-button class="undo-button" [purpose]="_buttonPurpose.Icon" placement="bottom" appTooltip="Undo"
       aria-expanded="false" (click)="OnUndo()" [disabled]="!undoRedo.undoArray.length">

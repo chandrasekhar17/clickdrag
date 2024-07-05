@@ -1,26 +1,31 @@
 <ng-container>
-    <app-dropdown [options]="magnifyOptions" [selected]="selectedMagnifyOptions"
-        (selectionChange)="onMagnifyChange($event)">
-    </app-dropdown>
+  <app-dropdown
+    [options]="magnifyOptions"
+    [selected]="selectedMagnifyOptions"
+    (selectionChange)="onMagnifyChange($event)"
+  >
+  </app-dropdown>
 
-    <div class="mt-5">
-        <mhe-alert *ngIf="showMagnifyWarning" [smallAlert]="true" [type]="alertType.Error" [closable]="false">
-            {{warningMsg}}</mhe-alert>
-        <form [formGroup]="magnifySettingForm" class="magnify__units">
-            <div class="dpg-ui form-group">
-                <label for="canvas-width">
-                    Width
-                </label>
-                <input type="number" class="form-control" id="canvas-width" formControlName="width" step="100">
-            </div>
-            <div class="dpg-ui form-group">
-                <label for="canvas-height">
-                    Height
-                </label>
-                <input type="number" class="form-control" id="canvas-height" formControlName="height" step="100">
-            </div>
-        </form>
-        <mhe-checkbox [checked]="state.magnifySettings.enabled" (change)="onShowAuthoring($event)">Show in authoring
-        </mhe-checkbox>
-    </div>
+  <div class="mt-5">
+    <mhe-alert *ngIf="showMagnifyWarning" [smallAlert]="true" [type]="alertType.Error" [closable]="false">
+      {{ warningMsg }}</mhe-alert
+    >
+    <form [formGroup]="magnifySettingForm" class="magnify__units">
+      <div class="dpg-ui form-group">
+        <label for="canvas-width">
+          {{ 'WIDTH' | translate }}
+        </label>
+        <input type="number" class="form-control" id="canvas-width" formControlName="width" step="100" />
+      </div>
+      <div class="dpg-ui form-group">
+        <label for="canvas-height">
+          {{ 'HEIGHT' | translate }}
+        </label>
+        <input type="number" class="form-control" id="canvas-height" formControlName="height" step="100" />
+      </div>
+    </form>
+    <mhe-checkbox [checked]="state.magnifySettings.enabled" (change)="onShowAuthoring($event)"
+      >{{"SHOW_AUTH" | translate}}
+    </mhe-checkbox>
+  </div>
 </ng-container>

@@ -4,6 +4,7 @@ import { CdStateService } from '../../../../services/cd-state/cd-state.service';
 import { ModalService } from '../../../../services/modal-popup/modal.service';
 import { APP_CONFIG } from '../../../../shared/constants/appconfig';
 import { MediaService } from '../../../../services/media/media.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-label',
@@ -49,10 +50,14 @@ export class LabelComponent implements OnInit, AfterViewInit {
   constructor(
     public _cdStateService: CdStateService,
     private modalService: ModalService,
-    private mediaService: MediaService
+    private mediaService: MediaService,
+    private translate: TranslateService
   ) { }
+  getTranslatedText(key: string): string {
+    return this.translate.instant(key);
+  }
   ngOnInit(): void {
-    this.labelPreviewData = this.labelText ? this.labelText : 'Label Preview';
+    this.labelPreviewData = this.labelText ? this.labelText : this.getTranslatedText('LABEL.PREVIEW');
     this.isLabelText = this.labelText ? true : false;
     this.mediaInitialized();
     if (this.labelData) {

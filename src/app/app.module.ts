@@ -4,13 +4,12 @@ const pkg = require('../../package.json');
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateLoader } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NgxSharedModule, TranslateModule } from '@mhe/ngx-shared';
+import { NgxSharedModule } from '@mhe/ngx-shared';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayModule } from '@angular/cdk/overlay';
-
 
 import { StoreModule } from '@ngrx/store';
 import { RichTextEditorModule } from '@mhe/tinymce';
@@ -32,7 +31,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'en',
+      // defaultLanguage: 'es',  // Set default language to Spanish
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
@@ -42,7 +41,6 @@ export function createTranslateLoader(http: HttpClient) {
     RichTextEditorModule.forRoot(TinyMCEConfig),
     StoreModule.forRoot({}),
     NgxSharedModule,
-    BrowserAnimationsModule,
   ],
   bootstrap: [AppComponent],
   exports: [RichTextEditorModule],

@@ -1,25 +1,26 @@
 <div *ngIf="!isEditDescription; else editDescriptionSection">
-  <h3 class="mt-2 mb-4" *ngIf="isGrouping; else labelHeading">Group {{ bgData.index + 1 }}/{{ bucketLength }}
-    {{getHeaderText(bgData.element.headerText)}} </h3>
+  <h3 class="mt-2 mb-4" *ngIf="isGrouping; else labelHeading">
+    Group {{ bgData.index + 1 }}/{{ bucketLength }} {{ getHeaderText(bgData.element.headerText) }}
+  </h3>
   <ng-template #labelHeading>
     <h3 class="mt-2 mb-4">
       {{ bgData.title }}
     </h3>
   </ng-template>
   <div class="mb-4">
-    <h4>Short Description</h4>
+    <h4>{{ 'SHORT_DESC' | translate }}</h4>
     <p *ngIf="shortDescription !== ''; else zeroShortState">
       {{ shortDescription }}
     </p>
   </div>
   <div class="mb-4">
-    <h4>Long Description</h4>
+    <h4>{{ 'LONG_DESC' | translate }}</h4>
     <p *ngIf="longDescription !== ''; else zeroShortState">
       {{ longDescription }}
     </p>
   </div>
   <mhe-button [purpose]="_buttonPurpose.Secondary" (click)="editDescription()" [disabled]="disable">
-    Edit
+    {{ 'EDIT' | translate }}
   </mhe-button>
   <div class="divider-line" *ngIf="isGrouping"></div>
 </div>
@@ -30,15 +31,21 @@
 
 <ng-template #editDescriptionSection>
   <div class="scrollable">
-    <h3 class="mt-2 mb-4" *ngIf="isGrouping">Group {{ bgData.index + 1 }}/{{ bucketLength }}
-      {{getHeaderText(bgData.element.headerText)}} </h3>
-    <app-edit-image-description [description]="longDescription" [altText]="shortDescription" [index]="bgData.index"
-      (getDescription)="setDescription($event)" (getAltText)="setAltText($event)">
+    <h3 class="mt-2 mb-4" *ngIf="isGrouping">
+      Group {{ bgData.index + 1 }}/{{ bucketLength }} {{ getHeaderText(bgData.element.headerText) }}
+    </h3>
+    <app-edit-image-description
+      [description]="longDescription"
+      [altText]="shortDescription"
+      [index]="bgData.index"
+      (getDescription)="setDescription($event)"
+      (getAltText)="setAltText($event)"
+    >
     </app-edit-image-description>
     <div class="mt-5">
       <button mhe-button [purpose]="_buttonPurpose.Secondary" (click)="cancelDescription()">Cancel</button>
       <button class="ml-2" mhe-button [purpose]="_buttonPurpose.Primary" (click)="saveDescription()">
-        Save
+        {{ 'SAVE' | translate }}
       </button>
     </div>
     <div class="divider-line"></div>

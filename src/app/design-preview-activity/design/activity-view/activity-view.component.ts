@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CdStateService } from 'src/app/services/cd-state/cd-state.service';
 
 @Component({
@@ -12,11 +13,17 @@ export class ActivityViewComponent implements OnInit {
   typeOfActivity = 'labeling';
   typeOfInteraction = 'one-label-one-dock';
   typeOfOccurrence = '';
+  confirmButtonText: string;
 
-  constructor(public cdStateService: CdStateService) {}
+  constructor(public cdStateService: CdStateService,
+    private translate: TranslateService
+  ) { }
 
   ngOnInit(): void {
     this.showModal();
+    this.translate.get('START').subscribe((translation: string) => {
+      this.confirmButtonText = translation;
+    });
   }
 
   groupChangeActivity(event) {

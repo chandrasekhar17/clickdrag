@@ -19,12 +19,15 @@ import { WarningMessageComponent } from 'src/app/design-preview-activity/design/
 import { DragAndDropServiceService } from 'src/app/shared/services/drag-and-drop-service.service';
 import { TranscriptPopupService } from '../../shared/services/transcript-popup/transcript-popup.service';
 import { A11yHelperService } from 'src/app/shared/services/a11y-helper.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalService {
   modalRefs = [];
+  labelList = [];
+  modalOptions: any;
   // public labelData: BehaviorSubject<any> = new BehaviorSubject<any>({});
   stateUpdated: BehaviorSubject<any> = new BehaviorSubject<any>(false);
   // public addLabelModalRef: ModalRef<AddLabelComponent>;
@@ -49,8 +52,10 @@ export class ModalService {
     private transcriptPopup: TranscriptPopupService,
     private undoRedo: UndoRedoService,
     private announcer: LiveAnnouncer,
-    private a11yHelper: A11yHelperService
+    private a11yHelper: A11yHelperService,
+    private translate: TranslateService
   ) {
+    this.labelList = cdStateService.getState().labelData.labels;
     this.cdStateService.checkHeight.subscribe((val) => {
       if (val === true) {
         const state = this.cdStateService.getState();
@@ -73,13 +78,14 @@ export class ModalService {
     this.tempDropzoneDescription = dropzoneDescription;
     const initialState: ModalOptions = {
       type: 'custom',
-      titleText: 'Edit Label',
-      confirmButtonText: 'Save Label',
+      titleText: this.translate.instant('MODAL.EDIT_LABEL'),
+      confirmButtonText: this.translate.instant('MODAL.SAVE_LABEL'),
       contentText: '',
-      cancelButtonText: 'Cancel',
+      cancelButtonText: this.translate.instant('MODAL.CANCEL'),
       showFooter: true,
       panelClass: 'edit-label-custom-modal',
     };
+
     modalRef = this.modalService.open(AddLabelComponent, initialState, 1);
     this.popupModalRef = modalRef;
     // this.addLabelModalRef = modalRef;
@@ -224,6 +230,32 @@ export class ModalService {
         }
         this.cdStateService.updateMediaConsumption();
       });
+  }
+
+  ngOnInit() {
+    this.translate.get([
+      'IMG_DELETE_POPUP.WARNING_TITLE',
+      'IMG_DELETE_POPUP.CONFIRM_BUTTON',
+      'IMG_DELETE_POPUP.CONTENT_TEXT',
+      'IMG_DELETE_POPUP.CANCEL_BUTTON'
+    ]).subscribe(translations => {
+      this.modalOptions = {
+        type: 'custom',
+        titleText: translations['IMG_DELETE_POPUP.WARNING_TITLE'],
+        confirmButtonText: translations['IMG_DELETE_POPUP.CONFIRM_BUTTON'],
+        contentText: translations['IMG_DELETE_POPUP.CONTENT_TEXT'],
+        cancelButtonText: translations['IMG_DELETE_POPUP.CANCEL_BUTTON'],
+      };
+    });
+
+
+  }
+  translateLabelOptions(options: { [key: string]: string }): any[] {
+    return Object.keys(options).map(key => {
+      const translatedValue = this.translate.instant(`appconfig.label_options.${options[key]}`);
+      console.log(`Translating ${options[key]} to ${translatedValue}`);
+      return { value: options[key], viewValue: translatedValue };
+    });
   }
   updateErrorForLabel() {
     const index = this.cdStateService.labelIndex;

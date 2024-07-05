@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CdStateService } from 'src/app/services/cd-state/cd-state.service';
 import { V2StateService } from 'src/app/services/v2-state/v2-state.service';
+import { TranslateService } from '@ngx-translate/core';
+import { AppConfigService } from 'src/app/services/config-translator/appConfig.service';
+
 declare var window;
 
 @Component({
@@ -9,15 +12,25 @@ declare var window;
   styleUrls: ['./design.component.scss'],
 })
 export class DesignComponent implements OnInit {
+  @ViewChild('languageInput') languageInput: ElementRef;
   state: any;
   isActivityView = true;
   showCanvas = false;
   backwardCompatibilityErrors = false;
   duplicates = false;
+  language: string;
 
-  constructor(public cdStateService: CdStateService, public v2StateService: V2StateService) { }
+  constructor(public cdStateService: CdStateService, public v2StateService: V2StateService,
+    private translate: TranslateService,
+    private appConfigService: AppConfigService
+  ) {
+    this.language = EZ.language;
+    this.translate.setDefaultLang(this.language);
+    this.translate.use(this.language)
+  }
 
   ngOnInit(): void {
+    this.appConfigService.loadTranslations();
     if (this.cdStateService.removedDuplicates.removedDocks.length > 0 || this.cdStateService.removedDuplicates.removedLabels.length > 0) {
       this.duplicates = true;
     } else {

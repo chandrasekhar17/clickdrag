@@ -19,6 +19,7 @@ import {
 import { TemplateUuids } from '@mhe/ngx-shared/utils';
 import { Subject, asyncScheduler, fromEvent } from 'rxjs';
 import { subscribeOn, takeUntil, tap } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 const KEYCODES = {
   ESC_KEY: 27,
@@ -136,9 +137,16 @@ export class ModalComponent implements OnDestroy {
   constructor(
     private overlay: Overlay,
     private focusTrapFactory: FocusTrapFactory,
+    private translate: TranslateService,
     @Inject(DOCUMENT) doc: any
   ) {
     this._doc = doc;
+  }
+
+  ngOnInit() {
+    this.translate.get(this.confirmButtonText).subscribe((res) => {
+      this.confirmButtonText = res;
+    });
   }
 
   ngOnDestroy() {

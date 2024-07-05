@@ -6,6 +6,7 @@ import { StageRulerService } from '../../../../../services/stage-ruler/stage-rul
 import { ModalService } from '../../../../../services/modal-popup/modal.service';
 import { UndoRedoService } from 'src/app/services/undo-redo/undo-redo.service';
 import { APP_CONFIG } from '../../../../../shared/constants/appconfig';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-canvas-setting',
@@ -19,11 +20,14 @@ export class CanvasSettingComponent implements OnInit {
   canvasSettingForm: FormGroup;
   showCanvasWarning = false;
   config: any;
+  guidesTranslation: string;
+  canvasTranslation: string
   constructor(
     private cdStateService: CdStateService,
     private guide: StageRulerService,
     private modal: ModalService,
-    private undoRedoService: UndoRedoService
+    private undoRedoService: UndoRedoService,
+    private translate: TranslateService
   ) {
     this.config = APP_CONFIG;
     this.state = cdStateService.getState();
@@ -32,6 +36,12 @@ export class CanvasSettingComponent implements OnInit {
       if (value) {
         this.updateState();
       }
+    });
+    this.translate.get('GUIDES').subscribe((translation: string) => {
+      this.guidesTranslation = translation;
+    });
+    this.translate.get('CANVAS').subscribe((translation: string) => {
+      this.canvasTranslation = translation;
     });
 
     cdStateService.guideLineDelete.subscribe((value) => {

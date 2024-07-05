@@ -1,38 +1,95 @@
-<svg:rect #svgframe id="svg_rect" [attr.x]="xPos" [attr.y]="yPos" rx="5" stroke="#c1cfd4" [attr.width]="bgWidth"
-    [attr.height]="bgHeight" id="svg_rect" />
-<svg:rect #rectpointer class="addImage" rx="5" *ngIf="!backgroundImage.mediaAdded" stroke="#006a7c"
-    [attr.x]="xPos + ((bgWidth/2) - 54)" [attr.y]="yPos + (bgHeight/2) + 5" width="109" height="36"
-    (click)="addImage()" />
-<svg:text #backgroundImageText *ngIf="!backgroundImage.mediaAdded" class="backgroundImage svgText" id="backgroundImage"
-    [attr.x]="xPos + (bgWidth/2)" [attr.y]="yPos + (bgHeight/2) - 21" text-anchor="middle">
-    Add the
-    background
-    image</text>
-    <svg:text #addImageText *ngIf="!backgroundImage.mediaAdded" class="addImage svgText" id="addImage"
-        [attr.x]="xPos + (bgWidth/2)" [attr.y]="yPos +  (bgHeight/2) + 27" text-anchor="middle" (click)="addImage()">
-        Add
-        Image</text>
-        <!-- <svg:g *ngIf="backgroundImage.mediaAdded">
+<svg:rect
+  #svgframe
+  id="svg_rect"
+  [attr.x]="xPos"
+  [attr.y]="yPos"
+  rx="5"
+  stroke="#c1cfd4"
+  [attr.width]="bgWidth"
+  [attr.height]="bgHeight"
+  id="svg_rect"
+/>
+<svg:rect
+  #rectpointer
+  class="addImage"
+  rx="5"
+  *ngIf="!backgroundImage.mediaAdded"
+  stroke="#006a7c"
+  [attr.x]="xPos + (bgWidth / 2 - 54)"
+  [attr.y]="yPos + bgHeight / 2 + 5"
+  width="109"
+  height="36"
+  (click)="addImage()"
+/>
+<svg:text
+  #backgroundImageText
+  *ngIf="!backgroundImage.mediaAdded"
+  class="backgroundImage svgText"
+  id="backgroundImage"
+  [attr.x]="xPos + bgWidth / 2"
+  [attr.y]="yPos + bgHeight / 2 - 21"
+  text-anchor="middle"
+>
+  {{'BACKGROUND_IMAGE' | translate}}
+</svg:text>
+<svg:text
+  #addImageText
+  *ngIf="!backgroundImage.mediaAdded"
+  class="addImage svgText"
+  id="addImage"
+  [attr.x]="xPos + bgWidth / 2"
+  [attr.y]="yPos + bgHeight / 2 + 27"
+  text-anchor="middle"
+  (click)="addImage()"
+>
+  {{'ADD_IMAGE' | translate}}
+</svg:text>
+<!-- <svg:g *ngIf="backgroundImage.mediaAdded">
             <svg:text class="edit-description svgText" [attr.x]="xPos" [attr.y]="yPos - 9" fill="#007c91"
                 (click)="openEditPopup()">Edit Description</svg:text>
             <svg:line [attr.x1]="xPos" [attr.y1]="yPos - 4" [attr.x2]="xPos + 114" [attr.y2]="yPos - 4" stroke="#007c91" />
         </svg:g> -->
-        <svg:image #imageElement *ngIf="backgroundImage.mediaAdded" (load)="onImageLoad($event)"
-            class="background-image dragable" [ngClass]="{'img-selected': selected}" [attr.x]="xPos" [attr.y]="yPos"
-            [attr.width]="imageWidth" [attr.height]="imageHeight" [attr.xlink:href]="imagePath" />
-        <svg:g *ngIf="isRemoveDiv && isSafari">
-             <svg:foreignobject>
-            <xhtml:img *ngIf="backgroundImage.mediaAdded" [attr.src]="imagePath" (load)="onImageLoad($event)" />              
-        </svg:foreignobject>
-        </svg:g>
-        <svg:rect #brPointer *ngIf="backgroundImage.mediaAdded" [ngClass]="{'not-selected': !selected}" stroke-width="1"
-            class=" brCursor" id="rect_pointer1" [attr.x]="xPos + bgWidth - 3" [attr.y]="yPos + bgHeight -3" width="6"
-            height="6" />
-        <svg:a *ngIf="backgroundImage.mediaAdded && mediaDescription !== ''" href="javascript:void(0)" class="ahe-ui-link" (click)="openLongDescriptionPopup()">
-            <text stroke-width="0.1" [attr.x]="xPos" [attr.y]="yPos + (!imageHeight ? 0 : imageHeight) + 20">Image Description</text>
-        </svg:a>
-        <!-- commenting these rects for now as the image is only be resized from bottom right corner. -->
-        <!-- <svg:rect #blPointer *ngIf="backgroundImage.mediaAdded" [ngClass]="{'not-selected': !selected}" stroke-width="1" class=" blCursor" id="rect_pointer2"
+<svg:image
+  #imageElement
+  *ngIf="backgroundImage.mediaAdded"
+  (load)="onImageLoad($event)"
+  class="background-image dragable"
+  [ngClass]="{ 'img-selected': selected }"
+  [attr.x]="xPos"
+  [attr.y]="yPos"
+  [attr.width]="imageWidth"
+  [attr.height]="imageHeight"
+  [attr.xlink:href]="imagePath"
+/>
+<svg:g *ngIf="isRemoveDiv && isSafari">
+  <svg:foreignobject>
+    <xhtml:img *ngIf="backgroundImage.mediaAdded" [attr.src]="imagePath" (load)="onImageLoad($event)" />
+  </svg:foreignobject>
+</svg:g>
+<svg:rect
+  #brPointer
+  *ngIf="backgroundImage.mediaAdded"
+  [ngClass]="{ 'not-selected': !selected }"
+  stroke-width="1"
+  class="brCursor"
+  id="rect_pointer1"
+  [attr.x]="xPos + bgWidth - 3"
+  [attr.y]="yPos + bgHeight - 3"
+  width="6"
+  height="6"
+/>
+<svg:a
+  *ngIf="backgroundImage.mediaAdded && mediaDescription !== ''"
+  href="javascript:void(0)"
+  class="ahe-ui-link"
+  (click)="openLongDescriptionPopup()"
+>
+  <text stroke-width="0.1" [attr.x]="xPos" [attr.y]="yPos + (!imageHeight ? 0 : imageHeight) + 20">
+    Image Description
+  </text>
+</svg:a>
+<!-- commenting these rects for now as the image is only be resized from bottom right corner. -->
+<!-- <svg:rect #blPointer *ngIf="backgroundImage.mediaAdded" [ngClass]="{'not-selected': !selected}" stroke-width="1" class=" blCursor" id="rect_pointer2"
             [attr.x]="xPos -3" [attr.y]="yPos + bgHeight -3" width="6" height="6" />
         <svg:rect #trPointer *ngIf="backgroundImage.mediaAdded" [ngClass]="{'not-selected': !selected}" stroke-width="1" class=" trCursor" id="rect_pointer3"
             [attr.x]="xPos + bgWidth - 3 " [attr.y]="yPos -3" width="6" height="6" />

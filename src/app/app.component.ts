@@ -6,6 +6,7 @@ import { V2StateService } from './services/v2-state/v2-state.service';
 import { MediaService } from './services/media/media.service';
 import { AlertType } from '@mhe/ngx-shared';
 import { ScramblerService } from './services/scrambler/scrambler.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
   stateError = false;
   appInit = false;
   alertType = AlertType;
+  language: any;
 
   constructor(
     private cdStateService: CdStateService,
@@ -27,9 +29,12 @@ export class AppComponent implements OnInit {
     private mediaService: MediaService,
     private scrambler: ScramblerService,
     private ngZone: NgZone,
-    private announcer: LiveAnnouncer
+    private announcer: LiveAnnouncer,
+    private translate: TranslateService
   ) {
     window['CDInstance'] = this;
+    // this.translate.setDefaultLang('es');
+    // this.translate.use('es');
   }
 
   ngOnInit() {
@@ -64,6 +69,9 @@ export class AppComponent implements OnInit {
 
   getState() {
     const state = this.cdStateService.getState();
+    this.language = EZ.language;
+    this.translate.setDefaultLang(this.language);
+    this.translate.use(this.language)
     if (EZ.mode === EZ.MODE_DESIGN || EZ.mode === EZ.MODE_TEST) {
       if (
         EZ.mode === EZ.MODE_TEST ||

@@ -14,6 +14,7 @@ export const APP_CONFIG = {
     MARK_AS_DISTRACTOR: 'Mark as Distractor',
     ADD_DROPZONE: 'Add Drop zone',
     DELETE: 'Delete',
+    MARK_AS_LABEL: 'Mark as Label'
   },
   DISTRACTOR_OPTIONS: {
     EDIT: 'Edit',

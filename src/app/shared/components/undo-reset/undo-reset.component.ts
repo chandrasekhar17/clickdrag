@@ -3,6 +3,7 @@ import { ButtonPurpose } from '@mhe/ngx-shared';
 import { UndoRedoService } from 'src/app/services/undo-redo/undo-redo.service';
 import { ModalService } from 'src/app/services/modal-popup/modal.service';
 import { CdStateService } from 'src/app/services/cd-state/cd-state.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: '.app-undo-reset',
@@ -14,8 +15,11 @@ export class UndoResetComponent implements OnInit {
   state: any;
   disable: boolean = true;
   mode: string;
-  constructor(public undoRedo: UndoRedoService, private modalService: ModalService, private cdStateService: CdStateService) {
+  constructor(public undoRedo: UndoRedoService, private modalService: ModalService, private cdStateService: CdStateService,
+    private translate: TranslateService
+  ) {
     this.mode = EZ.mode;
+    // this.translate.get('');
   }
 
   ngOnInit(): void {

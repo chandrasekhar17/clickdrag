@@ -1,30 +1,53 @@
 <div class="d-flex main-header align-items-center">
-  <ng-container *ngIf="!reorderLabels;else reorderTemplete">
+  <ng-container *ngIf="!reorderLabels; else reorderTemplete">
     <div class="d-flex">
-      <button mhe-button [purpose]="_buttonPurpose.Icon" appTooltip="Undo" placement="bottom" aria-expanded="false"
-        (click)="handleUndo()" [disabled]="!undoRedo.undoArray.length">
-        <i class="dpg-icon dpg-icon-undo"><span class="sr-only">undo</span></i>
+      <button
+        mhe-button
+        [purpose]="_buttonPurpose.Icon"
+        appTooltip="Undo"
+        placement="bottom"
+        aria-expanded="false"
+        (click)="handleUndo()"
+        [disabled]="!undoRedo.undoArray.length"
+      >
+        <i class="dpg-icon dpg-icon-undo"><span class="sr-only">{{'UNDO' | translate}}</span></i>
       </button>
-      <button mhe-button [purpose]="_buttonPurpose.Icon" placement="bottom" appTooltip="Redo" aria-expanded="false"
-        (click)="handleRedo()" [disabled]="!undoRedo.redoArray.length">
-        <i class="dpg-icon dpg-icon-redo"><span class="sr-only">redo</span></i>
+      <button
+        mhe-button
+        [purpose]="_buttonPurpose.Icon"
+        placement="bottom"
+        appTooltip="Redo"
+        aria-expanded="false"
+        (click)="handleRedo()"
+        [disabled]="!undoRedo.redoArray.length"
+      >
+        <i class="dpg-icon dpg-icon-redo"><span class="sr-only">{{'REDO' | translate}}</span></i>
       </button>
-      <button mhe-button [purpose]="_buttonPurpose.Icon" placement="bottom" appTooltip="Delete" aria-expanded="false"
-        (click)="handleDelete()" [disabled]="!cdStateService.objectSelected">
+      <button
+        mhe-button
+        [purpose]="_buttonPurpose.Icon"
+        placement="bottom"
+        appTooltip="Delete"
+        aria-expanded="false"
+        (click)="handleDelete()"
+        [disabled]="!cdStateService.objectSelected"
+      >
         <i class="dpg-icon dpg-icon-trash"><span class="sr-only">delete</span></i>
       </button>
     </div>
     <div class="activity-title">
-      <h1>{{activityName}} - {{activityType}}</h1>
+      <h1>{{ activityName }} - {{ activityType }}</h1>
     </div>
     <div class="cd-version-text">
-      <p class="m-0">Version: {{version}}</p>
+      <p class="m-0">{{ 'VERSION' | translate }}: {{ version }}</p>
     </div>
   </ng-container>
   <ng-template #reorderTemplete>
-    <button mhe-button class="reorder-header-bottom" [purpose]="_buttonPurpose.Secondary"
-      (click)="cancelReorder()">Cancel</button>
-    <button mhe-button class="reorder-header-bottom" [purpose]="_buttonPurpose.Primary"
-      (click)="saveReorder()">Done</button>
+    <button mhe-button class="reorder-header-bottom" [purpose]="_buttonPurpose.Secondary" (click)="cancelReorder()">
+      {{ 'CANCEL' | translate }}
+    </button>
+    <button mhe-button class="reorder-header-bottom" [purpose]="_buttonPurpose.Primary" (click)="saveReorder()">
+      {{ 'DONE' | translate }}
+    </button>
   </ng-template>
 </div>
