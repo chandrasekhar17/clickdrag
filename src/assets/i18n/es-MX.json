@@ -1,5 +1,6 @@
 {
     "SELECT_ACTIVITY": "Seleccionar Actividad",
+    "ACTIVITY": "Actividad",
     "IMAGE_LABELING": "Etiquetado de Imágenes",
     "GROUPING": "Agrupamiento",
     "LABEL_INTERACTION": "Interacción de Etiquetas",
@@ -21,11 +22,11 @@
     "LOCK": "Bloquear",
     "SNAP": "Ajustar",
     "GUIDES": "Guías",
-    "IMG_DELETE_POPUP": {
-        "WARNING_TITLE": "Advertencia",
-        "CONFIRM_BUTTON": "OK",
-        "CONTENT_TEXT": "¿Está seguro de que desea eliminar la imagen de fondo? Todas las líneas de guía creadas también se eliminarán.",
-        "CANCEL_BUTTON": "Cancelar"
+    "modalOptions": {
+        "titleText": "Advertencia",
+        "confirmButtonText": "OK",
+        "contentText": "¿Está seguro de que desea eliminar la imagen de fondo? Todas las líneas de guía creadas también se eliminarán.",
+        "cancelButtonText": "Cancelar"
     },
     "RESET_DESC": "Restablecer descripción",
     "DELETE_ALL_GUIDES": "Eliminar todas las guías",

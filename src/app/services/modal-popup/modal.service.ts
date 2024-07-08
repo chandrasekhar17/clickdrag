@@ -815,6 +815,23 @@ export class ModalService {
       cancelButtonText: 'Cancel',
     };
 
+    console.log(modalOptions);
+    this.translate.use(EZ.language).subscribe(() => {
+      // this.currentLanguage = this.translate.currentLang; // Store current language
+      this.translate.get('modalOptions.contentText').subscribe((translation: string) => {
+        modalOptions.contentText = translation;
+      });
+      this.translate.get('modalOptions.cancelButtonText').subscribe((translation: string) => {
+        modalOptions.cancelButtonText = translation;
+      });
+      this.translate.get('modalOptions.titleText').subscribe((translation: string) => {
+        modalOptions.titleText = translation;
+      });
+      this.translate.get('modalOptions.confirmButtonText').subscribe((translation: string) => {
+        modalOptions.confirmButtonText = translation;
+      });
+    });
+
     let modalRef;
 
     modalRef = this.modalService.open(WarningMessageComponent, modalOptions);

@@ -16,6 +16,12 @@ export const APP_CONFIG = {
     DELETE: 'Delete',
     MARK_AS_LABEL: 'Mark as Label'
   },
+  NEW_LABEL_OPTIONS: {
+    EDIT: 'Edit',
+    ADD_LABEL_BELOW: 'Add Label Below',
+    MARK_AS_DISTRACTOR: 'Mark as Distractor', 
+    DELETE: 'Delete',
+  },
   DISTRACTOR_OPTIONS: {
     EDIT: 'Edit',
     ADD_LABEL_BELOW: 'Add Label Below',

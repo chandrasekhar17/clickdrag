@@ -21,7 +21,7 @@ export class ToolsComponent implements OnInit {
   ];
   state: any;
   constructor(private cdService: CdStateService,
-    translate: TranslateService
+    private translate: TranslateService
   ) {
     this.state = cdService.getState();
     cdService.stateUpdated.subscribe(() => {
@@ -29,6 +29,9 @@ export class ToolsComponent implements OnInit {
         this.setVisible('Magnify', false);
       } else {
         this.setVisible('Magnify', true);
+        this.translate.get('directive.magnify').subscribe((translation: string) => {
+          this.DefaultDirectives[2].title = translation
+        });
       }
     });
     cdService.selectionUpdated.subscribe((selection) => {
@@ -46,6 +49,9 @@ export class ToolsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.translate.get('directive.canvas').subscribe((translation: string) => {
+      this.DefaultDirectives[0].title = translation;
+    });
     this.cdService.bgImageDataUpdated.subscribe(() => {
       switch (this.state.activity.name) {
         case 'labeling':
@@ -61,9 +67,13 @@ export class ToolsComponent implements OnInit {
   labelActivity() {
     if (this.state.frameData.frames[0].mediaAdded) {
       this.setVisible('Image Description', true);
+      this.translate.get('directive.imageDescription').subscribe((translation: string) => {
+        this.DefaultDirectives[1].title = translation;
+      });
     } else {
       this.setVisible('Image Description', false);
     }
+
   }
 
   groupActivity() {
@@ -76,6 +86,9 @@ export class ToolsComponent implements OnInit {
     });
     if (isImageAdded) {
       this.setVisible('Image Description', true);
+      this.translate.get('directive.imageDescription').subscribe((translation: string) => {
+        this.DefaultDirectives[1].title = translation;
+      });
     } else {
       this.setVisible('Image Description', false);
     }
@@ -90,6 +103,9 @@ export class ToolsComponent implements OnInit {
       const leaderLine = docks.filter((item) => item.leaderLine?.branches && item.leaderLine?.branches.length > 0);
       if (leaderLine.length > 0) {
         this.setVisible('Magnify', true);
+        this.translate.get('directive.magnify').subscribe((translation: string) => {
+          this.DefaultDirectives[2].title = translation
+        });
       } else {
         this.setVisible('Magnify', false);
       }
@@ -98,11 +114,14 @@ export class ToolsComponent implements OnInit {
 
   expandPanel(index: number) {
     this.DefaultDirectives[index].expandPanel = !this.DefaultDirectives[index].expandPanel;
+
   }
 
   setVisible(name: string, value: boolean) {
+
     this.DefaultDirectives.forEach((item) => {
       if (item.title === name) {
+
         item.visible = value;
       }
     });

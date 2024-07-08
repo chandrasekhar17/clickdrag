@@ -32,7 +32,7 @@ export class LabelsComponent implements OnInit {
   mousemove;
   mouseMoveSub;
 
-  labelOptions: MheOption[];
+  labelOptions: any[];
   distractorOptions: MheOption[];
   mode;
 
@@ -60,7 +60,9 @@ export class LabelsComponent implements OnInit {
     this.reorderService.reorderLabels.subscribe((value) => {
       this.reorderLabel = value;
     });
-    this.labelOptions = this.translateLabelOptions(APP_CONFIG.LABEL_OPTIONS);
+    console.log(this.labelOptions)
+    this.labelOptions = this.translateLabelOptions(APP_CONFIG.NEW_LABEL_OPTIONS);
+    // this.labelOptions = this.translateLabelOptions(this.labelOptions);
   }
   translateLabelOptions(options: { [key: string]: string }): any[] {
     return Object.keys(options).map(key => {

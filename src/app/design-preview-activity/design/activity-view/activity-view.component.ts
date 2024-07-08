@@ -14,6 +14,7 @@ export class ActivityViewComponent implements OnInit {
   typeOfInteraction = 'one-label-one-dock';
   typeOfOccurrence = '';
   confirmButtonText: string;
+  titleText: string;
 
   constructor(public cdStateService: CdStateService,
     private translate: TranslateService
@@ -23,6 +24,9 @@ export class ActivityViewComponent implements OnInit {
     this.showModal();
     this.translate.get('START').subscribe((translation: string) => {
       this.confirmButtonText = translation;
+    });
+    this.translate.get('ACTIVITY').subscribe((res: string) => {
+      this.titleText = res;
     });
   }
 

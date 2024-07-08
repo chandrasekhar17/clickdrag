@@ -1,5 +1,6 @@
 {
     "SELECT_ACTIVITY": "Select Activity",
+    "ACTIVITY": "Activity",
     "IMAGE_LABELING": "Image Labeling",
     "GROUPING": "Grouping",
     "LABEL_INTERACTION": "Label Interaction",
@@ -61,6 +62,9 @@
         "imageDescription": "Image Description",
         "magnify": "Magnify"
     },
+    "Canvas": "Canvas",
+    "Image Description": "Image Description",
+    "Magnify": "Magnify",
     "SHORT_DESC": "Short Description",
     "LONG_DESC": "Long Description",
     "SHOW_AUTH": "Show in authoring",
@@ -95,10 +99,10 @@
     "GUIDES_INFO_TEXT2": "To create guides, click the rulers at the top or left of the canvas and drag the guides to wherever you want them on the canvas. You can create as many horizontal or vertical guides as you want. To line objects neatly up against theguides, click the 'snap to' option and drag the top or left side of the object close to the guide; it will 'snap' into place against the guide when you get close enough.",
     "GUIDES_INFO_TEXT3": "You also can hide the guides or lock them in place. To delete ALL guides click the 'Delete All Guides' button. Todelete only one guide, select it and click the trashcan in the toolbar.",
     "SAVE": "Save",
-    "IMG_DELETE_POPUP": {
-        "WARNING_TITLE": "Warning",
-        "CONFIRM_BUTTON": "OK",
-        "CONTENT_TEXT": "Are you sure you want to delete the Background image? All leader lines created will also be deleted.",
-        "CANCEL_BUTTON": "Cancel"
+    "modalOptions": {
+        "titleText": "Warning",
+        "confirmButtonText": "OK",
+        "contentText": "Are you sure you want to delete the Background image? All leader lines created will also be deleted.",
+        "cancelButtonText": "Cancel"
     }
 }
