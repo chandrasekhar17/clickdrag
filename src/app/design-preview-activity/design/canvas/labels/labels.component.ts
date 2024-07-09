@@ -62,7 +62,6 @@ export class LabelsComponent implements OnInit {
     });
     console.log(this.labelOptions)
     this.labelOptions = this.translateLabelOptions(APP_CONFIG.NEW_LABEL_OPTIONS);
-    // this.labelOptions = this.translateLabelOptions(this.labelOptions);
   }
   translateLabelOptions(options: { [key: string]: string }): any[] {
     return Object.keys(options).map(key => {

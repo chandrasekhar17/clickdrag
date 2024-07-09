@@ -3,7 +3,7 @@ import { ElementRef } from '@angular/core';
 export interface ModalOptions {
   type: 'warning' | 'error' | 'custom';
   titleText?: string;
-  contentText?: '',
+  contentText?: string,
   cancelButtonText?: string;
   confirmButtonText?: string;
   showFooter?: boolean;

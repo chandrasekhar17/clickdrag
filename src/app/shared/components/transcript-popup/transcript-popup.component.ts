@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ButtonPurpose, ButtonType } from '@mhe/ngx-shared';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface positionConfig {
   x: number;
@@ -23,7 +24,9 @@ export class TranscriptPopupComponent implements OnInit {
 
   transcript: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private translate: TranslateService) {
+    // this.translate.use('');
+  }
 
   ngOnInit(): void {
     if (this.audioData?.caption) {
@@ -38,6 +41,7 @@ export class TranscriptPopupComponent implements OnInit {
     } else {
       this.transcript = '';
     }
+    this.translate.use('');
   }
 
   onClose() {

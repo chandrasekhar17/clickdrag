@@ -1,7 +1,7 @@
 <div role="dialog" aria-modal="true" class="transcript-modal-content" *ngIf="specialCharService.showSpecialChars"
     cdkDrag cdkDragBoundary="body" [cdkDragFreeDragPosition]="positionValue" (clickOutside)="onClickedOutside($event)">
     <div class="transcript-modal-header d-flex align-items-center">
-        <h2 class="modal-title text-left"> Special Characters </h2>
+        <h2 class="modal-title text-left"> {{'SPEC_CHAR' | translate}} </h2>
         <div class="modal-action">
             <button cdkDragHandle tabIndex="-1">
                 <i class="dpg-icon dpg-icon-multidirectional-white"></i>

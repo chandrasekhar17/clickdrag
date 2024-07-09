@@ -1,25 +1,35 @@
-<div role="dialog" aria-modal="true" class="transcript-modal-content" cdkTrapFocus [cdkTrapFocusAutoCapture]="true"
-    [cdkDragBoundary]="boundary" cdkDrag [cdkDragFreeDragPosition]="position">
-    <div class="transcript-modal-header d-flex align-items-center">
-        <h2 class="modal-title text-left"> Audio Transcript </h2>
-        <div class="modal-action">
-            <button cdkDragHandle tabIndex="-1">
-                <i class="dpg-icon dpg-icon-multidirectional-white"></i>
-            </button>
-            <button (click)="onClose()">
-                <i class="dpg-icon dpg-icon-system-close-white">
-                </i>
-            </button>
-        </div>
+<div
+  role="dialog"
+  aria-modal="true"
+  class="transcript-modal-content"
+  cdkTrapFocus
+  [cdkTrapFocusAutoCapture]="true"
+  [cdkDragBoundary]="boundary"
+  cdkDrag
+  [cdkDragFreeDragPosition]="position"
+>
+  <div class="transcript-modal-header d-flex align-items-center">
+    <!-- <h2 class="modal-title text-left">{{ 'AUDIO_TRANSCRIPT' | translate }}</h2> -->
+    <h2 class="modal-title text-left">Audio Transcript</h2>
+    <div class="modal-action">
+      <button cdkDragHandle tabIndex="-1">
+        <i class="dpg-icon dpg-icon-multidirectional-white"></i>
+      </button>
+      <button (click)="onClose()">
+        <i class="dpg-icon dpg-icon-system-close-white"> </i>
+      </button>
     </div>
-    <!-- will update with the transcript data-->
-    <div class="transcript-modal-body text-left">
-        <p *ngIf="transcript !== ''; else zeroState ">{{transcript}}</p>
-        <ng-template #zeroState>
-            <p>Transcript not available</p>
-        </ng-template>
-    </div>
-    <div class="transcript-modal-footer">
-        <button mhe-button [purpose]="_buttonPurpose.Primary" (click)="onClose()">Close</button>
-    </div>
+  </div>
+  <!-- will update with the transcript data-->
+  <div class="transcript-modal-body text-left">
+    <p *ngIf="transcript !== ''; else zeroState">{{ transcript }}</p>
+    <ng-template #zeroState>
+      <!-- <p>{{ 'TRANSCRIPT_NOT_AVAILABLE' | translate }}</p> -->
+      <p>Transcript not available</p>
+    </ng-template>
+  </div>
+  <div class="transcript-modal-footer">
+    <button mhe-button [purpose]="_buttonPurpose.Primary" (click)="onClose()">Close</button>
+    <!-- <button mhe-button [purpose]="_buttonPurpose.Primary" (click)="onClose()">{{ 'CLOSE' | translate }}</button> -->
+  </div>
 </div>

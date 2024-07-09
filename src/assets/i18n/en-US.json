@@ -26,11 +26,14 @@
     "GUIDES": "Guides",
     "DELETE_ALL_GUIDES": "Delete All Guides",
     "EDIT": "Edit",
+    "CONFIRM": "Confirm",
     "ADD_LABEL_BELOW": "Add Label Below",
     "MARK_AS_DISTRACTOR": "Mark as Distractor",
     "ADD_DROPZONE": "Add Drop zone",
     "DELETE": "Delete",
     "MARK_AS_LABEL": "Mark as Label",
+    "SPEC_CHAR":"Special Characters",
+    "TRANSCRIPT_NOT_AVAILABLE": "Transcript not available",
     "MODAL_POPUP_MESSAGE_ON_DELETE_FOR_LABEL": "Are you sure you want to delete the selected Label? Deleting the label will remove the corresponding dock as well.",
     "MODAL_POPUP_MESSAGE_ON_DELETE_FOR_DISTRACTOR": "Are you sure you want to delete the selected Distractor?",
     "MODAL_POPUP_MESSAGE_ON_DELETE_FOR_LABEL_FOR_GROUPING": "Are you sure you want to delete selected label?",
@@ -104,5 +107,7 @@
         "confirmButtonText": "OK",
         "contentText": "Are you sure you want to delete the Background image? All leader lines created will also be deleted.",
         "cancelButtonText": "Cancel"
-    }
+    },
+    "CLOSE": "Close",
+    "AUDIO_TRANSCRIPT": "Audio Transcript"
 }

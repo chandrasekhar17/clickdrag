@@ -28,6 +28,7 @@ export class ModalService {
   modalRefs = [];
   labelList = [];
   modalOptions: any;
+  initialState: ModalOptions
   // public labelData: BehaviorSubject<any> = new BehaviorSubject<any>({});
   stateUpdated: BehaviorSubject<any> = new BehaviorSubject<any>(false);
   // public addLabelModalRef: ModalRef<AddLabelComponent>;
@@ -68,6 +69,7 @@ export class ModalService {
       }
     });
   }
+
 
   showAddLabelModal(labelText?, note?, feedback?, dropzoneDescription?, mediaId?) {
     let modalRef: ModalRef<AddLabelComponent>;
@@ -245,6 +247,17 @@ export class ModalService {
         confirmButtonText: translations['IMG_DELETE_POPUP.CONFIRM_BUTTON'],
         contentText: translations['IMG_DELETE_POPUP.CONTENT_TEXT'],
         cancelButtonText: translations['IMG_DELETE_POPUP.CANCEL_BUTTON'],
+      };
+    });
+
+    this.translate.get(['ADD_IMAGE', 'CONFIRM', 'CANCEL']).subscribe(translations => {
+      this.initialState = {
+        type: 'custom',
+        titleText: translations['ADD_IMAGE'],
+        confirmButtonText: translations['CONFIRM'],
+        cancelButtonText: translations['CANCEL'],
+        panelClass: '',
+        contentText: ''
       };
     });
 
